@@ -1,0 +1,82 @@
+{
+  "appointments": [
+    {
+      "nome": "a",
+      "celular": "21212121212",
+      "date": "1999-12-12",
+      "hour": "14:00",
+      "id": "b7421f33-0c95-4c5f-845a-9c5c11effe36",
+      "professional": "1",
+      "service": "cabelo"
+    },
+    {
+      "nome": "Antonio Carlos de Lima",
+      "celular": "1213123123",
+      "date": "1999-12-12",
+      "hour": "12:00",
+      "id": "ff8da055-31f0-4f5c-a81c-00f0c20a9064",
+      "professional": "1",
+      "service": "cabelo"
+    },
+    {
+      "nome": "Antonio Carlos de Lima",
+      "celular": "121212121212",
+      "date": "1999-12-12",
+      "hour": "12:00",
+      "id": "8806135d-13dc-4408-9609-e7f1085c0bfe",
+      "professional": "2",
+      "service": "barba"
+    },
+    {
+      "nome": "tony",
+      "celular": "12121219929192",
+      "date": "1999-12-12",
+      "hour": "20:00",
+      "id": "9bf0f6a6-995d-40cf-aac3-4e90a880dc03",
+      "professional": "2",
+      "service": "cabelo"
+    }
+  ],
+  "professionals": [
+    {
+      "id": 1,
+      "name": "Carlos"
+    },
+    {
+      "id": 2,
+      "name": "Donizete"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "service_name": "Corte de cabelo",
+      "price": 30,
+      "service_duration": 50
+    },
+    {
+      "id": 2,
+      "service_name": "Corte de barba",
+      "price": 30,
+      "service_duration": 50
+    },
+    {
+      "id": 3,
+      "service_name": "Cabelo e barba",
+      "price": 60,
+      "service_duration": 120
+    },
+    {
+      "id": 4,
+      "service_name": "Prótese",
+      "price": 2000,
+      "service_duration": 180
+    },
+    {
+      "id": 5,
+      "service_name": "Manutenção prótese",
+      "price": 600,
+      "service_duration": 120
+    }
+  ]
+}
