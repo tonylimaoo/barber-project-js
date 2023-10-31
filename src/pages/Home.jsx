@@ -35,9 +35,8 @@ export default function App() {
         (async () => {
             e.preventDefault();
             const tid = uuid.v4()
-            console.log("Resultado");
-            console.log(professional);
-            console.log(service);
+            const userId = authUser ? authUser.uid : null
+            console.log(userId)
             setLoading(true);
             const appointment = {
                 "nome": name,
@@ -47,17 +46,13 @@ export default function App() {
                 "id": tid,
                 "professional": professional,
                 "service": service,
-                "uid": authUser.uid || undefined
+                "uid": userId
             }
 
             httpConfig(appointment, "POST");
-            // setTransactionId(await setAppointments(name, cel, date, hour));
-            // console.log('Datas: ' + name, cel, date, hour, transactionId);
             setFormSubmitted(true);
             setLoading(false);
             setTransactionId(tid);
-
-
         })()
 
     };
