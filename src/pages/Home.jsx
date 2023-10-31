@@ -10,9 +10,11 @@ import { useState, useEffect } from 'react'
 
 // Functions
 import { useFetch } from '../hooks/useFetch'
+import { useAuth } from '../hooks/useAuth'
 
 const url = 'http://localhost:3000/appointments'
 const uuid = require('uuid');
+
 
 
 export default function App() {
@@ -26,6 +28,7 @@ export default function App() {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
     const { httpConfig } = useFetch(url);
+    const { authUser } = useAuth();
 
     const handleSubmit = (e) => {
 
@@ -43,7 +46,8 @@ export default function App() {
                 "hour": hour,
                 "id": tid,
                 "professional": professional,
-                "service": service
+                "service": service,
+                "uid": authUser.uid || undefined
             }
 
             httpConfig(appointment, "POST");

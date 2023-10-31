@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Styles/header.module.css'
 import { Link } from 'react-router-dom'
 
-export default function Head() {
+export default function Header({userSignOut, authUser}) {
     return (
         <>
             <nav className={styles.header}>
@@ -13,7 +13,11 @@ export default function Head() {
                     <Link to='/' className={styles.link}>Home</Link>
                     <Link to='/controle' className={styles.link}>Horários</Link>
                     <Link to='/profile' className={styles.link}>Meu Perfil</Link>
-                    <Link to='/login' className={styles.link}>Login</Link>
+                    {authUser ?
+                     <Link onClick={userSignOut}>Sair</Link>
+                     :
+                     <Link to='/login' className={styles.link}>Login</Link> 
+                    }
                 </section>
             </nav>
         </>

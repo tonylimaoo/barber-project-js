@@ -24,19 +24,22 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header userSignOut={userSignOut} authUser={authUser} />
         <main>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/controle' element={<Control />} />
             <Route path='/login' element={<Login />} />
           </Routes>
-          <div>{authUser ?
-            <>
-              <p>Signed In as {authUser.email}</p>
-              <button onClick={userSignOut}>Sign Out</button>
-            </>
-            : <p>Signed Out</p>}</div>
+          <div>
+            {authUser ?
+              <>
+                <p>Signed In as {authUser.email}</p>
+                <button onClick={userSignOut}>Sign Out</button>
+              </>
+              : <p>Signed Out</p>
+            }
+          </div>
         </main>
         <Footer />
       </BrowserRouter>
