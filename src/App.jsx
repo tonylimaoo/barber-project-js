@@ -4,8 +4,23 @@ import Control from './pages/Control';
 import Home from './pages/Home';
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Login from './pages/Login';
+import { auth } from './firebase';
+import { signOut } from 'firebase/auth';
+import { useAuth } from './hooks/useAuth';
+
 
 function App() {
+
+  const { authUser } = useAuth();
+
+  const userSignOut = () => {
+    signOut(auth).then(() => {
+      console.log("signOut succesfully");
+    }).catch(error => console.log(error))
+  }
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -14,7 +29,14 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/controle' element={<Control />} />
+            <Route path='/login' element={<Login />} />
           </Routes>
+          <div>{authUser ?
+            <>
+              <p>Signed In as {authUser.email}</p>
+              <button onClick={userSignOut}>Sign Out</button>
+            </>
+            : <p>Signed Out</p>}</div>
         </main>
         <Footer />
       </BrowserRouter>

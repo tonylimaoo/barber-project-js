@@ -13,7 +13,7 @@ export default function Head() {
                     <Link to='/' className={styles.link}>Home</Link>
                     <Link to='/controle' className={styles.link}>Horários</Link>
                     <Link to='/profile' className={styles.link}>Meu Perfil</Link>
-                    <Link to='/config' className={styles.link}>Configurações</Link>
+                    <Link to='/login' className={styles.link}>Login</Link>
                 </section>
             </nav>
         </>
