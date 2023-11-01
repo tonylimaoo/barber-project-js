@@ -29,6 +29,9 @@ export default function App() {
     const [loading, setLoading] = useState(false);
     const { httpConfig } = useFetch(url);
     const { authUser } = useAuth();
+    const [userId, setUserId] = useState("");
+    const [filledForm, setFilledForm] = useState("");
+    // const [disabled, setDisabled] = useState("");
 
     const handleSubmit = (e) => {
 
@@ -36,7 +39,6 @@ export default function App() {
             e.preventDefault();
             const tid = uuid.v4()
             const userId = authUser ? authUser.uid : null
-            console.log(userId)
             setLoading(true);
             const appointment = {
                 "nome": name,
@@ -61,6 +63,30 @@ export default function App() {
         localStorage.setItem('transactionId', transactionId)
     }, [transactionId])
 
+    useEffect(() => {
+        setUserId(localStorage.getItem("userId"))
+        console.log(userId)
+    }, [])
+
+    useEffect(() => {
+        if(userId !== ''){
+            const fetchData = async () => {
+                const res = await fetch ('http://localhost:3000/users/'+ userId)
+                const data = await res.json();
+                
+                setName(data.name);
+                setCel(data.cellphone);
+                console.log(name, cel)
+                setFilledForm("filled")
+                console.log(filledForm)
+            }
+            fetchData();
+        } else {
+            setFilledForm("unfilled")
+            console.log(filledForm)
+        }
+    }, [userId])
+
     return (
         <div className="main">
 
@@ -77,10 +103,12 @@ export default function App() {
                         setCel={setCel}
                         setDate={setDate}
                         setHour={setHour}
-                        setService={setService}
-                        setProfessional={setProfessional}
                         handleSubmit={handleSubmit}
                         loading={loading}
+                        userId={userId}
+                        setService={setService}
+                        setProfessional={setProfessional}
+                        filledForm={filledForm}
                     />
                 </div>
             }

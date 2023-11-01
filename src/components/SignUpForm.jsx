@@ -1,7 +1,19 @@
 import React from 'react'
 import styles from './Styles/signup-form.module.css'
 
-const SignupForm = ({ setEmail, setPassword, email, password, handleSubmit }) => {
+const SignupForm = ({
+    setEmail,
+    setPassword,
+    setName,
+    setBirthday,
+    setCellphone,
+    email,
+    password,
+    name,
+    birthday,
+    cellphone,
+    handleSubmit
+}) => {
     return (
         <>
             <section className={styles['form-section']}>
@@ -10,6 +22,37 @@ const SignupForm = ({ setEmail, setPassword, email, password, handleSubmit }) =>
                     onSubmit={handleSubmit}
                     className={styles.form}
                 >
+                    <label>
+                        <span>Nome completo</span>
+                        <input
+                            type="text"
+                            name='nome'
+                            placeholder='Digite seu nome completo'
+                            required
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                        />
+                    </label>
+                    <label>
+                        <span>Data de nascimento</span>
+                        <input
+                            type="date"
+                            name='birthday'
+                            required
+                            onChange={(e) => setBirthday(e.target.value)}
+                            value={birthday}
+                        />
+                    </label>
+                    <label>
+                        <span>Celular</span>
+                        <input
+                            type="number"
+                            name='celphone'
+                            required
+                            onChange={(e) => setCellphone(e.target.value)}
+                            value={cellphone}
+                        />
+                    </label>
                     <label>
                         <span>Email</span>
                         <input
@@ -32,7 +75,7 @@ const SignupForm = ({ setEmail, setPassword, email, password, handleSubmit }) =>
                             required
                         />
                     </label>
-                    <button type='submit'>CADASTRAR-SE</button>
+                    <button type='submit'>CADASTRE-SE</button>
                 </form>
             </section>
         </>

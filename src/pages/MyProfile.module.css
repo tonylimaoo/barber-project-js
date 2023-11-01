@@ -1,0 +1,16 @@
+.myProfileInfo {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.myProfileInfo label {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.myProfileInfo input {
+    margin: 10px;
+    height: 30px;
+    text-align: center;
+}

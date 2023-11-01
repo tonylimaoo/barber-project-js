@@ -4,13 +4,19 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 40px;
-    border: solid 5px white;
+    font-size: 50px;
+    /* border: solid 5px white; */
 }
 
 .sectionId {
-    border: solid 5px white;
+    /* border: solid 5px white; */
     padding: 30px;
-    background-color: black;
+    background-color: #4A0000;
     color: white;
+    border-radius: 1.25em;
+    padding: 60px;
+}
+
+.black {
+    color: grey;
 }

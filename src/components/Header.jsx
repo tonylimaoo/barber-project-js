@@ -2,7 +2,12 @@ import React from 'react'
 import styles from './Styles/header.module.css'
 import { Link } from 'react-router-dom'
 
-export default function Header({userSignOut, authUser}) {
+export default function Header({ userSignOut, authUser }) {
+
+    const handleClick = () => {
+        userSignOut();
+        localStorage.setItem("userId", "");
+    }
     return (
         <>
             <nav className={styles.header}>
@@ -12,11 +17,11 @@ export default function Header({userSignOut, authUser}) {
                 <section className={styles.nav}>
                     <Link to='/' className={styles.link}>Home</Link>
                     <Link to='/controle' className={styles.link}>Horários</Link>
-                    <Link to='/profile' className={styles.link}>Meu Perfil</Link>
+                    <Link to='/my-profile' className={styles.link}>Meu Perfil</Link>
                     {authUser ?
-                     <Link onClick={userSignOut}>Sair</Link>
-                     :
-                     <Link to='/login' className={styles.link}>Login</Link> 
+                        <Link onClick={handleClick}>Sair</Link>
+                        :
+                        <Link to='/login' className={styles.link}>Login</Link>
                     }
                 </section>
             </nav>
