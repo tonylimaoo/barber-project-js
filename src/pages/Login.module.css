@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    flex-direction: column;
+}
+
+.signBtn {
+    display: inline-flex;
+    width: 150px;
+    height: 50px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 26px;
+    background: #000;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: lighter;
+    color: white;
+}

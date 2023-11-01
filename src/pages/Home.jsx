@@ -10,9 +10,11 @@ import { useState, useEffect } from 'react'
 
 // Functions
 import { useFetch } from '../hooks/useFetch'
+import { useAuth } from '../hooks/useAuth'
 
 const url = 'http://localhost:3000/appointments'
 const uuid = require('uuid');
+
 
 
 export default function App() {
@@ -26,15 +28,15 @@ export default function App() {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
     const { httpConfig } = useFetch(url);
+    const { authUser } = useAuth();
 
     const handleSubmit = (e) => {
 
         (async () => {
             e.preventDefault();
             const tid = uuid.v4()
-            console.log("Resultado");
-            console.log(professional);
-            console.log(service);
+            const userId = authUser ? authUser.uid : null
+            console.log(userId)
             setLoading(true);
             const appointment = {
                 "nome": name,
@@ -43,17 +45,14 @@ export default function App() {
                 "hour": hour,
                 "id": tid,
                 "professional": professional,
-                "service": service
+                "service": service,
+                "uid": userId
             }
 
             httpConfig(appointment, "POST");
-            // setTransactionId(await setAppointments(name, cel, date, hour));
-            // console.log('Datas: ' + name, cel, date, hour, transactionId);
             setFormSubmitted(true);
             setLoading(false);
             setTransactionId(tid);
-
-
         })()
 
     };
