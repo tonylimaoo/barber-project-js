@@ -7,8 +7,6 @@ const url = 'http://localhost:3000/appointments';
 export default function Controle() {
     const { data, loading } = useFetch(url);
 
-    console.log(loading)
-    console.log(JSON.stringify(data))
     return (
         <div>
             {loading ? (
