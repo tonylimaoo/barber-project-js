@@ -3,7 +3,7 @@ import styles from "./Control.module.css"
 import { useFetch } from "../hooks/useFetch"
 import { useState } from "react";
 
-const url = 'http://localhost:3000/appointments';
+const url = 'http://localhost:3000/appointments?_sort=hour&_order=asc';
 
 export default function Controle() {
     const { data, loading } = useFetch(url);
