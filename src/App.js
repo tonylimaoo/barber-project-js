@@ -37,15 +37,6 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/my-profile' element={<MyProfile />} />
           </Routes>
-          <div>
-            {authUser ?
-              <>
-                <p>Signed In as {authUser.email}</p>
-                <button onClick={userSignOut}>Sign Out</button>
-              </>
-              : <p>Signed Out</p>
-            }
-          </div>
         </main>
         <Footer />
       </BrowserRouter>

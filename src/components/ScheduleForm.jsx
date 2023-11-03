@@ -149,11 +149,11 @@ export default function ScheduleForm({
                                     required
                                 >
                                     <option value="" defaultChecked>Selecione</option>
-                                    <option value="1">Cabelo</option>
-                                    <option value="2">Barba</option>
-                                    <option value="3">Cabelo e Barba</option>
-                                    <option value="4">Prótese + Corte</option>
-                                    <option value="5">Manutenção da Prótese</option>
+                                    <option value="Cabelo">Cabelo</option>
+                                    <option value="Barba">Barba</option>
+                                    <option value="Cabelo e Barba">Cabelo e Barba</option>
+                                    <option value="Prótese + Corte">Prótese + Corte</option>
+                                    <option value="Manutenção da Prótese">Manutenção da Prótese</option>
                                 </select>
                             </label>
                             <label>
@@ -164,8 +164,8 @@ export default function ScheduleForm({
                                     required
                                 >
                                     <option value="" defaultChecked>Selecione</option>
-                                    <option value={Number(1)}>Carlos</option>
-                                    <option value={Number(2)}>Donizete</option>
+                                    <option value="Carlos">Carlos</option>
+                                    <option value="Donizete">Donizete</option>
                                 </select>
                             </label>
                         </div>
@@ -237,11 +237,11 @@ export default function ScheduleForm({
                                     required
                                 >
                                     <option value="" defaultChecked>Selecione</option>
-                                    <option value="1">Cabelo</option>
-                                    <option value="2">Barba</option>
-                                    <option value="3">Cabelo e Barba</option>
-                                    <option value="4">Prótese + Corte</option>
-                                    <option value="5">Manutenção da Prótese</option>
+                                    <option value="Cabelo">Cabelo</option>
+                                    <option value="Barba">Barba</option>
+                                    <option value="Cabelo e Barba">Cabelo e Barba</option>
+                                    <option value="Prótese + Corte">Prótese + Corte</option>
+                                    <option value="Manutenção da Prótese">Manutenção da Prótese</option>
                                 </select>
                             </label>
                             <label>
@@ -252,8 +252,8 @@ export default function ScheduleForm({
                                     required
                                 >
                                     <option value="" defaultChecked>Selecione</option>
-                                    <option value={Number(1)}>Carlos</option>
-                                    <option value={Number(2)}>Donizete</option>
+                                    <option value="Carlos">Carlos</option>
+                                    <option value="Donizete">Donizete</option>
                                 </select>
                             </label>
                         </div>
