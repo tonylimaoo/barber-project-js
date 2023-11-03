@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import styles from './Styles/schedule-form.module.css'
 
 const hours = ["8:00", "8:50", "9:40", "10:30", "11:20", "12:10", "13:00", "13:50", "14:40", "15:30", "16:20", "17:10", "18:00", "18:50", "19:40", "20:30"]
@@ -18,8 +19,14 @@ export default function ScheduleForm({
     userId,
     setService,
     setProfessional,
+    appointmentHours,
     filledForm
 }) {
+    const [exclusiveHours, setExclusiveHours] = useState([]);
+
+    useEffect(() => {
+        setExclusiveHours(hours.filter(ele => !appointmentHours.includes(ele)));
+    }, [appointmentHours])
 
     const getDate = new Date();
 
@@ -41,8 +48,6 @@ export default function ScheduleForm({
         return fullDate
     };
 
-    const todaysDate = formatDate();
-
     const dayPlusSeven = () => {
         let day = Number(getDate.getDate()) + 7
         let month = `${getDate.getMonth() + 1}`
@@ -61,6 +66,7 @@ export default function ScheduleForm({
         return fullDate
     }
 
+    const todaysDate = formatDate();
     const todaysDatePlusSeven = dayPlusSeven();
 
     return (
@@ -109,6 +115,18 @@ export default function ScheduleForm({
                                 required
                             />
                         </label>
+                        {/* <label>
+                            <span>Data</span>
+                            <input
+                                type="date"
+                                name='date'
+                                min={todaysDate}
+                                max={todaysDatePlusSeven}
+                                onChange={(e) => setDate(e.target.value)}
+                                value={date}
+                                required
+                            />
+                        </label> */}
                         <label>
                             <span>Horário</span>
                             <select
@@ -116,11 +134,8 @@ export default function ScheduleForm({
                                 value={hour}
                                 required
                             >
-                                <option value="" selected>Selecione</option>
-                                {hours.map((hour, i) => {
-                                    console.log(hour, i)
-                                })}
-                                {hours.map((hour, i) => (
+                                <option value="" defaultValue=''>Selecione</option>
+                                {exclusiveHours.map((hour, i) => (
                                     <option key={i} value={hour}>{hour}</option>
                                 ))}
                             </select>
@@ -133,7 +148,7 @@ export default function ScheduleForm({
                                     value={service}
                                     required
                                 >
-                                    <option value="" selected>Selecione</option>
+                                    <option value="" defaultChecked>Selecione</option>
                                     <option value="1">Cabelo</option>
                                     <option value="2">Barba</option>
                                     <option value="3">Cabelo e Barba</option>
@@ -142,13 +157,13 @@ export default function ScheduleForm({
                                 </select>
                             </label>
                             <label>
-                                <span>Profissional</span>
+                                <span>Barbeiro</span>
                                 <select
                                     onChange={(e) => setProfessional(e.target.value)}
                                     value={professional}
                                     required
                                 >
-                                    <option value="" selected>Selecione</option>
+                                    <option value="" defaultChecked>Selecione</option>
                                     <option value={Number(1)}>Carlos</option>
                                     <option value={Number(2)}>Donizete</option>
                                 </select>
@@ -193,6 +208,8 @@ export default function ScheduleForm({
                             <input
                                 type="date"
                                 name='date'
+                                min={todaysDate}
+                                max={todaysDatePlusSeven}
                                 onChange={(e) => setDate(e.target.value)}
                                 value={date}
                                 required
@@ -205,7 +222,8 @@ export default function ScheduleForm({
                                 value={hour}
                                 required
                             >
-                                {hours.map((hour, i) => (
+                                <option value="" defaultChecked>Selecione</option>
+                                {exclusiveHours.map((hour, i) => (
                                     <option key={i} value={hour}>{hour}</option>
                                 ))}
                             </select>
@@ -218,7 +236,7 @@ export default function ScheduleForm({
                                     value={service}
                                     required
                                 >
-                                    <option value="" selected>Selecione</option>
+                                    <option value="" defaultChecked>Selecione</option>
                                     <option value="1">Cabelo</option>
                                     <option value="2">Barba</option>
                                     <option value="3">Cabelo e Barba</option>
@@ -233,7 +251,7 @@ export default function ScheduleForm({
                                     value={professional}
                                     required
                                 >
-                                    <option value="" selected>Selecione</option>
+                                    <option value="" defaultChecked>Selecione</option>
                                     <option value={Number(1)}>Carlos</option>
                                     <option value={Number(2)}>Donizete</option>
                                 </select>

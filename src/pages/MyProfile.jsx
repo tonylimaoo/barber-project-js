@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useEffect, useContext } from 'react'
+import { useEffect } from 'react'
 import styles from './MyProfile.module.css'
 
 const urls = [
@@ -9,7 +9,6 @@ const urls = [
 
 const MyProfile = () => {
 
-  const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [name, setName] = useState("");
@@ -24,13 +23,12 @@ const MyProfile = () => {
     const fetchData = async () => {
       setLoading(true)
       const res = await fetch(urls[0] + userId);
-      const data = await res.json();
+      const json = await res.json();
 
-      setData(data);
-      setBirthday(data.birthday);
-      setName(data.name);
-      setEmail(data.email);
-      setCellphone(data.cellphone);
+      setBirthday(json.birthday);
+      setName(json.name);
+      setEmail(json.email);
+      setCellphone(json.cellphone);
 
       setLoading(false);
     }
@@ -77,13 +75,13 @@ const MyProfile = () => {
       <section className={styles.list}>
         <h1>Appointments</h1>
         <ul>
-          {appointments !== [] && appointments.map((app, i) => (
-            <div>
+          {!loading2 && appointments !== [] && appointments.map((app, i) => (
+            <div key={app.id}>
               <h3>Agendamento {i + 1}: {app.id}</h3>
-              <li key={app.id} >Data: {app.date.split('-')[2]}/{app.date.split('-')[1]}/{app.date.split('-')[0]}</li>
-              <li key={app.id} >Horário: {app.hour}</li>
-              <li key={app.id} >Profissinal: {app.professional}</li>
-              <li key={app.id} >Serviço: {app.service}</li>
+              <li>Data: {app.date.split('-')[2]}/{app.date.split('-')[1]}/{app.date.split('-')[0]}</li>
+              <li>Horário: {app.hour}</li>
+              <li>Barbeiro: {app.professional}</li>
+              <li>Serviço: {app.service}</li>
             </div>
           ))}
         </ul>

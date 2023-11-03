@@ -12,7 +12,7 @@ export default function Concluido({ transactionId, hour, date }) {
                     </p>
                     <p><span className={styles.black}>Foi agendado na data:</span> {date[2]}/{date[1]}/{date[0]}</p>
                     <p><span className={styles.black}>Horário:</span> {hour}</p>
-                    <p><span className={styles.black}>Seu ID do atendimento é:</span> <tr />{transactionId}</p>
+                    <p><span className={styles.black}>Seu ID do atendimento é:</span> {transactionId}</p>
                 </section>
             </div>
         </>

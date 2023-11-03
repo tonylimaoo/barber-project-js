@@ -12,12 +12,16 @@ import { useState, useEffect } from 'react'
 import { useFetch } from '../hooks/useFetch'
 import { useAuth } from '../hooks/useAuth'
 
-const url = 'http://localhost:3000/appointments'
+const urls = [
+    'http://localhost:3000/appointments',
+    "http://localhost:3000/appointments?_sort=hour&_order=asc"
+]
 const uuid = require('uuid');
 
 
 
 export default function App() {
+    // States
     const [name, setName] = useState("");
     const [cel, setCel] = useState("");
     const [date, setDate] = useState("");
@@ -27,12 +31,15 @@ export default function App() {
     const [transactionId, setTransactionId] = useState("");
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
-    const { httpConfig } = useFetch(url);
-    const { authUser } = useAuth();
     const [userId, setUserId] = useState("");
     const [filledForm, setFilledForm] = useState("");
-    // const [disabled, setDisabled] = useState("");
+    const [appointmentHours, setAppointmentHours] = useState("");
 
+    // Custom Hooks
+    const { httpConfig } = useFetch(urls[0]);
+    const { authUser } = useAuth();
+
+    // Handel submit form function
     const handleSubmit = (e) => {
 
         (async () => {
@@ -65,27 +72,35 @@ export default function App() {
 
     useEffect(() => {
         setUserId(localStorage.getItem("userId"))
-        console.log(userId)
-    }, [])
+    }, [userId])
 
     useEffect(() => {
-        if(userId !== ''){
+        if (userId !== '') {
             const fetchData = async () => {
-                const res = await fetch ('http://localhost:3000/users/'+ userId)
+                const res = await fetch('http://localhost:3000/users/' + userId)
                 const data = await res.json();
-                
+
                 setName(data.name);
                 setCel(data.cellphone);
-                console.log(name, cel)
                 setFilledForm("filled")
-                console.log(filledForm)
             }
             fetchData();
         } else {
             setFilledForm("unfilled")
-            console.log(filledForm)
         }
-    }, [userId])
+    }, [userId, filledForm, cel, name])
+
+    useEffect(() => {
+        const handleEnabledHours = async () => {
+            const res = await fetch(urls[1]);
+            const json = await res.json();
+            let apt = json
+                .filter(e => e.date === date)
+                .map(e => e.hour)
+            setAppointmentHours(apt)
+        }
+        handleEnabledHours();
+    }, [date]);
 
     return (
         <div className="main">
@@ -108,6 +123,7 @@ export default function App() {
                         userId={userId}
                         setService={setService}
                         setProfessional={setProfessional}
+                        appointmentHours={appointmentHours}
                         filledForm={filledForm}
                     />
                 </div>
