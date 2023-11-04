@@ -149,6 +149,16 @@
       "professional": "Carlos",
       "service": "Barba",
       "uid": "Rm5LE67uCAPi5hOUx55Cq8W7iWT2"
+    },
+    {
+      "nome": "Antonio Carlos de Lima",
+      "celular": "19983353245",
+      "date": "2023-11-11",
+      "hour": "10:30",
+      "id": "3c2bfe24-8230-41ff-817a-295de54a08ce",
+      "professional": "Carlos",
+      "service": "Cabelo",
+      "uid": "Rm5LE67uCAPi5hOUx55Cq8W7iWT2"
     }
   ],
   "professionals": [
