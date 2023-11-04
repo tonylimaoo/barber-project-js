@@ -82,6 +82,13 @@ const MyProfile = () => {
               <li>Horário: {app.hour}</li>
               <li>Barbeiro: {app.professional}</li>
               <li>Serviço: {app.service}</li>
+          {appointments !== [] && appointments.map((app, i) => (
+            <div>
+              <h3>Agendamento {i + 1}: {app.id}</h3>
+              <li key={app.id} >Data: {app.date.split('-')[2]}/{app.date.split('-')[1]}/{app.date.split('-')[0]}</li>
+              <li key={app.id} >Horário: {app.hour}</li>
+              <li key={app.id} >Profissinal: {app.professional}</li>
+              <li key={app.id} >Serviço: {app.service}</li>
             </div>
           ))}
         </ul>

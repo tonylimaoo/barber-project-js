@@ -69,6 +69,48 @@ export default function ScheduleForm({
     const todaysDate = formatDate();
     const todaysDatePlusSeven = dayPlusSeven();
 
+    const getDate = new Date();
+
+    const formatDate = () => {
+        let day = `${getDate.getDate()}`
+        let month = `${getDate.getMonth() + 1}`
+        let year = `${getDate.getFullYear()}`
+
+        if (day.length === 1) {
+            day = 0 + day
+        }
+
+        if (month.length === 1) {
+            month = 0 + month
+        }
+
+        const fullDate = `${year}-${month}-${day}`
+
+        return fullDate
+    };
+
+    const todaysDate = formatDate();
+
+    const dayPlusSeven = () => {
+        let day = Number(getDate.getDate()) + 7
+        let month = `${getDate.getMonth() + 1}`
+        let year = `${getDate.getFullYear()}`
+
+        if (day.length === 1) {
+            day = 0 + day
+        }
+
+        if (month.length === 1) {
+            month = 0 + month
+        }
+
+        const fullDate = `${year}-${month}-${day}`
+
+        return fullDate
+    }
+
+    const todaysDatePlusSeven = dayPlusSeven();
+
     return (
         <>
             <section className={styles['form-section']}>
@@ -136,6 +178,11 @@ export default function ScheduleForm({
                             >
                                 <option value="" defaultValue=''>Selecione</option>
                                 {exclusiveHours.map((hour, i) => (
+                                <option value="" selected>Selecione</option>
+                                {hours.map((hour, i) => {
+                                    console.log(hour, i)
+                                })}
+                                {hours.map((hour, i) => (
                                     <option key={i} value={hour}>{hour}</option>
                                 ))}
                             </select>
@@ -158,6 +205,16 @@ export default function ScheduleForm({
                             </label>
                             <label>
                                 <span>Barbeiro</span>
+                                    <option value="" selected>Selecione</option>
+                                    <option value="1">Cabelo</option>
+                                    <option value="2">Barba</option>
+                                    <option value="3">Cabelo e Barba</option>
+                                    <option value="4">Prótese + Corte</option>
+                                    <option value="5">Manutenção da Prótese</option>
+                                </select>
+                            </label>
+                            <label>
+                                <span>Profissional</span>
                                 <select
                                     onChange={(e) => setProfessional(e.target.value)}
                                     value={professional}
@@ -166,6 +223,9 @@ export default function ScheduleForm({
                                     <option value="" defaultChecked>Selecione</option>
                                     <option value="Carlos">Carlos</option>
                                     <option value="Donizete">Donizete</option>
+                                    <option value="" selected>Selecione</option>
+                                    <option value={Number(1)}>Carlos</option>
+                                    <option value={Number(2)}>Donizete</option>
                                 </select>
                             </label>
                         </div>
@@ -204,6 +264,19 @@ export default function ScheduleForm({
                             />
                         </label>
                         <label>
+                        </label>
+                        <label>
+                            <span>Celular</span>
+                            <input
+                                type="number"
+                                name='celular'
+                                placeholder='(19)99323-2332'
+                                onChange={(e) => setCel(e.target.value)}
+                                value={cel}
+                                required
+                            />
+                        </label>
+                        <label>
                             <span>Data</span>
                             <input
                                 type="date"
@@ -224,6 +297,7 @@ export default function ScheduleForm({
                             >
                                 <option value="" defaultChecked>Selecione</option>
                                 {exclusiveHours.map((hour, i) => (
+                                {hours.map((hour, i) => (
                                     <option key={i} value={hour}>{hour}</option>
                                 ))}
                             </select>
@@ -242,6 +316,12 @@ export default function ScheduleForm({
                                     <option value="Cabelo e Barba">Cabelo e Barba</option>
                                     <option value="Prótese + Corte">Prótese + Corte</option>
                                     <option value="Manutenção da Prótese">Manutenção da Prótese</option>
+                                    <option value="" selected>Selecione</option>
+                                    <option value="1">Cabelo</option>
+                                    <option value="2">Barba</option>
+                                    <option value="3">Cabelo e Barba</option>
+                                    <option value="4">Prótese + Corte</option>
+                                    <option value="5">Manutenção da Prótese</option>
                                 </select>
                             </label>
                             <label>
@@ -254,6 +334,9 @@ export default function ScheduleForm({
                                     <option value="" defaultChecked>Selecione</option>
                                     <option value="Carlos">Carlos</option>
                                     <option value="Donizete">Donizete</option>
+                                    <option value="" selected>Selecione</option>
+                                    <option value={Number(1)}>Carlos</option>
+                                    <option value={Number(2)}>Donizete</option>
                                 </select>
                             </label>
                         </div>
