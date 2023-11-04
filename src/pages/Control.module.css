@@ -1,11 +1,24 @@
-.container {
+.containerPage {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px;
     /* border: solid; */
     align-items: center;
-    max-height: fit-content;
-    min-height: 100vh;
-    padding: 100px;
+    height: fit-content;
+    /* padding: 100px; */
+}
+
+.containerPage form label{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.containerPage form input{
+    margin: 10px;
+    padding: 10px;
 }
 
 .container table {
@@ -15,48 +28,12 @@
     width: 1000px;
     height: 300px;
 }
-.table {
-    display: flex;
-    flex-direction: column;
-    min-width: 80vw;
-    height: 50px;
-}
 
-.table-head {
-    display: flex;
-    flex-direction: row;
-    /* min-width: 80vw; */
-    /* height: 50px; */
-}
-
-.table-head div {
-    border: solid;
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-}
 
 .user-info{
     display: flex;
     flex-direction: row;
 }
-
-/* .container th {
-    flex:;
-}
-
-.container * {
-    border: solid 1px;;
-    text-align: center;
-    width: 10px;
-    height: 10px
-}
-
-.container th {
-    width: 30px; 
-} */
 
 .loading {
     display: flex;
