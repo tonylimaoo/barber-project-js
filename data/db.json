@@ -139,6 +139,16 @@
       "professional": "Carlos",
       "service": "Cabelo e Barba",
       "uid": "Rm5LE67uCAPi5hOUx55Cq8W7iWT2"
+    },
+    {
+      "nome": "Antonio Carlos de Lima",
+      "celular": "19983353245",
+      "date": "2023-11-09",
+      "hour": "7:10",
+      "id": "79777f85-1dda-4003-aefd-e55fe260cff8",
+      "professional": "Carlos",
+      "service": "Barba",
+      "uid": "Rm5LE67uCAPi5hOUx55Cq8W7iWT2"
     }
   ],
   "professionals": [
