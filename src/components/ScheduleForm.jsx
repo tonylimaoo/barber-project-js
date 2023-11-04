@@ -49,21 +49,21 @@ export default function ScheduleForm({
     };
 
     const dayPlusSeven = () => {
-        let day = Number(getDate.getDate()) + 7
-        let month = `${getDate.getMonth() + 1}`
-        let year = `${getDate.getFullYear()}`
+        let day = `${Number(getDate.getDate()) + 7}`;
+        let month = `${getDate.getMonth() + 1}`;
+        let year = `${getDate.getFullYear()}`;
 
         if (day.length === 1) {
-            day = 0 + day
-        }
+            day = 0 + day;
+        };
 
         if (month.length === 1) {
-            month = 0 + month
-        }
+            month = 0 + month;
+        };
 
-        const fullDate = `${year}-${month}-${day}`
+        const fullDate = `${year}-${month}-${day}`;
 
-        return fullDate
+        return fullDate;
     }
 
     const todaysDate = formatDate();
@@ -115,18 +115,6 @@ export default function ScheduleForm({
                                 required
                             />
                         </label>
-                        {/* <label>
-                            <span>Data</span>
-                            <input
-                                type="date"
-                                name='date'
-                                min={todaysDate}
-                                max={todaysDatePlusSeven}
-                                onChange={(e) => setDate(e.target.value)}
-                                value={date}
-                                required
-                            />
-                        </label> */}
                         <label>
                             <span>Horário</span>
                             <select
