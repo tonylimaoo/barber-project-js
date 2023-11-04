@@ -1,5 +1,8 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+// React
 import './App.css';
+
+// CSS
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 // Firebase
 import { auth } from './firebase';
@@ -14,7 +17,7 @@ import Footer from './components/Footer'
 import Login from './pages/Login';
 import MyProfile from './pages/MyProfile';
 
-
+// Função para deslogar usuario
 function App() {
 
   const { authUser } = useAuth();
@@ -31,6 +34,7 @@ function App() {
       <BrowserRouter>
         <Header userSignOut={userSignOut} authUser={authUser} />
         <main>
+          {/* Rotas do App */}
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/controle' element={<Control />} />
@@ -40,7 +44,6 @@ function App() {
         </main>
         <Footer />
       </BrowserRouter>
-
     </div>
   );
 }
