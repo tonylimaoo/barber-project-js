@@ -32,7 +32,7 @@ const LoginForm = ({ setEmail, setPassword, email, password, handleSubmit }) => 
                             required
                         />
                     </label>
-                    <button type='submit'>AGENDAR</button>
+                    <button type='submit'>LOGIN</button>
                 </form>
             </section>
         </>
