@@ -209,42 +209,48 @@
       "email": "tonycarlosl@yahoo.com.br",
       "birthday": "1998-08-07",
       "cellphone": "19983353245",
-      "id": "Rm5LE67uCAPi5hOUx55Cq8W7iWT2"
+      "id": "Rm5LE67uCAPi5hOUx55Cq8W7iWT2",
+      "admin": true
     },
     {
       "name": "Antonio Carlos de Lima",
       "email": "tonylima98@gmail.com",
       "birthday": "1999-12-12",
       "cellphone": "19983353245",
-      "id": "BIZuczybAAQ3mM25USbJKsMgF9x2"
+      "id": "BIZuczybAAQ3mM25USbJKsMgF9x2",
+      "admin": true
     },
     {
       "name": "José Carlos de Lima",
       "email": "jjcarloslima@hotmail.com",
       "birthday": "1973-03-24",
       "cellphone": "19981003208",
-      "id": "DdZyM05TtJgLIqOQETbmOs82Hfn1"
+      "id": "DdZyM05TtJgLIqOQETbmOs82Hfn1", 
+      "admin": true
     },
     {
       "name": "Gislene Lima",
       "email": "gislenedlima@yahoo.com.br",
       "birthday": "1980-04-16",
       "cellphone": "129981881463",
-      "id": "ejfEruF7TOPmx29JWeV3wT2MM8h2"
+      "id": "ejfEruF7TOPmx29JWeV3wT2MM8h2",
+      "admin": false
     },
     {
       "name": "José Carlos de Lima",
       "email": "jjcarloslima@icloud.com",
       "birthday": "1973-03-24",
       "cellphone": "19981003208",
-      "id": "6QQCt18ihnNXMjb5Vib7WUMj1TL2"
+      "id": "6QQCt18ihnNXMjb5Vib7WUMj1TL2",
+      "admin": false
     },
     {
       "name": "José Zumbini Neto",
       "email": "jose.zumbini@gmail.com",
       "birthday": "1998-03-03",
       "cellphone": "19999097117",
-      "id": "jRrfYzay3qRd5RgPUgEZXxHHlHs2"
+      "id": "jRrfYzay3qRd5RgPUgEZXxHHlHs2",
+      "admin": false
     }
   ]
 }

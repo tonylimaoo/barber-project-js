@@ -1,8 +1,10 @@
 // React
-import './App.css';
-
-// CSS
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import './App.css';
+import { useContext } from 'react';
+
+// Context
+import { AdminContext } from './context/ AdminContext';
 
 // Firebase
 import { auth } from './firebase';
@@ -16,8 +18,8 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Login from './pages/Login';
 import MyProfile from './pages/MyProfile';
+import TesteAdminContext from './pages/TesteAdminContext';
 
-// Função para deslogar usuario
 function App() {
 
   const { authUser } = useAuth();
@@ -40,6 +42,7 @@ function App() {
             <Route path='/controle' element={<Control />} />
             <Route path='/login' element={<Login />} />
             <Route path='/my-profile' element={<MyProfile />} />
+            <Route path='/teste' element={<TesteAdminContext />} />
           </Routes>
         </main>
         <Footer />

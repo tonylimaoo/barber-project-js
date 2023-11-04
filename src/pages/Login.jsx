@@ -65,7 +65,8 @@ const Login = () => {
             email: email,
             birthday: birthday,
             cellphone: cellphone,
-            id: auth.currentUser.uid
+            id: auth.currentUser.uid,
+            admin: false
           }
 
           setUserId(auth.currentUser.uid)

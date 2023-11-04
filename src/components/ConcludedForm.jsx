@@ -2,7 +2,10 @@ import styles from './Styles/concluded-form.module.css'
 
 export default function Concluido({ transactionId, hour, date }) {
 
+    // Component that shows the Schedule Confirmation
+    
     date = date.split('-')
+
     return (
         <>
             <div className={styles.container}>
