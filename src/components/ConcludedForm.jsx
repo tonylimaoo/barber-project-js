@@ -13,9 +13,9 @@ export default function Concluido({ transactionId, hour, date }) {
                     <p>
                         Agendamento realizado!
                     </p>
-                    <p><span className={styles.black}>Foi agendado na data:</span> {date[2]}/{date[1]}/{date[0]}</p>
-                    <p><span className={styles.black}>Horário:</span> {hour}</p>
-                    <p><span className={styles.black}>Seu ID do atendimento é:</span> {transactionId}</p>
+                    <p><span className={styles.black}>Foi agendado na data:</span> <br /> {date[2]}/{date[1]}/{date[0]}</p>
+                    <p><span className={styles.black}>Horário:</span> <br /> {hour}</p>
+                    <p><span className={styles.black}>Seu ID do atendimento é:</span> <br />{transactionId}</p>
                 </section>
             </div>
         </>

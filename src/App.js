@@ -1,10 +1,6 @@
 // React
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import './App.css';
-import { useContext } from 'react';
-
-// Context
-import { AdminContext } from './context/ AdminContext';
 
 // Firebase
 import { auth } from './firebase';

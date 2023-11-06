@@ -6,7 +6,7 @@ import App from './App';
 
 import { SignedInContextProvider } from './context/SignedInContext';
 import { SignUpContextProvider } from './context/SignUpContext';
-import { AdminContextProvider } from './context/ AdminContext';
+import { AdminContextProvider } from './context/AdminContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { AdminContext } from '../context/ AdminContext'
+import { AdminContext } from '../context/AdminContext'
 import styles from './Styles/header.module.css'
 import { Link } from 'react-router-dom'
 
@@ -19,11 +19,13 @@ export default function Header({ userSignOut, authUser }) {
                     Salão Lima
                 </section>
                 <section className={styles.nav}>
-                    <Link to='/' className={styles.link}>Home</Link>
+                    <Link to='/' className={styles.link}>Agendamento</Link>
                     {isAdmin &&
                         <Link to='/controle' className={styles.link}>Horários</Link>
                     }
-                    <Link to='/my-profile' className={styles.link}>Meu Perfil</Link>
+                    {authUser &&
+                        <Link to='/my-profile' className={styles.link}>Meu Perfil</Link>
+                    }
                     {authUser ?
                         <Link onClick={handleClick}>Sair</Link>
                         :
