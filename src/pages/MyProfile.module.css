@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: fit-content;
 }
 
 .myProfileSection {
@@ -58,4 +59,28 @@
 
 .list li {
     font-size: 20px;
+}
+
+.notLoggedIn {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.signBtn {
+    display: inline-flex;
+    width: 150px;
+    height: 50px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 26px;
+    background: #000;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: lighter;
+    color: white;
 }

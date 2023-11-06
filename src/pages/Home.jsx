@@ -96,11 +96,12 @@ export default function App() {
             const json = await res.json();
             let apt = json
                 .filter(e => e.date === date)
+                .filter(e => e.professional === professional)
                 .map(e => e.hour)
             setAppointmentHours(apt)
         }
         handleEnabledHours();
-    }, [date]);
+    }, [date, professional]);
 
     return (
         <div className="main">

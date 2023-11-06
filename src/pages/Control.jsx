@@ -1,11 +1,13 @@
 import AppointmentTable from "../components/AppointmentTable"
 import styles from "./Control.module.css"
 import { useFetch } from "../hooks/useFetch"
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AdminContext } from "../context/AdminContext";
 
 const url = 'http://localhost:3000/appointments?_sort=hour&_order=asc';
 
 export default function Controle() {
+    const { isAdmin } = useContext(AdminContext);
     const { data, loading } = useFetch(url);
     const [dataFiltered, setDataFiltered] = useState(false);
     const [changeDate, setChangeDate] = useState(true);
@@ -19,11 +21,11 @@ export default function Controle() {
         let month = `${getDate.getMonth() + 1}`
         let year = `${getDate.getFullYear()}`
 
-        if(day.length === 1){
+        if (day.length === 1) {
             day = 0 + day
         }
 
-        if(month.length === 1){
+        if (month.length === 1) {
             month = 0 + month
         }
 
@@ -33,11 +35,11 @@ export default function Controle() {
     };
 
     const todaysDate = formatDate();
-    
+
     const [date, setDate] = useState(todaysDate);
 
 
-    if (data !== null && changeDate === true){
+    if (data !== null && changeDate === true) {
         setDataFiltered(data.filter(ele => {
             return ele.date === date
         }))
@@ -46,31 +48,35 @@ export default function Controle() {
 
     return (
         <div className={styles.containerPage}>
-
-            <div>
-                <form className={styles.setDay}>
-                    <label>
-                        Filtre o dia
-                        <input type="date" value={date} onChange={(e) => {
-                            setDate(e.target.value);
-                            setChangeDate(true);
-                        }} />
-                    </label>
-                </form>
-            </div>
-
-            <div className={styles.table}>
-                {loading ? (
-                    <div className={styles.loading}>
-                        <h1>Carregando Dados...</h1>
+            {isAdmin &&
+                <>
+                    <div>
+                        <form className={styles.setDay}>
+                            <label>
+                                Filtre o dia
+                                <input type="date" value={date} onChange={(e) => {
+                                    setDate(e.target.value);
+                                    setChangeDate(true);
+                                }} />
+                            </label>
+                        </form>
                     </div>
-                ) : (
-                    dataFiltered && dataFiltered.length > 0 && <div className={styles.container}>
-                        <AppointmentTable appointments={dataFiltered} />
+                    <div className={styles.table}>
+                        {loading ? (
+                            <div className={styles.loading}>
+                                <h1>Carregando Dados...</h1>
+                            </div>
+                        ) : (
+                            dataFiltered && dataFiltered.length > 0 && <div className={styles.container}>
+                                <AppointmentTable appointments={dataFiltered} />
+                            </div>
+                        )}
                     </div>
-                )}
-            </div>
-
+                </>
+            }
+            {!isAdmin &&
+                <h1>404 - Page Not Found</h1>
+            }
         </div>
 
     )

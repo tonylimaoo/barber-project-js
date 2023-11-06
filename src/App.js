@@ -1,3 +1,4 @@
+// React
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
@@ -13,7 +14,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Login from './pages/Login';
 import MyProfile from './pages/MyProfile';
-
+import TesteAdminContext from './pages/TesteAdminContext';
 
 function App() {
 
@@ -31,16 +32,17 @@ function App() {
       <BrowserRouter>
         <Header userSignOut={userSignOut} authUser={authUser} />
         <main>
+          {/* Rotas do App */}
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/controle' element={<Control />} />
             <Route path='/login' element={<Login />} />
             <Route path='/my-profile' element={<MyProfile />} />
+            <Route path='/teste' element={<TesteAdminContext />} />
           </Routes>
         </main>
         <Footer />
       </BrowserRouter>
-
     </div>
   );
 }

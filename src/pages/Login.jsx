@@ -65,7 +65,8 @@ const Login = () => {
             email: email,
             birthday: birthday,
             cellphone: cellphone,
-            id: auth.currentUser.uid
+            id: auth.currentUser.uid,
+            admin: false
           }
 
           setUserId(auth.currentUser.uid)
@@ -109,8 +110,8 @@ const Login = () => {
           handleSubmit={handleSubmit}
         />}
 
-      {type === 'login' && <button className={styles.signBtn} onClick={() => setType("signup")} >Cadastre-se</button>}
-      {type === 'signup' && <button className={styles.signBtn} onClick={() => setType("login")} >Entre com sua conta</button>}
+      {type === 'login' && <button className={styles.signBtn} onClick={() => setType("signup")} >CADASTRE</button>}
+      {type === 'signup' && <button className={styles.signBtn} onClick={() => setType("login")} >LOGIN</button>}
     </div>
   )
 }
