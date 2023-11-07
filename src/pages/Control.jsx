@@ -1,16 +1,37 @@
 import AppointmentTable from "../components/AppointmentTable"
 import styles from "./Control.module.css"
-import { useFetch } from "../hooks/useFetch"
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AdminContext } from "../context/AdminContext";
-
-const url = 'http://localhost:3000/appointments?_sort=hour&_order=asc';
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../firebase/config'
 
 export default function Controle() {
     const { isAdmin } = useContext(AdminContext);
-    const { data, loading } = useFetch(url);
+    // const { data, loading } = useFetch(url);
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
     const [dataFiltered, setDataFiltered] = useState(false);
     const [changeDate, setChangeDate] = useState(true);
+
+    useEffect(() => {
+
+        const getFirestoreAppointmentData = async () => {
+            setLoading(true);
+
+            const querySnapshot = await getDocs(collection(db, "transactions"));
+            querySnapshot.forEach((doc) => {
+                console.log(doc.data());
+                setData((prevData) => [
+                    ...prevData,
+                    doc.data()
+                ])
+                console.log(data)
+            });
+            setLoading(false);
+        }
+
+        getFirestoreAppointmentData();
+    }, [data]);
 
     const getDate = new Date();
 
