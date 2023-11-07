@@ -33,8 +33,6 @@ export default function Controle() {
 
     const getDate = new Date();
 
-    // console.log(getDate.getDate(), getDate.getMonth(), getDate.getFullYear())
-
     const formatDate = () => {
         let day = `${getDate.getDate()}`
         let month = `${getDate.getMonth() + 1}`
