@@ -3,11 +3,8 @@ import { useEffect } from 'react'
 import styles from './MyProfile.module.css'
 import { SignedInContext } from '../context/SignedInContext'
 import { useNavigate } from 'react-router-dom'
-
-const urls = [
-  'http://localhost:3000/users/',
-  'http://localhost:3000/appointments?uid='
-]
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from '../firebase/config'
 
 const MyProfile = () => {
 
@@ -24,34 +21,43 @@ const MyProfile = () => {
   useEffect(() => {
     const userId = localStorage.getItem("userId")
 
-    const fetchData = async () => {
-      setLoading(true)
-      const res = await fetch(urls[0] + userId);
-      const json = await res.json();
-
-      setBirthday(json.birthday);
-      setName(json.name);
-      setEmail(json.email);
-      setCellphone(json.cellphone);
+    const getFirestoreUserData = async () => {
+      setLoading(true);
+      const q = query(collection(db, "users"), where("id", "==", userId));
+  
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setBirthday(doc.data().birthday);
+        setName(doc.data().name);
+        setEmail(doc.data().email);
+        setCellphone(doc.data().cellphone);
+      });
 
       setLoading(false);
     }
+ 
+    getFirestoreUserData();
 
-    const fetchAppointmentData = async () => {
-      setLoading2(true)
-      const res = await fetch(urls[1] + userId);
-      const data = await res.json();
+    const getFirestoreAppointmentData = async () => {
 
-      setAppointments(data)
+      setLoading2(true);
+
+      const data = [];
+      const q = query(collection(db, "transactions"), where("uid", "==", userId));
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+          data.push(doc.data())
+      });
+
+      setAppointments(data);
+
       setLoading2(false);
-    }
+    } 
 
-    fetchData();
-    fetchAppointmentData();
+    getFirestoreAppointmentData();
 
   }, [])
-
-  console.log(appointments)
 
   return (
     <div className={styles.container}>

@@ -3,7 +3,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 // Firebase
-import { auth } from './firebase';
+import { auth } from './firebase/config';
 import { signOut } from 'firebase/auth';
 import { useAuth } from './hooks/useAuth';
 
@@ -15,6 +15,7 @@ import Footer from './components/Footer'
 import Login from './pages/Login';
 import MyProfile from './pages/MyProfile';
 import TesteAdminContext from './pages/TesteAdminContext';
+import Teste from './pages/Teste';
 
 function App() {
 
@@ -38,7 +39,8 @@ function App() {
             <Route path='/controle' element={<Control />} />
             <Route path='/login' element={<Login />} />
             <Route path='/my-profile' element={<MyProfile />} />
-            <Route path='/teste' element={<TesteAdminContext />} />
+            <Route path='/teste-admin-context' element={<TesteAdminContext />} />
+            <Route path='/teste' element={<Teste />} />
           </Routes>
         </main>
         <Footer />

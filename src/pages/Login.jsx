@@ -4,10 +4,11 @@ import LoginForm from '../components/LoginForm'
 import styles from './Login.module.css'
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase'
+import { auth } from '../firebase/config'
 import SignupForm from '../components/SignUpForm'
 import { useNavigate } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch'
+import { addDataFirestore } from '../firebase/post'
 
 
 const urls = [
@@ -69,8 +70,10 @@ const Login = () => {
             admin: false
           }
 
-          setUserId(auth.currentUser.uid)
-      
+          setUserId(auth.currentUser.uid);
+          // Firestore
+          addDataFirestore(data, "users");
+          // Backend
           httpConfig(data, "POST");
           setTimeout(() => {
             navigate("/my-profile");

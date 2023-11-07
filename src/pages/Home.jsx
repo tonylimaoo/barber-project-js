@@ -11,6 +11,10 @@ import { useState, useEffect } from 'react'
 // Functions
 import { useFetch } from '../hooks/useFetch'
 import { useAuth } from '../hooks/useAuth'
+import { addDataFirestore } from '../firebase/post'
+
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from '../firebase/config'
 
 const urls = [
     'http://localhost:3000/appointments',
@@ -58,6 +62,8 @@ export default function App() {
                 "uid": userId
             }
 
+            addDataFirestore(appointment, "transactions");
+
             httpConfig(appointment, "POST");
             setFormSubmitted(true);
             setLoading(false);
@@ -76,31 +82,45 @@ export default function App() {
 
     useEffect(() => {
         if (userId !== '') {
-            const fetchData = async () => {
-                const res = await fetch('http://localhost:3000/users/' + userId)
-                const data = await res.json();
 
-                setName(data.name);
-                setCel(data.cellphone);
-                setFilledForm("filled")
+            const getFirestoreUserInfo = async () => {
+                const q = query(collection(db, "users"), where("id", "==", userId));
+
+                const querySnapshot = await getDocs(q);
+                querySnapshot.forEach((doc) => {
+                    setName(doc.data().name);
+                    setCel(doc.data().cellphone);
+                    setFilledForm("filled")
+                });
             }
-            fetchData();
+
+            getFirestoreUserInfo();
+
         } else {
-            setFilledForm("unfilled")
+
+            setFilledForm("unfilled");
+
         }
-    }, [userId, filledForm, cel, name])
+    }, [userId, filledForm, cel, name]);
 
     useEffect(() => {
+
         const handleEnabledHours = async () => {
-            const res = await fetch(urls[1]);
-            const json = await res.json();
-            let apt = json
+            let data = [];
+            const querySnapshot = await getDocs(collection(db, "transactions"));
+            querySnapshot.forEach((doc) => {
+                data.push(doc.data());
+            });
+
+            let apt = data
                 .filter(e => e.date === date)
                 .filter(e => e.professional === professional)
                 .map(e => e.hour)
             setAppointmentHours(apt)
+
         }
         handleEnabledHours();
+
     }, [date, professional]);
 
     return (
