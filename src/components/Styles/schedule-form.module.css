@@ -98,3 +98,10 @@
     margin-top: 50px;
     font-weight:bold;
 }
+
+@media(max-width: 800px){
+    .form-section {
+        min-width: fit-content;
+        height: fit-content;
+    }
+}
