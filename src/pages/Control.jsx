@@ -20,18 +20,16 @@ export default function Controle() {
 
             const querySnapshot = await getDocs(collection(db, "transactions"));
             querySnapshot.forEach((doc) => {
-                console.log(doc.data());
                 setData((prevData) => [
                     ...prevData,
                     doc.data()
                 ])
-                console.log(data)
             });
             setLoading(false);
         }
 
         getFirestoreAppointmentData();
-    }, [data]);
+    }, []);
 
     const getDate = new Date();
 
