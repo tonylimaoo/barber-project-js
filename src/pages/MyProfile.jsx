@@ -19,7 +19,7 @@ const MyProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userId = localStorage.getItem("userId")
+    const userId = localStorage.getItem("userId");
 
     const getFirestoreUserData = async () => {
       setLoading(true);
@@ -88,9 +88,9 @@ const MyProfile = () => {
           </section>
           {!loading2 && appointments !== [] &&
             <section className={styles.list}>
-              <h1>Agendamentos</h1>
+              <h1>Últimos agendamentos</h1>
               <ul>
-                {appointments.map((app, i) => (
+                {appointments.slice(-3).map((app, i) => (
                   <div key={app.id}>
                     <h3>Agendamento {i + 1}: {app.id}</h3>
                     <li>Data: {app.date.split('-')[2]}/{app.date.split('-')[1]}/{app.date.split('-')[0]}</li>
