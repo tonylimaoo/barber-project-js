@@ -26,7 +26,6 @@ export const AdminContextProvider = ({ children }) => {
             querySnapshot.forEach((doc) => {
                 data.push(doc.data().admin);
                 setIsAdmin(data[0]);
-
             });
         };
 
@@ -36,7 +35,7 @@ export const AdminContextProvider = ({ children }) => {
 
     return (
         <AdminContext.Provider value={{
-            isAdmin
+            isAdmin, setUserId
         }}>
             {children}
         </AdminContext.Provider>

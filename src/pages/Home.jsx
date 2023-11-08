@@ -9,20 +9,13 @@ import ConcludedForm from '../components/ConcludedForm'
 import { useState, useEffect } from 'react'
 
 // Functions
-import { useFetch } from '../hooks/useFetch'
 import { useAuth } from '../hooks/useAuth'
 import { addDataFirestore } from '../firebase/post'
 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../firebase/config'
 
-const urls = [
-    'http://localhost:3000/appointments',
-    "http://localhost:3000/appointments?_sort=hour&_order=asc"
-]
 const uuid = require('uuid');
-
-
 
 export default function App() {
     // States
@@ -40,7 +33,6 @@ export default function App() {
     const [appointmentHours, setAppointmentHours] = useState("");
 
     // Custom Hooks
-    const { httpConfig } = useFetch(urls[0]);
     const { authUser } = useAuth();
 
     // Handel submit form function
@@ -64,7 +56,6 @@ export default function App() {
 
             addDataFirestore(appointment, "transactions");
 
-            httpConfig(appointment, "POST");
             setFormSubmitted(true);
             setLoading(false);
             setTransactionId(tid);

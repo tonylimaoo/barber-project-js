@@ -38,20 +38,6 @@
     margin-bottom: 20px;
 }
 
-.service {
-    display: flex;
-    /* border: solid; */
-    justify-content:space-between;
-    align-items: center;
-    width: 305px;
-}
-
-/* .service label{
-    display: flex;
-    border: solid;
-    justify-content: space-around;
-} */
-
 .form-section select {
     width: 125px;
     height: 30px;
@@ -97,4 +83,11 @@
 .form-title {
     margin-top: 50px;
     font-weight:bold;
+}
+
+@media(max-width: 800px){
+    .form-section {
+        max-width: fit-content;
+        height: fit-content;
+    }
 }

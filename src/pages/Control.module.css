@@ -8,6 +8,7 @@
     align-items: center;
     height: fit-content;
     /* padding: 100px; */
+    height: 100vh;
 }
 
 .containerPage form label{

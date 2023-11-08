@@ -46,12 +46,6 @@
     width: 305px;
 }
 
-/* .service label{
-    display: flex;
-    border: solid;
-    justify-content: space-around;
-} */
-
 .form-section select {
     width: 125px;
     height: 30px;
@@ -97,4 +91,11 @@
 .form-title {
     margin-top: 50px;
     font-weight:bold;
+}
+
+@media(max-width: 800px){
+    .form-section {
+        min-width: fit-content;
+        height: fit-content;
+    }
 }

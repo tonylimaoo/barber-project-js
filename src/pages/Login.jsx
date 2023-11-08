@@ -7,13 +7,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase/config'
 import SignupForm from '../components/SignUpForm'
 import { useNavigate } from 'react-router-dom';
-import { useFetch } from '../hooks/useFetch'
 import { addDataFirestore } from '../firebase/post'
-
-
-const urls = [
-  'http://localhost:3000/users'
-]
 
 const Login = () => {
 
@@ -32,8 +26,6 @@ const Login = () => {
     cellphone,
     setCellphone
   } = useContext(SignUpContext);
-
-  const { httpConfig } = useFetch(urls[0]);
 
   useEffect(() => {
     localStorage.setItem("userId", userId);
@@ -73,11 +65,11 @@ const Login = () => {
           setUserId(auth.currentUser.uid);
           // Firestore
           addDataFirestore(data, "users");
-          // Backend
-          httpConfig(data, "POST");
+
           setTimeout(() => {
             navigate("/my-profile");
           }, 1000)
+
         })
         .catch((error) => {
           console.log(error);
@@ -85,8 +77,6 @@ const Login = () => {
 
     }
   }
-
-  console.log("type: " + type)
 
   return (
     <div className={styles.container}>

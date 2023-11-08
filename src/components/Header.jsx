@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom'
 
 export default function Header({ userSignOut, authUser }) {
 
-    const { isAdmin } = useContext(AdminContext);
+    const { isAdmin, setIsAdmin } = useContext(AdminContext);
 
     const handleClick = () => {
         userSignOut();
         localStorage.setItem("userId", "");
+        setIsAdmin(false);
     }
 
     return (

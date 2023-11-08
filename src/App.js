@@ -14,8 +14,6 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Login from './pages/Login';
 import MyProfile from './pages/MyProfile';
-import TesteAdminContext from './pages/TesteAdminContext';
-import Teste from './pages/Teste';
 
 function App() {
 
@@ -39,8 +37,6 @@ function App() {
             <Route path='/controle' element={<Control />} />
             <Route path='/login' element={<Login />} />
             <Route path='/my-profile' element={<MyProfile />} />
-            <Route path='/teste-admin-context' element={<TesteAdminContext />} />
-            <Route path='/teste' element={<Teste />} />
           </Routes>
         </main>
         <Footer />
