@@ -1,0 +1,59 @@
+.concluded-container {
+  display: flex;
+  border: 2px solid black;
+  width: 50%;
+  align-items: center;
+  background-color: #4A0000;
+  border-radius: 0.6em;
+  color: white;
+  justify-content: center;
+}
+.concluded-container p, .concluded-container h3 {
+  padding-bottom: 20px;
+  padding-left: 15px;
+  text-align: left;
+  font-weight: lighter;
+}
+.concluded-container p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin-left: 10px;
+}
+.concluded-container p span {
+  border-bottom: 1px solid;
+}
+.concluded-container .show-id {
+  display: flex;
+  flex-direction: column;
+}
+.concluded-container .show-id .black {
+  margin-top: 10px;
+  border-bottom: 1px solid;
+}
+
+.sectionId {
+  width: 80%;
+  background-color: white;
+  font-size: 30px;
+  border-radius: 0.3em;
+  color: #4A0000;
+  margin: 40px;
+}
+
+@media screen and (max-width: 840px) {
+  .concluded-container {
+    width: 90%;
+  }
+  .sectionId {
+    font-size: 20px;
+    width: 90%;
+  }
+  .sectionId p {
+    flex-direction: column;
+  }
+  .sectionId p * {
+    padding-top: 10px;
+  }
+}/*# sourceMappingURL=concluded-form.css.map */
