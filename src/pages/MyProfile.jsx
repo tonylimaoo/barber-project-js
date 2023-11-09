@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { useEffect } from 'react'
-import styles from './MyProfile.module.css'
+import './MyProfile.css'
 import { SignedInContext } from '../context/SignedInContext'
 import { useNavigate } from 'react-router-dom'
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -60,13 +60,13 @@ const MyProfile = () => {
   }, [])
 
   return (
-    <div className={styles.container}>
+    <div className="container-profile">
       {authUser &&
         <>
-          <section className={styles.myProfileSection}>
+          <section className="my-profile-section">
             <h1>Meu Perfil</h1>
             {!loading &&
-              <form className={styles.myProfileInfo}>
+              <form className="form-info">
                 <label>
                   Nome
                   <input type="text" value={name} disabled />
@@ -87,27 +87,26 @@ const MyProfile = () => {
             }
           </section>
           {!loading2 && appointments !== [] &&
-            <section className={styles.list}>
+            <section className="appointment-list">
               <h1>Últimos agendamentos</h1>
-              <ul>
                 {appointments.slice(-3).map((app, i) => (
-                  <div key={app.id}>
-                    <h3>Agendamento {i + 1}: {app.id}</h3>
-                    <li>Data: {app.date.split('-')[2]}/{app.date.split('-')[1]}/{app.date.split('-')[0]}</li>
-                    <li>Horário: {app.hour}</li>
-                    <li>Barbeiro: {app.professional}</li>
-                    <li>Serviço: {app.service}</li>
+                  <div className='appointment-card' key={app.id}>
+                    <h3>Agendamento {i + 1}: </h3>
+                    <h5>{app.id}</h5>
+                    <p>Data: {app.date.split('-')[2]}/{app.date.split('-')[1]}/{app.date.split('-')[0]}</p>
+                    <p>Horário: {app.hour}</p>
+                    <p>Barbeiro: {app.professional}</p>
+                    <p>Serviço: {app.service}</p>
                   </div>
                 ))}
-              </ul>
             </section>
           }
         </>
       }
       {!authUser &&
-        <div className={styles.notLoggedIn}>
+        <div className="notLoggedIn">
           <h1>Entre na sua conta para visualizar seu perfil</h1>
-          <button className={styles.signBtn} onClick={() => navigate('/login')} >LOGIN</button>
+          <button className="signBtn" onClick={() => navigate('/login')} >LOGIN</button>
         </div>
       }
 

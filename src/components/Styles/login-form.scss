@@ -1,0 +1,93 @@
+.form-section {
+    // border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    justify-content: center;
+    align-items: center;
+    background-color: #4A0000;
+    color: white;
+    border-radius: 0.8em;
+    border: 0.1rem solid black;
+
+    h1 {
+        margin-top: 40px;
+        margin-bottom: 0px;
+    }
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    align-items: center;
+    margin-top: 20px;
+    font-weight: 100;
+
+
+    label {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+
+        input {
+            width: 400px;
+            margin-top: 10px;
+            text-align: center;
+            height: 30px;
+            border-radius: 0.6em;
+            background-color: #4d4c4c;
+            border: 1px solid white;
+            color: white;
+        }
+
+    }
+
+    button {
+        margin: 15px 0;
+        height: 40px;
+        position: relative;
+        width: 100%;
+        border-radius: 0.6em;
+        background-color: #1C1C1C;
+        border: 1px solid white;
+        color: white;
+        margin-bottom: 30px;
+        margin-top: 40px;
+
+        &:hover {
+            background-color: #7e2f2f;
+            transition: 0.2s ease;
+        }
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .form-section {
+        width: 100%;
+        max-width: 400px;
+
+        .login-form {
+            input {
+                width: 300px;
+            }
+
+            .service {
+                width: 75%;
+
+
+                select {
+                    width: 130px;
+                }
+            }
+
+            button {
+                width: 80%;
+            }
+        }
+    }
+
+}

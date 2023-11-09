@@ -1,5 +1,5 @@
 // CSS
-import styles from './Home.module.css'
+import './Home.css'
 
 // Components
 import ScheduleForm from '../components/ScheduleForm'
@@ -115,10 +115,9 @@ export default function App() {
     }, [date, professional]);
 
     return (
-        <div className="main">
+        <div className="container-home">
 
             {!formSubmitted &&
-                <div className={styles.main}>
                     <ScheduleForm
                         name={name}
                         cel={cel}
@@ -138,7 +137,6 @@ export default function App() {
                         appointmentHours={appointmentHours}
                         filledForm={filledForm}
                     />
-                </div>
             }
             {formSubmitted && transactionId === '' && <h1>Carregando...</h1>}
             {transactionId !== '' &&

@@ -1,21 +1,11 @@
-html{
+html, body {
   width: 100%;
-  max-width: 100vw;
-  height: 100%;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Helvetica;
   padding: 0;
-  height: 100%;
-  width: 100%;
-  max-width: 100vw;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+  margin: 0;
+}/*# sourceMappingURL=index.css.map */
