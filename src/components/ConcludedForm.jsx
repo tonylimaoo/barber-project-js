@@ -1,4 +1,4 @@
-import styles from './Styles/concluded-form.module.css'
+import './Styles/concluded-form.css'
 
 export default function Concluido({ transactionId, hour, date }) {
 
@@ -8,14 +8,14 @@ export default function Concluido({ transactionId, hour, date }) {
 
     return (
         <>
-            <div className={styles.container}>
-                <section className={styles.sectionId}>
-                    <p>
+            <div className="concluded-container">
+                <section className="sectionId">
+                    <h3>
                         Agendamento realizado!
-                    </p>
-                    <p><span className={styles.black}>Foi agendado na data:</span> <br /> {date[2]}/{date[1]}/{date[0]}</p>
-                    <p><span className={styles.black}>Horário:</span> <br /> {hour}</p>
-                    <p><span className={styles.black}>Seu ID do atendimento é:</span> <br />{transactionId}</p>
+                    </h3>
+                    <p> <span>Foi agendado na data:</span><span className="black">{date[2]}/{date[1]}/{date[0]}</span></p>
+                    <p> <span>Horário:</span><span className="black">{hour}</span></p>
+                    <p className='show-id'> <span>Seu ID do atendimento é:</span><span className="black">{transactionId}</span></p>
                 </section>
             </div>
         </>
