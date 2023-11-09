@@ -65,8 +65,7 @@
 
 @media screen and (max-width: 840px) {
   .form-section {
-    width: 100%;
-    max-width: 400px;
+    max-width: 90%;
   }
   .form-section .signup-form input {
     width: 300px;
