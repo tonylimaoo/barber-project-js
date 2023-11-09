@@ -1,9 +1,9 @@
-import styles from './Styles/footer.module.css'
+import './Styles/footer.css'
 
 export default function Footer(){
     return (
-        <div className={styles.footer}>
+        <footer className="footer">
             Footer
-        </div>
+        </footer>
     )
 }

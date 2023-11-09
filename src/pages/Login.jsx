@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { SignUpContext } from '../context/SignUpContext'
 import LoginForm from '../components/LoginForm'
-import styles from './Login.module.css'
+import './Login.css'
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase/config'
@@ -79,7 +79,7 @@ const Login = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className="container-login">
       {type === 'login' &&
         <LoginForm
           setEmail={setEmail}
@@ -103,8 +103,8 @@ const Login = () => {
           handleSubmit={handleSubmit}
         />}
 
-      {type === 'login' && <button className={styles.signBtn} onClick={() => setType("signup")} >CADASTRE</button>}
-      {type === 'signup' && <button className={styles.signBtn} onClick={() => setType("login")} >LOGIN</button>}
+      {type === 'login' && <button className='signBtn' onClick={() => setType("signup")} >CADASTRE</button>}
+      {type === 'signup' && <button className='signBtn' onClick={() => setType("login")} >LOGIN</button>}
     </div>
   )
 }

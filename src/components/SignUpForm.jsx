@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Styles/signup-form.module.css'
+import './Styles/signup-form.css'
 
 const SignupForm = ({
     setEmail,
@@ -16,11 +16,11 @@ const SignupForm = ({
 }) => {
     return (
         <>
-            <section className={styles['form-section']}>
-                <div className={styles['form-title']}>Cadastro</div>
+            <section className='form-section'>
+                <h1 className='form-title'>Cadastro</h1>
                 <form
                     onSubmit={handleSubmit}
-                    className={styles.form}
+                    className='signup-form'
                 >
                     <label>
                         <span>Nome completo</span>

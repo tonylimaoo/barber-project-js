@@ -1,14 +1,14 @@
 import React from 'react'
-import styles from './Styles/login-form.module.css'
+import './Styles/login-form.css'
 
 const LoginForm = ({ setEmail, setPassword, email, password, handleSubmit }) => {
     return (
         <>
-            <section className={styles['form-section']}>
-                <div className={styles['form-title']}>Login</div>
+            <section className='form-section'>
+                <h1 className='form-title'>Login</h1>
                 <form
                     onSubmit={handleSubmit}
-                    className={styles.form}
+                    className="login-form"
                 >
                     <label>
                         <span>Email</span>

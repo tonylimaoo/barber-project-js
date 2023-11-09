@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { AdminContext } from '../context/AdminContext'
-import styles from './Styles/header.module.css'
+import './Styles/header.css'
 import { Link } from 'react-router-dom'
 
 export default function Header({ userSignOut, authUser }) {
@@ -15,25 +15,26 @@ export default function Header({ userSignOut, authUser }) {
 
     return (
         <>
-            <nav className={styles.header}>
-                <section className={styles.logo}>
+            <header className="header">
+                <div className="logo">
                     Salão Lima
-                </section>
-                <section className={styles.nav}>
-                    <Link to='/' className={styles.link}>Agendamento</Link>
+                </div>
+                {/* <div className="hamburger">Menu</div> */}
+                <nav className="navbar">
+                    <Link to='/' className="link">Agendamento</Link>
                     {isAdmin &&
-                        <Link to='/controle' className={styles.link}>Horários</Link>
+                        <Link to='/controle' className="link">Horários</Link>
                     }
                     {authUser &&
-                        <Link to='/my-profile' className={styles.link}>Meu Perfil</Link>
+                        <Link to='/my-profile' className="link">Meu Perfil</Link>
                     }
                     {authUser ?
                         <Link onClick={handleClick}>Sair</Link>
                         :
-                        <Link to='/login' className={styles.link}>Login</Link>
+                        <Link to='/login' className="link">Login</Link>
                     }
-                </section>
-            </nav>
+                </nav>
+            </header>
         </>
     )
 }

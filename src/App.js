@@ -30,16 +30,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header userSignOut={userSignOut} authUser={authUser} />
-        <main>
-          {/* Rotas do App */}
+        {/* Rotas do App */}
+        {/* <div className="container"> */}
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/controle' element={<Control />} />
             <Route path='/login' element={<Login />} />
             <Route path='/my-profile' element={<MyProfile />} />
           </Routes>
-        </main>
-        <Footer />
+          <Footer />
+        {/* </div> */}
       </BrowserRouter>
     </div>
   );

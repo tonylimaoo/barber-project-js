@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from './Styles/schedule-form.module.css'
+import './Styles/schedule-form.css'
 
 const hours = ["7:10", "8:00", "8:50", "9:40", "10:30", "11:20", "12:10", "13:00", "13:50", "14:40", "15:30", "16:20", "17:10", "18:00", "18:50", "19:40", "20:30"]
 
@@ -70,19 +70,19 @@ export default function ScheduleForm({
         const realDate = e.target.value;
         const date = e.target.value.split("-");
         const dateObject = {
-                day: Number(date[2]),
-                month: Number(date[1]),
-                year: Number(date[0])
-            };
-            
+            day: Number(date[2]),
+            month: Number(date[1]),
+            year: Number(date[0])
+        };
+
         const checkSunday = new Date(dateObject.year, dateObject.month - 1, dateObject.day);
 
-        if (checkSunday.getDay() === 0){
+        if (checkSunday.getDay() === 0) {
             window.alert("Não atendemos aos domingos.\nEscolha outra data.");
         } else {
             setDate(realDate);
         }
-        
+
     }
 
 
@@ -91,142 +91,142 @@ export default function ScheduleForm({
 
     return (
         <>
-            <section className={styles['form-section']}>
-                <div className={styles['form-title']}>Marque seu horário</div>
+            <section className="form-section">
+                
+                <h1 className="form-title">Marque seu horário</h1>
 
-                    <form
-                        onSubmit={handleSubmit}
-                        className={styles.form}
-                    >
-                        <label>
-                            <span>Nome Completo</span>
-                            {filledForm === 'filled' ? (
-                                <input
-                                    type="text"
-                                    name='nome'
-                                    onChange={(e) => setName(e.target.value)}
-                                    placeholder='Digite seu nome completo'
-                                    value={name}
-                                    required
-                                    disabled
-                                />
-                            ) : (
-                                <input
-                                    type="text"
-                                    name='nome'
-                                    onChange={(e) => setName(e.target.value)}
-                                    placeholder='Digite seu nome completo'
-                                    value={name}
-                                    required
-                                />
-                            )}
-
-                        </label>
-                        <label>
-                            <span>Celular</span>
-                            {filledForm === 'filled' ? (
-                                <input
-                                    type="number"
-                                    name='celular'
-                                    placeholder='(19) 99323-2332'
-                                    onChange={(e) => setCel(e.target.value)}
-                                    value={cel}
-                                    required
-                                    disabled
-                                />
-                            ) : (
-                                <input
-                                    type="number"
-                                    name='celular'
-                                    placeholder='(19) 99323-2332'
-                                    onChange={(e) => setCel(e.target.value)}
-                                    value={cel}
-                                    required
-                                />
-                            )}
-                        </label>
-                        <label>
-                            <span>Data</span>
+                <form className="appointment-form"
+                    onSubmit={handleSubmit}
+                >
+                    <label>
+                        <span>Nome Completo</span>
+                        {filledForm === 'filled' ? (
                             <input
-                                type="date"
-                                name='date'
-                                min={todaysDate}
-                                max={todaysDatePlusSeven}
-                                onChange={(e) => handleDateChange(e)}
-                                // onChange={(e) => setDate(e.target.value)}
-                                value={date}
+                                type="text"
+                                name='nome'
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder='Digite seu nome completo'
+                                value={name}
+                                required
+                                disabled
+                            />
+                        ) : (
+                            <input
+                                type="text"
+                                name='nome'
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder='Digite seu nome completo'
+                                value={name}
                                 required
                             />
-                        </label>
-                        <div className={styles.service}>
-                            <label>
-                                <span>Serviço</span>
-                                {date === "" ? (
-                                    <select>
-                                        <option value="" defaultChecked>Selecione</option>
-                                    </select>
-                                ) : (
-                                    <select
-                                        onChange={(e) => setService(e.target.value)}
-                                        value={service}
-                                        required
-                                    >
-                                        <option value="" defaultChecked>Selecione</option>
-                                        <option value="Cabelo">Cabelo</option>
-                                        <option value="Barba">Barba</option>
-                                        <option value="Cabelo e Barba">Cabelo e Barba</option>
-                                        <option value="Prótese + Corte">Prótese + Corte</option>
-                                        <option value="Manutenção da Prótese">Manutenção da Prótese</option>
-                                    </select>
-                                )}
+                        )}
 
-                            </label>
-                            <label>
-                                <span>Barbeiro</span>
-                                {date === '' ? (
-                                    <select>
-                                        <option value="" defaultChecked>Selecione</option>
-                                    </select>
-                                ) : (
-                                    <select
-                                        onChange={(e) => setProfessional(e.target.value)}
-                                        value={professional}
-                                        required
-                                    >
-                                        <option value="" defaultChecked>Selecione</option>
-                                        <option value="Carlos">Carlos</option>
-                                        <option value="Donizete">Donizete</option>
-                                    </select>
-                                )}
-
-                            </label>
-                        </div>
+                    </label>
+                    <label>
+                        <span>Celular</span>
+                        {filledForm === 'filled' ? (
+                            <input
+                                type="number"
+                                name='celular'
+                                placeholder='(19) 99323-2332'
+                                onChange={(e) => setCel(e.target.value)}
+                                value={cel}
+                                required
+                                disabled
+                            />
+                        ) : (
+                            <input
+                                type="number"
+                                name='celular'
+                                placeholder='(19) 99323-2332'
+                                onChange={(e) => setCel(e.target.value)}
+                                value={cel}
+                                required
+                            />
+                        )}
+                    </label>
+                    <label>
+                        <span>Data</span>
+                        <input
+                            type="date"
+                            name='date'
+                            min={todaysDate}
+                            max={todaysDatePlusSeven}
+                            onChange={(e) => handleDateChange(e)}
+                            // onChange={(e) => setDate(e.target.value)}
+                            value={date}
+                            required
+                        />
+                    </label>
+                    <div className="service">
                         <label>
-                            <span>Horário</span>
-                            {professional === "" ? (
+                            <span>Serviço</span>
+                            {date === "" ? (
                                 <select>
-                                    <option value="" defaultValue=''>Selecione</option>
+                                    <option value="" defaultChecked>Selecione</option>
                                 </select>
                             ) : (
                                 <select
-                                    onChange={(e) => setHour(e.target.value)}
-                                    value={hour}
+                                    onChange={(e) => setService(e.target.value)}
+                                    value={service}
                                     required
                                 >
-                                    <option value="" defaultValue=''>Selecione</option>
-                                    {exclusiveHours.map((hour, i) => (
-                                        <option key={i} value={hour}>{hour}</option>
-                                    ))}
+                                    <option value="" defaultChecked>Selecione</option>
+                                    <option value="Cabelo">Cabelo</option>
+                                    <option value="Barba">Barba</option>
+                                    <option value="Cabelo e Barba">Cabelo e Barba</option>
+                                    <option value="Prótese + Corte">Prótese + Corte</option>
+                                    <option value="Manutenção da Prótese">Manutenção da Prótese</option>
                                 </select>
                             )}
 
                         </label>
-                        {loading ? (
-                            <button disabled type='submit'>Aguarde</button>
+                        <label>
+                            <span>Barbeiro</span>
+                            {date === '' ? (
+                                <select>
+                                    <option value="" defaultChecked>Selecione</option>
+                                </select>
+                            ) : (
+                                <select
+                                    onChange={(e) => setProfessional(e.target.value)}
+                                    value={professional}
+                                    required
+                                >
+                                    <option value="" defaultChecked>Selecione</option>
+                                    <option value="Carlos">Carlos</option>
+                                    <option value="Donizete">Donizete</option>
+                                </select>
+                            )}
+
+                        </label>
+                    </div>
+                    <label>
+                        <span>Horário</span>
+                        {professional === "" ? (
+                            <select>
+                                <option value="" defaultValue=''>Selecione</option>
+                            </select>
                         ) : (
-                            <button type='submit'>AGENDAR</button>
+                            <select
+                                onChange={(e) => setHour(e.target.value)}
+                                value={hour}
+                                required
+                            >
+                                <option value="" defaultValue=''>Selecione</option>
+                                {exclusiveHours.map((hour, i) => (
+                                    <option key={i} value={hour}>{hour}</option>
+                                ))}
+                            </select>
                         )}
-                    </form>
+
+                    </label>
+                    {loading ? (
+                        <button disabled type='submit'>Aguarde</button>
+                    ) : (
+                        <button type='submit'>AGENDAR</button>
+                    )}
+                </form>
             </section >
         </>
     )
