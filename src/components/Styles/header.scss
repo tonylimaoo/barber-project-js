@@ -4,7 +4,7 @@
     height: 60px;
     background-color: black;
     color: white;
-    padding: 15px 0;
+    padding: 15px 40px;
 
     display: flex;
     justify-content: space-between;
@@ -15,30 +15,62 @@
     top: 0;
     z-index: 999;
 
+    
     a {
+        display: block;
         text-decoration: none;
         color: white;
         margin-left: 20px;
         font-size: 18px;
-
+        
         &:hover {
             color: red;
             transition: 0.5s ease;
         }
     }
 }
+.hamburger {
+    display: none;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 0;
+
+    position: relative;
+    cursor: pointer;
+}
+
+.hamburger:after {
+    content: "";
+
+    position: absolute;
+    top: 35%;
+    left: 15%;
+
+    width: 70%;
+    height: 5%;
+    border-radius: 5px;
+}
 
 .navbar {
-    flex:4;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menu {
+    // flex:4;
     display: flex;
     height: 100%;
-    justify-content: right;
+    // justify-content: right;
     align-items: center;
     padding: 0 30px;
 }
 
 .logo {
-    flex:1;
+    // flex:1;
     display: flex;
     height: 100%;
     align-items: center;
@@ -46,6 +78,40 @@
     font-size: 18px;
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 980px) {
+    .hamburger {
+        display: block;
+        z-index: 999;
+    }
 
+    .menu {
+        position: fixed;
+        flex-direction: column;
+        justify-content: center;
+        top: 0;
+        right: -100%;
+        z-index: 998;
+        // width: 200px;
+
+
+        height: 100vh;
+        background-color: #222;
+
+        width: 100%;
+        max-width: 200px;
+
+        padding: 100px 20px;
+
+        transition: .5s ease;
+
+        a {
+            padding-top: 20px;
+        }
+
+        
+        
+    }
+    .menu.active {
+        right: 0;
+    }
 }

@@ -75,29 +75,31 @@ export default function Controle() {
                     </form>
                 </div>
             }
-            {isAdmin && loading ? (
+            
+            {loading ? (
                 <div className="loading">
                     <h1>Carregando Dados...</h1>
                 </div>
             ) : (
-                dataFiltered && dataFiltered.length > 0 &&
-                dataFiltered.map((e, i) => (
-                    <div className="appt-card">
+                isAdmin &&
+                    dataFiltered && dataFiltered.length > 0 &&
+                    dataFiltered.map((e, i) => (
+                        <div className="appt-card">
                         <h2>Agendamento ID:</h2>
                         <h3 className="transaction-id">{e.id}</h3>
                         <h3 className="hour"><span>{e.hour}</span></h3>
                         <div className="more-info" onClick={() => { setShowList(showList ? false : true) }}> + </div>
                         {showList &&
                             <ul key={e.id} id="details-list">
-                                <li>Nome do cliente: {e.nome}</li>
-                                <li>Serviço: {e.service}</li>
-                                <li>Data: {e.date}</li>
-                                <li>Horário: {e.hour}</li>
+                            <li>Nome do cliente: {e.nome}</li>
+                            <li>Serviço: {e.service}</li>
+                            <li>Data: {e.date}</li>
+                            <li>Horário: {e.hour}</li>
                             </ul>
                         }
-                    </div>
-                ))
-            )}
+                        </div>
+                        ))
+                        )}
         </div>
 
     )
