@@ -1,5 +1,4 @@
-import AppointmentTable from "../components/AppointmentTable"
-import styles from "./Control.module.css"
+import "./Control.css"
 import { useState, useContext, useEffect } from "react";
 import { AdminContext } from "../context/AdminContext";
 import { collection, getDocs } from "firebase/firestore";
@@ -11,7 +10,6 @@ export default function Controle() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [dataFiltered, setDataFiltered] = useState(false);
-    const [changeDate, setChangeDate] = useState(true);
 
     useEffect(() => {
 
@@ -54,46 +52,52 @@ export default function Controle() {
     const todaysDate = formatDate();
 
     const [date, setDate] = useState(todaysDate);
+    const [showList, setShowList] = useState(false);
 
-
-    if (data !== null && changeDate === true) {
+    useEffect(() => {
         setDataFiltered(data.filter(ele => {
             return ele.date === date
         }))
-        setChangeDate(false);
-    }
+    }, [data, date])
 
+    console.log(dataFiltered)
     return (
-        <div className={styles.containerPage}>
-            {isAdmin &&
-                <>
-                    <div>
-                        <form className={styles.setDay}>
-                            <label>
-                                Filtre o dia
-                                <input type="date" value={date} onChange={(e) => {
-                                    setDate(e.target.value);
-                                    setChangeDate(true);
-                                }} />
-                            </label>
-                        </form>
-                    </div>
-                    <div className={styles.table}>
-                        {loading ? (
-                            <div className={styles.loading}>
-                                <h1>Carregando Dados...</h1>
-                            </div>
-                        ) : (
-                            dataFiltered && dataFiltered.length > 0 && <div className={styles.container}>
-                                <AppointmentTable appointments={dataFiltered} />
-                            </div>
-                        )}
-                    </div>
-                </>
+        <div className="container-control">
+            {isAdmin && !loading &&
+                <div className="day-filter">
+                    <form className="setDay">
+                        <label>
+                            Filtre o dia
+                            <input type="date" value={date} onChange={(e) => {
+                                setDate(e.target.value);
+                            }} />
+                        </label>
+                    </form>
+                </div>
             }
-            {!isAdmin &&
-                <h1>404 - Page Not Found</h1>
-            }
+            {isAdmin && loading ? (
+                <div className="loading">
+                    <h1>Carregando Dados...</h1>
+                </div>
+            ) : (
+                dataFiltered && dataFiltered.length > 0 &&
+                dataFiltered.map((e, i) => (
+                    <div key={e.id} className="appt-card">
+                        <h2>Agendamento ID:</h2>
+                        <h3 className="transaction-id">{e.id}</h3>
+                        <h3 className="hour">{e.hour}</h3>
+                        <div onClick={() => { setShowList(showList ? false : true) }}> + </div>
+                        {showList &&
+                            <ul id="details-list">
+                                <li>Nome do cliente: {e.nome}</li>
+                                <li>Serviço: {e.service}</li>
+                                <li>Data: {e.date}</li>
+                                <li>Horário: {e.hour}</li>
+                            </ul>
+                        }
+                    </div>
+                ))
+            )}
         </div>
 
     )

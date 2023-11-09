@@ -89,33 +89,6 @@
         width: 100%;
         max-width: 400px;
 
-        .signup-form {
-            input {
-                width: 300px;
-            }
-
-            .service {
-                width: 75%;
-
-
-                select {
-                    width: 130px;
-                }
-            }
-
-            button {
-                width: 80%;
-            }
-        }
-    }
-
-}
-
-@media screen and (max-width: 840px) {
-    .form-section {
-        width: 100%;
-        max-width: 400px;
-
         .appointment-form {
             input {
                 width: 300px;
@@ -124,10 +97,10 @@
             .service {
                 width: 75%;
 
-
                 select {
                     width: 130px;
                 }
+                
             }
 
             button {

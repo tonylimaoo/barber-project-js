@@ -1,0 +1,42 @@
+.container-control {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 50px 0;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, rgb(184, 184, 184) 0, rgba(0, 0, 0, 0.672) 74%);
+}
+
+.appt-card {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 5px 10px;
+  margin: 5px 5px;
+  background-color: #4A0000;
+  color: white;
+  border-radius: 0.6em;
+}
+.appt-card * {
+  margin: 5px 5px;
+}
+.appt-card ul {
+  background-color: black;
+  list-style: none;
+  padding: 0px 5px;
+  border-radius: 0.6em;
+}
+
+.day-filter {
+  position: static;
+  top: 0;
+}
+
+@media screen and (max-width: 840px) {
+  .appt-card {
+    width: 80%;
+  }
+}/*# sourceMappingURL=Control.css.map */

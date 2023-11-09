@@ -78,24 +78,6 @@
     width: 100%;
     max-width: 400px;
   }
-  .form-section .signup-form input {
-    width: 300px;
-  }
-  .form-section .signup-form .service {
-    width: 75%;
-  }
-  .form-section .signup-form .service select {
-    width: 130px;
-  }
-  .form-section .signup-form button {
-    width: 80%;
-  }
-}
-@media screen and (max-width: 840px) {
-  .form-section {
-    width: 100%;
-    max-width: 400px;
-  }
   .form-section .appointment-form input {
     width: 300px;
   }

@@ -59,6 +59,8 @@ const MyProfile = () => {
 
   }, [])
 
+  console.log(appointments)
+
   return (
     <div className="container-profile">
       {authUser &&
@@ -89,7 +91,7 @@ const MyProfile = () => {
           {!loading2 && appointments !== [] &&
             <section className="appointment-list">
               <h1>Últimos agendamentos</h1>
-                {appointments.slice(-3).map((app, i) => (
+                {appointments.slice(0, 3).map((app, i) => (
                   <div className='appointment-card' key={app.id}>
                     <h3>Agendamento {i + 1}: </h3>
                     <h5>{app.id}</h5>
