@@ -60,7 +60,7 @@ export default function Controle() {
         }))
     }, [data, date])
 
-    console.log(dataFiltered)
+    console.log(JSON.stringify(dataFiltered));
     return (
         <div className="container-control">
             {isAdmin && !loading &&
@@ -82,13 +82,13 @@ export default function Controle() {
             ) : (
                 dataFiltered && dataFiltered.length > 0 &&
                 dataFiltered.map((e, i) => (
-                    <div key={e.id} className="appt-card">
+                    <div className="appt-card">
                         <h2>Agendamento ID:</h2>
                         <h3 className="transaction-id">{e.id}</h3>
-                        <h3 className="hour">{e.hour}</h3>
-                        <div onClick={() => { setShowList(showList ? false : true) }}> + </div>
+                        <h3 className="hour"><span>{e.hour}</span></h3>
+                        <div className="more-info" onClick={() => { setShowList(showList ? false : true) }}> + </div>
                         {showList &&
-                            <ul id="details-list">
+                            <ul key={e.id} id="details-list">
                                 <li>Nome do cliente: {e.nome}</li>
                                 <li>Serviço: {e.service}</li>
                                 <li>Data: {e.date}</li>
