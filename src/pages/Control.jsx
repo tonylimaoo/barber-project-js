@@ -4,8 +4,6 @@ import { AdminContext } from "../context/AdminContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase/config'
 
-//just a comment
-
 export default function Controle() {
     const { isAdmin } = useContext(AdminContext);
     // const { data, loading } = useFetch(url);
