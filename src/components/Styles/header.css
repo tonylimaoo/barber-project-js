@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 
-.hamburger:after {
+.hamburger::after {
   content: "";
   position: absolute;
   top: 35%;
