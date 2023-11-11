@@ -4,12 +4,19 @@ import { AdminContext } from "../context/AdminContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase/config'
 
+//jus a comment
+
 export default function Controle() {
     const { isAdmin } = useContext(AdminContext);
     // const { data, loading } = useFetch(url);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [dataFiltered, setDataFiltered] = useState(false);
+    const getDate = new Date();
+
+    const compareHour = (a, b) => {
+        return a.hour - b.hour;
+    }
 
     useEffect(() => {
 
@@ -17,19 +24,40 @@ export default function Controle() {
             setLoading(true);
 
             const querySnapshot = await getDocs(collection(db, "transactions"));
+            let transactions = [];
             querySnapshot.forEach((doc) => {
-                setData((prevData) => [
-                    ...prevData,
-                    doc.data()
-                ])
+
+                transactions.push(doc.data())
             });
+            const dbGet = transactions.map((e) => {
+                return {
+                    ...e,
+                    hour: Number(e.hour[0].replace(':', ''))
+                }
+            })
+                .sort(compareHour)
+                .map(e => {
+                    let hourLength = `${e.hour}`.length
+                    console.log(hourLength);
+                    return {
+                        ...e,
+                        hour: hourLength < 4 ?
+                            `${e.hour}`.slice(0, 1) + ":" + `${e.hour}`.slice(1, 3)
+                            :
+                            `${e.hour}`.slice(0, 2) + ":" + `${e.hour}`.slice(2, 4)
+                    }
+                })
+
+            console.log(dbGet);
+
+            setData(dbGet);
+
             setLoading(false);
         }
 
         getFirestoreAppointmentData();
     }, []);
 
-    const getDate = new Date();
 
     const formatDate = () => {
         let day = `${getDate.getDate()}`
@@ -50,9 +78,7 @@ export default function Controle() {
     };
 
     const todaysDate = formatDate();
-
     const [date, setDate] = useState(todaysDate);
-    const [showList, setShowList] = useState(false);
 
     useEffect(() => {
         setDataFiltered(data.filter(ele => {
@@ -60,7 +86,21 @@ export default function Controle() {
         }))
     }, [data, date])
 
-    console.log(JSON.stringify(dataFiltered));
+    const handleMoreInfo = (ele) => {
+
+        const eleClassList = ele.target.closest("div.appt-card").querySelector('.details-list').classList
+
+        if (eleClassList.value.match('active')) {
+            eleClassList.remove('active');
+            ele.target.innerHTML = "+";
+        } else {
+            eleClassList.add('active');
+            ele.target.innerHTML = "-";
+        }
+
+    }
+
+    // console.log(JSON.stringify(dataFiltered));
     return (
         <div className="container-control">
             {isAdmin && !loading &&
@@ -75,31 +115,30 @@ export default function Controle() {
                     </form>
                 </div>
             }
-            
+
             {loading ? (
                 <div className="loading">
                     <h1>Carregando Dados...</h1>
                 </div>
             ) : (
                 isAdmin &&
-                    dataFiltered && dataFiltered.length > 0 &&
-                    dataFiltered.map((e, i) => (
-                        <div className="appt-card">
+                dataFiltered && dataFiltered.length > 0 &&
+                dataFiltered.map((e, i) => (
+                    <div className="appt-card">
                         <h2>Agendamento ID:</h2>
                         <h3 className="transaction-id">{e.id}</h3>
-                        <h3 className="hour"><span>{e.hour}</span></h3>
-                        <div className="more-info" onClick={() => { setShowList(showList ? false : true) }}> + </div>
-                        {showList &&
-                            <ul key={e.id} id="details-list">
+                        <h3 className="hour"><span>{e.hour}</span><span>{e.professional}</span></h3>
+                        <div className="more-info" onClick={(e) => { handleMoreInfo(e) }}> + </div>
+                        <ul key={e.id} className="details-list">
                             <li>Nome do cliente: {e.nome}</li>
                             <li>Serviço: {e.service}</li>
                             <li>Data: {e.date}</li>
                             <li>Horário: {e.hour}</li>
-                            </ul>
-                        }
-                        </div>
-                        ))
-                        )}
+                        </ul>
+
+                    </div>
+                ))
+            )}
         </div>
 
     )

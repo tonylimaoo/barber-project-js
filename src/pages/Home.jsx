@@ -17,12 +17,14 @@ import { db } from '../firebase/config'
 
 const uuid = require('uuid');
 
+const hours = ["7:10", "8:00", "8:50", "9:40", "10:30", "11:20", "12:10", "13:00", "13:50", "14:40", "15:30", "16:20", "17:10", "18:00", "18:50", "19:40", "20:30"]
+
 export default function App() {
     // States
     const [name, setName] = useState("");
     const [cel, setCel] = useState("");
     const [date, setDate] = useState("");
-    const [hour, setHour] = useState("");
+    const [hour, setHour] = useState([]);
     const [service, setService] = useState("");
     const [professional, setProfessional] = useState("");
     const [transactionId, setTransactionId] = useState("");
@@ -43,6 +45,7 @@ export default function App() {
             const tid = uuid.v4()
             const userId = authUser ? authUser.uid : null
             setLoading(true);
+
             const appointment = {
                 "nome": name,
                 "celular": cel,
@@ -53,6 +56,8 @@ export default function App() {
                 "service": service,
                 "uid": userId
             }
+
+            console.log(appointment);
 
             addDataFirestore(appointment, "transactions");
 
@@ -107,7 +112,15 @@ export default function App() {
                 .filter(e => e.date === date)
                 .filter(e => e.professional === professional)
                 .map(e => e.hour)
-            setAppointmentHours(apt)
+
+            let hoursFormatted = JSON.stringify(apt)
+                .replace(/\[|\]/g, '')
+                .replace(/(['"])/g, '')
+                .split(',');
+
+            setAppointmentHours(hoursFormatted);
+
+            console.log(hoursFormatted);
 
         }
         handleEnabledHours();
@@ -118,25 +131,26 @@ export default function App() {
         <div className="container-home">
 
             {!formSubmitted &&
-                    <ScheduleForm
-                        name={name}
-                        cel={cel}
-                        date={date}
-                        hour={hour}
-                        service={service}
-                        professional={professional}
-                        setName={setName}
-                        setCel={setCel}
-                        setDate={setDate}
-                        setHour={setHour}
-                        handleSubmit={handleSubmit}
-                        loading={loading}
-                        userId={userId}
-                        setService={setService}
-                        setProfessional={setProfessional}
-                        appointmentHours={appointmentHours}
-                        filledForm={filledForm}
-                    />
+                <ScheduleForm
+                    name={name}
+                    cel={cel}
+                    date={date}
+                    hour={hour}
+                    service={service}
+                    professional={professional}
+                    setName={setName}
+                    setCel={setCel}
+                    setDate={setDate}
+                    setHour={setHour}
+                    handleSubmit={handleSubmit}
+                    loading={loading}
+                    userId={userId}
+                    setService={setService}
+                    setProfessional={setProfessional}
+                    appointmentHours={appointmentHours}
+                    hours={hours}
+                    filledForm={filledForm}
+                />
             }
             {formSubmitted && transactionId === '' && <h1>Carregando...</h1>}
             {transactionId !== '' &&

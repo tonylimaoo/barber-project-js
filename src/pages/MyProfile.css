@@ -51,7 +51,7 @@
 
 .appointment-list {
   border: 1px solid black;
-  width: 600px;
+  width: 45%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -73,7 +73,7 @@
   border: 1px solid white;
   text-decoration: none;
   margin-bottom: 30px;
-  width: 500px;
+  width: 80%;
   margin: 30px 30px;
   background-color: #4A0000;
   padding-bottom: 20px;
@@ -86,7 +86,7 @@
 .appointment-card p {
   margin-left: 35px;
   border-bottom: 1px solid #4d4c4c;
-  width: 400px;
+  width: 80%;
 }
 .appointment-card h5 {
   margin-top: 3px;
@@ -103,7 +103,7 @@
     max-width: 300px;
   }
   .appointment-list {
-    width: 450px;
+    width: 95%;
   }
   .appointment-list ul {
     padding: 0;
@@ -111,9 +111,9 @@
     list-style: none;
   }
   .appointment-card {
-    width: 380px;
+    width: 90%;
   }
   .appointment-card p {
-    width: 300px;
+    width: 80%;
   }
 }/*# sourceMappingURL=MyProfile.css.map */

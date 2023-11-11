@@ -36,7 +36,7 @@
   transition: 0.5s;
 }
 .appt-card ul {
-  background-color: black;
+  display: none;
   list-style: none;
   padding: 5px 15px;
   border-radius: 0.6em;
@@ -80,6 +80,12 @@
   margin-left: 15px;
   background-color: white;
   color: #4A0000;
+}
+
+.details-list.active {
+  display: block;
+  top: 0;
+  transition: 0.5s ease;
 }
 
 @media screen and (max-width: 840px) {
