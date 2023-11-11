@@ -43,7 +43,8 @@
     }
 
     ul {
-        background-color: black;
+        display: none;
+        // background-color: black;
         list-style: none;
         // margin: 0;
         padding: 5px 15px;
@@ -92,6 +93,12 @@
     margin-left: 15px;
     background-color: white;
     color: #4A0000
+}
+
+.details-list.active {
+    display: block;
+    top: 0;
+    transition: 0.5s ease;
 }
 
 @media screen and (max-width: 840px){ 

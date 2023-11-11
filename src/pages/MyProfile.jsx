@@ -96,7 +96,7 @@ const MyProfile = () => {
                     <h3>Agendamento {i + 1}: </h3>
                     <h5>{app.id}</h5>
                     <p>Data: {app.date.split('-')[2]}/{app.date.split('-')[1]}/{app.date.split('-')[0]}</p>
-                    <p>Horário: {app.hour}</p>
+                    <p>Horário: {app.hour[0]}</p>
                     <p>Barbeiro: {app.professional}</p>
                     <p>Serviço: {app.service}</p>
                   </div>
