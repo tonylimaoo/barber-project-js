@@ -40,11 +40,11 @@
   list-style: none;
   padding: 5px 15px;
   border-radius: 0.6em;
-  width: 50%;
+  width: 100%;
 }
 .appt-card ul li {
   border-bottom: 1px solid #4d4c4c;
-  width: 90%;
+  width: 70%;
   margin-top: 10px;
 }
 
@@ -91,5 +91,8 @@
 @media screen and (max-width: 840px) {
   .appt-card {
     width: 80%;
+  }
+  .hour {
+    width: 60%;
   }
 }/*# sourceMappingURL=Control.css.map */

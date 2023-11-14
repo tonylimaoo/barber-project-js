@@ -14,6 +14,7 @@ import { addDataFirestore } from '../firebase/post'
 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../firebase/config'
+import AlertMessage from '../components/AlertMessage'
 
 const uuid = require('uuid');
 
@@ -133,12 +134,12 @@ export default function App() {
 
     return (
         <div className="container-home">
-            {formError && 
-            <div className='form-error'>
-                <button className='close-error' onClick={() => setFormError(false)}>X</button>
-                <h4 className='error-message'>{formErrorMessage}</h4>
-            </div>}
-
+            {formError &&
+                <AlertMessage
+                    setFormError={setFormError}
+                    formErrorMessage={formErrorMessage}
+                />
+            }
 
             {!formSubmitted &&
                 <ScheduleForm
