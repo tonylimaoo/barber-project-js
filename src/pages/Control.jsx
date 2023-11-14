@@ -38,7 +38,7 @@ export default function Controle() {
                 .sort(compareHour)
                 .map(e => {
                     let hourLength = `${e.hour}`.length
-                    console.log(hourLength);
+
                     return {
                         ...e,
                         hour: hourLength < 4 ?
@@ -47,8 +47,6 @@ export default function Controle() {
                             `${e.hour}`.slice(0, 2) + ":" + `${e.hour}`.slice(2, 4)
                     }
                 })
-
-            console.log(dbGet);
 
             setData(dbGet);
 
@@ -100,7 +98,7 @@ export default function Controle() {
 
     }
 
-    // console.log(JSON.stringify(dataFiltered));
+
     return (
         <div className="container-control">
             {isAdmin && !loading &&

@@ -33,6 +33,8 @@ export default function App() {
     const [userId, setUserId] = useState("");
     const [filledForm, setFilledForm] = useState("");
     const [appointmentHours, setAppointmentHours] = useState("");
+    const [formError, setFormError] = useState(false);
+    const [formErrorMessage, setFormErrorMessage] = useState("");
 
     // Custom Hooks
     const { authUser } = useAuth();
@@ -57,7 +59,7 @@ export default function App() {
                 "uid": userId
             }
 
-            console.log(appointment);
+
 
             addDataFirestore(appointment, "transactions");
 
@@ -118,9 +120,11 @@ export default function App() {
                 .replace(/(['"])/g, '')
                 .split(',');
 
+            console.log(hoursFormatted);
+
             setAppointmentHours(hoursFormatted);
 
-            console.log(hoursFormatted);
+
 
         }
         handleEnabledHours();
@@ -129,6 +133,12 @@ export default function App() {
 
     return (
         <div className="container-home">
+            {formError && 
+            <div className='form-error'>
+                <button className='close-error' onClick={() => setFormError(false)}>X</button>
+                <h4 className='error-message'>{formErrorMessage}</h4>
+            </div>}
+
 
             {!formSubmitted &&
                 <ScheduleForm
@@ -150,6 +160,10 @@ export default function App() {
                     appointmentHours={appointmentHours}
                     hours={hours}
                     filledForm={filledForm}
+                    formErrorMessage={formErrorMessage}
+                    setFormErrorMessage={setFormErrorMessage}
+                    formError={formError}
+                    setFormError={setFormError}
                 />
             }
             {formSubmitted && transactionId === '' && <h1>Carregando...</h1>}

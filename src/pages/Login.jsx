@@ -37,7 +37,7 @@ const Login = () => {
     if (type === 'login') {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          console.log(userCredential);
+
 
           setUserId(auth.currentUser.uid);
           setTimeout(() => {
@@ -51,7 +51,7 @@ const Login = () => {
     } else if (type === 'signup') {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          console.log(userCredential);
+
 
           const data = {
             name: name,
