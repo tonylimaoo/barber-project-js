@@ -133,11 +133,13 @@ export default function App() {
 
     return (
         <div className="container-home">
-            {formError && 
-            <div className='form-error'>
-                <button className='close-error' onClick={() => setFormError(false)}>X</button>
-                <h4 className='error-message'>{formErrorMessage}</h4>
-            </div>}
+            {formError &&
+                <div className='form-error'>
+                    <div className="white-block">
+                        <button className='close-error' onClick={() => setFormError(false)}>X</button>
+                        <h4 className='error-message'>{formErrorMessage}</h4>
+                    </div>
+                </div>}
 
 
             {!formSubmitted &&

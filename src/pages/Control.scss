@@ -49,11 +49,11 @@
         // margin: 0;
         padding: 5px 15px;
         border-radius: 0.6em;
-        width: 50%;
+        width: 100%;
 
         li {
             border-bottom: 1px solid #4d4c4c ;
-            width: 90%;
+            width: 70%;
             margin-top: 10px;
         }
     }
@@ -104,5 +104,9 @@
 @media screen and (max-width: 840px){ 
     .appt-card {
         width: 80%;
+    }
+
+    .hour {
+        width: 60%;
     }
 }
