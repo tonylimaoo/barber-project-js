@@ -1,33 +1,52 @@
-import { useScreenshot, createFileName } from 'use-react-screenshot'
+// import { useScreenshot, createFileName } from 'use-react-screenshot'
 import './Styles/concluded-form.css'
-import { createRef } from 'react';
+// import html2canvas from 'html2canvas';
 
 export default function Concluido({ transactionId, hour, date }) {
 
-    const ref = createRef(null);
-
     // Component that shows the Schedule Confirmation
-    const [image, takeScreenshot] = useScreenshot({
-        type: 'image/jpeg',
-        quality: 1.0
-    });
+    // const [image, takeScreenshot] = useScreenshot({
+    //     type: 'image/jpeg',
+    //     quality: 1.0
+    // });
 
-    const download = (image, {name = 'img', extension = 'jpg'} = {}) => {
-        const a = document.createElement('a');
-        a.href = image;
-        a.download = createFileName();
-        a.click();
-    }
+    // const takeScreenshot = (elementId, fileName, fileType) => {
+    //     console.log("entrou")
 
-    const downloadScreenshot = () => {
-        takeScreenshot(ref.current).then(download)
-    }
+    //     const element = document.getElementById(elementId);
+    //     console.log(element)
+    //     if (!element) {
+    //         return;
+    //     }
+
+    //     html2canvas(element).then((canvas) => {
+    //         let image = canvas.toDataUrl(fileType);
+    //         console.log("the image is ", image);
+    //         const a = document.createElement("a");
+    //         a.href = image;
+    //         a.download = fileName;
+    //         a.click();
+    //     }).catch(err => {
+    //         console.error("We cannot take this screenshot at the moment: ", err)
+    //     });
+    // }
+
+    // const download = (image, {name = 'img', extension = 'jpg'} = {}) => {
+    //     const a = document.createElement('a');
+    //     a.href = image;
+    //     a.download = 
+    //     a.click();
+    // }
+
+    // const downloadScreenshot = () => {
+    //     takeScreenshot(ref.current).then(download)
+    // }
 
     date = date.split('-')
 
     return (
         <>
-            <div className="concluded-container" ref={ref}>
+            <div className="concluded-container" id='appointmentConfirmation'>
                 <section className="sectionId">
                     <h3>
                         Agendamento realizado!
@@ -38,7 +57,7 @@ export default function Concluido({ transactionId, hour, date }) {
                 </section>
 
             </div>
-            <button onClick={downloadScreenshot}>Tire um Print!</button>
+            <button onClick={() => console.log("banana")}>Tire um Print!</button>
         </>
     )
 }
