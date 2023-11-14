@@ -8,4 +8,35 @@
   justify-content: center;
   align-items: center;
   background: linear-gradient(to bottom, rgb(184, 184, 184) 0, rgba(0, 0, 0, 0.672) 74%);
-}/*# sourceMappingURL=Home.css.map */
+}
+
+/*# sourceMappingURL=Home.css.map */
+
+.form-error {
+  position: absolute;
+  display: flex;
+  border: 3px solid black;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 300px;
+  background-color: #4A0000;
+  color: white;
+  max-width: 300px;
+  box-shadow: 5px 5px 5px black;
+
+  .error-message {
+    margin: 15px;
+  }
+
+  .close-error {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    max-width: 40px;
+    align-items: center;
+    justify-content: center;
+  }
+}

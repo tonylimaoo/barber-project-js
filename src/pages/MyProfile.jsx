@@ -59,7 +59,7 @@ const MyProfile = () => {
 
   }, [])
 
-  console.log(appointments)
+
 
   return (
     <div className="container-profile">
@@ -88,7 +88,7 @@ const MyProfile = () => {
               </form>
             }
           </section>
-          {!loading2 && appointments !== [] &&
+          {!loading2 && appointments.length > 0 &&
             <section className="appointment-list">
               <h1>Últimos agendamentos</h1>
                 {appointments.slice(0, 3).map((app, i) => (
