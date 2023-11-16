@@ -1,8 +1,8 @@
 import "./Control.css"
 import { useState, useContext, useEffect } from "react";
-import { AdminContext } from "../context/AdminContext";
+import { AdminContext } from "../../context/AdminContext";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from '../firebase/config'
+import { db } from '../../firebase/config'
 
 //jus a comment
 

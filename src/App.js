@@ -8,12 +8,12 @@ import { signOut } from 'firebase/auth';
 import { useAuth } from './hooks/useAuth';
 
 // Routes
-import Control from './pages/Control';
-import Home from './pages/Home';
+import Control from './pages/Control/Control';
+import Home from './pages/Home/Home';
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Login from './pages/Login';
-import MyProfile from './pages/MyProfile';
+import Login from './pages/Login/Login';
+import MyProfile from './pages/MyProfile/MyProfile';
 
 function App() {
 

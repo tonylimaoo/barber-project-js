@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { SignUpContext } from '../context/SignUpContext'
-import LoginForm from '../components/LoginForm'
+import { SignUpContext } from '../../context/SignUpContext'
+import LoginForm from '../../components/LoginForm'
 import './Login.css'
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase/config'
-import SignupForm from '../components/SignUpForm'
+import { auth } from '../../firebase/config'
+import SignupForm from '../../components/SignUpForm'
 import { useNavigate } from 'react-router-dom';
-import { addDataFirestore } from '../firebase/post'
+import { addDataFirestore } from '../../firebase/post'
 
 const Login = () => {
 

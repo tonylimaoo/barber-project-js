@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react'
 import { useEffect } from 'react'
 import './MyProfile.css'
-import { SignedInContext } from '../context/SignedInContext'
+import { SignedInContext } from '../../context/SignedInContext'
 import { useNavigate } from 'react-router-dom'
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from '../firebase/config'
+import { db } from '../../firebase/config'
 
 const MyProfile = () => {
 

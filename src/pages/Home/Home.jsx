@@ -2,19 +2,19 @@
 import './Home.css'
 
 // Components
-import ScheduleForm from '../components/ScheduleForm'
-import ConcludedForm from '../components/ConcludedForm'
+import ScheduleForm from '../../components/ScheduleForm'
+import ConcludedForm from '../../components/ConcludedForm'
 
 // React
 import { useState, useEffect } from 'react'
 
 // Functions
-import { useAuth } from '../hooks/useAuth'
-import { addDataFirestore } from '../firebase/post'
+import { useAuth } from '../../hooks/useAuth'
+import { addDataFirestore } from '../../firebase/post'
 
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from '../firebase/config'
-import AlertMessage from '../components/AlertMessage'
+import { db } from '../../firebase/config'
+import AlertMessage from '../../components/AlertMessage'
 
 const uuid = require('uuid');
 
