@@ -1,110 +1,60 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { SignUpContext } from '../../context/SignUpContext'
 import LoginForm from '../../components/LoginForm'
 import './Login.css'
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase/config'
 import SignupForm from '../../components/SignUpForm'
 import { useNavigate } from 'react-router-dom';
 import { addDataFirestore } from '../../firebase/post'
+import { useAuthentication } from '../../hooks/useAuthentication'
+import { useAuthValue } from '../../context/AuthContext';
 
 const Login = () => {
 
   const navigate = useNavigate();
-  const [type, setType] = useState("login");
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
   const [userId, setUserId] = useState("");
+  const { user: userID } = useAuthValue();
+  const { login, error: authError, loading } = useAuthentication();
 
-  const {
-    name,
-    setName,
-    email,
-    setEmail,
-    birthday,
-    setBirthday,
-    cellphone,
-    setCellphone
-  } = useContext(SignUpContext);
-
+  
   useEffect(() => {
     localStorage.setItem("userId", userId);
   }, [userId])
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const user = {
+      email: email,
+      password: password
+    }
 
-    if (type === 'login') {
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+    
+    const res = await login (user);
+    
+    
+    console.log("na funça");
+    // console.log(userID);
+    
+    console.log(res);
 
-
-          setUserId(auth.currentUser.uid);
-          setTimeout(() => {
-            navigate("/my-profile")
-          }, 1000)
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-    } else if (type === 'signup') {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-
-
-          const data = {
-            name: name,
-            email: email,
-            birthday: birthday,
-            cellphone: cellphone,
-            id: auth.currentUser.uid,
-            admin: false
-          }
-
-          setUserId(auth.currentUser.uid);
-          // Firestore
-          addDataFirestore(data, "users");
-
-          setTimeout(() => {
-            navigate("/my-profile");
-          }, 1000)
-
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
+    if (res !== undefined) {
+      navigate('/my-profile');
     }
   }
 
   return (
     <div className="container-login">
-      {type === 'login' &&
-        <LoginForm
-          setEmail={setEmail}
-          setPassword={setPassword}
-          email={email}
-          password={password}
-          handleSubmit={handleSubmit}
-        />}
-      {type === 'signup' &&
-        <SignupForm
-          setEmail={setEmail}
-          setPassword={setPassword}
-          setName={setName}
-          setBirthday={setBirthday}
-          setCellphone={setCellphone}
-          email={email}
-          password={password}
-          name={name}
-          birthday={birthday}
-          cellphone={cellphone}
-          handleSubmit={handleSubmit}
-        />}
-
-      {type === 'login' && <button className='signBtn' onClick={() => setType("signup")} >CADASTRE</button>}
-      {type === 'signup' && <button className='signBtn' onClick={() => setType("login")} >LOGIN</button>}
+      <LoginForm
+        setEmail={setEmail}
+        setPassword={setPassword}
+        email={email}
+        password={password}
+        handleSubmit={handleSubmit}
+      />
+      {authError &&
+        <p className='error'>{authError}</p>
+      }
     </div>
   )
 }

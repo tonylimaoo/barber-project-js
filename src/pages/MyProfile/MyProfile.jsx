@@ -1,14 +1,12 @@
 import { useState, useContext } from 'react'
 import { useEffect } from 'react'
 import './MyProfile.css'
-import { SignedInContext } from '../../context/SignedInContext'
 import { useNavigate } from 'react-router-dom'
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../../firebase/config'
 
 const MyProfile = () => {
 
-  const { authUser } = useContext(SignedInContext);
   const [loading, setLoading] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [name, setName] = useState("");
@@ -63,11 +61,8 @@ const MyProfile = () => {
 
   return (
     <div className="container-profile">
-      {authUser &&
-        <>
           <section className="my-profile-section">
             <h1>Meu Perfil</h1>
-            {!loading &&
               <form className="form-info">
                 <label>
                   Nome
@@ -86,9 +81,7 @@ const MyProfile = () => {
                   <input type="text" value={email} disabled />
                 </label>
               </form>
-            }
           </section>
-          {!loading2 && appointments.length > 0 &&
             <section className="appointment-list">
               <h1>Últimos agendamentos</h1>
                 {appointments.slice(0, 3).map((app, i) => (
@@ -102,16 +95,6 @@ const MyProfile = () => {
                   </div>
                 ))}
             </section>
-          }
-        </>
-      }
-      {!authUser &&
-        <div className="notLoggedIn">
-          <h1>Entre na sua conta para visualizar seu perfil</h1>
-          <button className="signBtn" onClick={() => navigate('/login')} >LOGIN</button>
-        </div>
-      }
-
     </div>
   )
 }

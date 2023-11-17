@@ -12,3 +12,19 @@ body {
   // background: linear-gradient(180deg, red 0 50%, blue 50% 100%);
   // background-color: rgb(184, 184, 184);
 }
+
+.error {
+  display: block;
+  border: 1px solid black;
+  width: 25%;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: rgb(223, 105, 105);
+  border-radius: .6em;
+}
+
+@media screen and (max-width: 940px){
+  .error {
+    width: 50%;
+  }
+}

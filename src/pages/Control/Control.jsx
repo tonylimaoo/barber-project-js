@@ -1,13 +1,11 @@
 import "./Control.css"
 import { useState, useContext, useEffect } from "react";
-import { AdminContext } from "../../context/AdminContext";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../../firebase/config'
 
 //jus a comment
 
 export default function Controle() {
-    const { isAdmin } = useContext(AdminContext);
     // const { data, loading } = useFetch(url);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -101,7 +99,7 @@ export default function Controle() {
 
     return (
         <div className="container-control">
-            {isAdmin && !loading &&
+            { !loading &&
                 <div className="day-filter">
                     <form className="setDay">
                         <label>
@@ -119,7 +117,6 @@ export default function Controle() {
                     <h1>Carregando Dados...</h1>
                 </div>
             ) : (
-                isAdmin &&
                 dataFiltered && dataFiltered.length > 0 &&
                 dataFiltered.map((e, i) => (
                     <div className="appt-card">

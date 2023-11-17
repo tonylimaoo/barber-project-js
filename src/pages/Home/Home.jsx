@@ -9,12 +9,12 @@ import ConcludedForm from '../../components/ConcludedForm'
 import { useState, useEffect } from 'react'
 
 // Functions
-import { useAuth } from '../../hooks/useAuth'
 import { addDataFirestore } from '../../firebase/post'
 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../../firebase/config'
 import AlertMessage from '../../components/AlertMessage'
+import { useAuthValue } from '../../context/AuthContext'
 
 const uuid = require('uuid');
 
@@ -31,14 +31,15 @@ export default function App() {
     const [transactionId, setTransactionId] = useState("");
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [userId, setUserId] = useState("");
     const [filledForm, setFilledForm] = useState("");
     const [appointmentHours, setAppointmentHours] = useState("");
     const [formError, setFormError] = useState(false);
     const [formErrorMessage, setFormErrorMessage] = useState("");
 
     // Custom Hooks
-    const { authUser } = useAuth();
+    const {user: authUser} = useAuthValue();
+    
+    const userId = authUser ? authUser.uid : null;
 
     // Handel submit form function
     const handleSubmit = (e) => {
@@ -74,10 +75,6 @@ export default function App() {
     useEffect(() => {
         localStorage.setItem('transactionId', transactionId)
     }, [transactionId])
-
-    useEffect(() => {
-        setUserId(localStorage.getItem("userId"))
-    }, [userId])
 
     useEffect(() => {
         if (userId !== '') {

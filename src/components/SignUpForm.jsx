@@ -12,7 +12,9 @@ const SignupForm = ({
     name,
     birthday,
     cellphone,
-    handleSubmit
+    handleSubmit,
+    authError,
+    loading
 }) => {
     return (
         <>
@@ -75,9 +77,15 @@ const SignupForm = ({
                             required
                         />
                     </label>
-                    <button type='submit'>CADASTRE-SE</button>
+                    {loading ?
+                        <button type='submit'>AGUARDE</button> :
+                        <button type='submit'>CADASTRE-SE</button>
+                    }
                 </form>
             </section>
+            {authError &&
+                <p className="error">{authError}</p>
+            }
         </>
     )
 }

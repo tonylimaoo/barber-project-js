@@ -1,18 +1,15 @@
 import { useContext, useState } from 'react'
-import { AdminContext } from '../context/AdminContext'
 import './Styles/header.css'
 import { Link } from 'react-router-dom'
+import { useAuthentication } from '../hooks/useAuthentication';
+import { useAuthValue } from '../context/AuthContext';
 
-export default function Header({ userSignOut, authUser }) {
+export default function Header() {
 
-    const { isAdmin, setIsAdmin } = useContext(AdminContext);
+
     const [showMenu, setShowMenu] = useState(false);
-
-    const handleLogOutClick = () => {
-        userSignOut();
-        localStorage.setItem("userId", "");
-        setIsAdmin(false);
-    }
+    const { user } = useAuthValue();
+    const { auth, logout } = useAuthentication();
 
     const handleMenuOptionClick = () => {
         document.querySelector('.menu').classList.remove('active');
@@ -36,22 +33,25 @@ export default function Header({ userSignOut, authUser }) {
                         Salão Lima
                     </div>
                     <div className="hamburger" onClick={(e) => handleHamburgerClick(e)}>Menu</div>
-                    
+
                     <nav className="menu">
                         <Link to='/' onClick={handleMenuOptionClick} className="link">Agendamento</Link>
-                        {isAdmin &&
-                            <Link to='/controle' onClick={handleMenuOptionClick} className="link">Horários</Link>
+
+                        <Link to='/controle' onClick={handleMenuOptionClick} className="link">Horários</Link>
+
+                        {user &&
+                            <Link to='/profile' onClick={handleMenuOptionClick} className="link">Meu Perfil</Link>
                         }
-                        {authUser &&
-                            <Link to='/my-profile' onClick={handleMenuOptionClick} className="link">Meu Perfil</Link>
-                        }
-                        {authUser ?
+                        {!user && <Link to="/signup">Cadastro</Link>}
+                        {user ?
                             <Link onClick={() => {
-                                handleLogOutClick();
-                                handleMenuOptionClick()
+                                logout();
+                                handleMenuOptionClick();
                             }}>Sair</Link>
                             :
-                            <Link to='/login' onClick={handleMenuOptionClick} className="link">Login</Link>
+                            <>
+                                <Link to='/login' onClick={handleMenuOptionClick} className="link">Login</Link>
+                            </>
                         }
                     </nav>
                 </div>

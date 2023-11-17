@@ -1,9 +1,10 @@
 .footer {
   display: flex;
-  max-width: 100%;
-  height: 60px;
-  padding: 15px 0;
   position: block;
+  margin: 0;
+  width: 100%;
+  height: 100px;
+  padding: 15px 0;
   bottom: 0;
   color: white;
   background-color: black;
