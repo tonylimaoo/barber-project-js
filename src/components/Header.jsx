@@ -29,9 +29,9 @@ export default function Header() {
         <>
             <header className="header">
                 <div className="navbar">
-                    <div className="logo">
-                        Salão Lima
-                    </div>
+                    <Link to='/' className="logo">
+                        Salão Lima 
+                    </Link>
                     <div className="hamburger" onClick={(e) => handleHamburgerClick(e)}>Menu</div>
 
                     <nav className="menu">

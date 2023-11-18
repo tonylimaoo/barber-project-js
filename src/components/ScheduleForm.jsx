@@ -14,16 +14,13 @@ export default function ScheduleForm({
     setHour,
     handleSubmit,
     loading,
-    userId,
     setService,
     setProfessional,
     appointmentHours,
     hours,
-    filledForm,
-    formErrorMessage,
     setFormErrorMessage,
-    formError,
     setFormError,
+    user
 }) {
     const [exclusiveHours, setExclusiveHours] = useState([]);
 
@@ -148,6 +145,24 @@ export default function ScheduleForm({
 
     const handleCelChange = (e) => {
 
+        const target = e.target.value.replace(/\(|\)|-| /g, '');
+
+        if (target.length < 12) {
+            setCel(e.target.value);
+        } else {
+            return
+        }
+
+        let celArray = target.split('');
+
+        if (e.target.value.length === 11) {
+            celArray.splice(0, 0, '(')
+            celArray.splice(3, 0, ')')
+            celArray.splice(4, 0, ' ')
+            celArray.splice(10, 0, '-')
+            let cel = celArray.join('')
+            setCel(cel)
+        }
     }
 
     // JSON.stringify(array.map(e => e.horarios.join())).replace(/"|'|]|\[/g, '').split(',')
@@ -168,7 +183,7 @@ export default function ScheduleForm({
                 >
                     <label>
                         <span>Nome Completo</span>
-                        {filledForm === 'filled' ? (
+                        {user ? (
                             <input
                                 type="text"
                                 name='nome'
@@ -192,22 +207,24 @@ export default function ScheduleForm({
                     </label>
                     <label>
                         <span>Celular</span>
-                        {filledForm === 'filled' ? (
+                        {user ? (
                             <input
-                                type="number"
+                                type="text"
                                 name='celular'
                                 placeholder='(19) 99323-2332'
                                 onChange={(e) => setCel(e.target.value)}
+                                // onChange={(e) => handleCelChange(e)}
                                 value={cel}
                                 required
                                 disabled
                             />
                         ) : (
                             <input
-                                type="number"
+                                type="text"
                                 name='celular'
                                 placeholder='(19) 99323-2332'
-                                onChange={(e) => setCel(e.target.value)}
+                                // onChange={(e) => setCel(e.target.value)}
+                                onChange={(e) => handleCelChange(e)}
                                 value={cel}
                                 required
                             />

@@ -36,7 +36,7 @@ const Signup = () => {
 
         console.log(user);
 
-        navigate('/my-profile');
+        navigate('/profile');
 
         console.log(res);
     }

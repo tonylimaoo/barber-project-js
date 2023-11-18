@@ -1,5 +1,5 @@
 import "./Control.css"
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../../firebase/config'
 
@@ -74,6 +74,7 @@ export default function Controle() {
     };
 
     const todaysDate = formatDate();
+
     const [date, setDate] = useState(todaysDate);
 
     useEffect(() => {
@@ -119,12 +120,12 @@ export default function Controle() {
             ) : (
                 dataFiltered && dataFiltered.length > 0 &&
                 dataFiltered.map((e, i) => (
-                    <div className="appt-card">
+                    <div key={e.id} className="appt-card">
                         <h2>Agendamento ID:</h2>
                         <h3 className="transaction-id">{e.id}</h3>
                         <h3 className="hour"><span>{e.hour}</span><span>{e.professional}</span></h3>
                         <div className="more-info" onClick={(e) => { handleMoreInfo(e) }}> + </div>
-                        <ul key={e.id} className="details-list">
+                        <ul className="details-list">
                             <li>Nome do cliente: {e.nome}</li>
                             <li>Serviço: {e.service}</li>
                             <li>Data: {e.date}</li>

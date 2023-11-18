@@ -122,8 +122,6 @@ export default function App() {
 
             setAppointmentHours(hoursFormatted);
 
-
-
         }
         handleEnabledHours();
 
@@ -157,11 +155,9 @@ export default function App() {
                     setProfessional={setProfessional}
                     appointmentHours={appointmentHours}
                     hours={hours}
-                    filledForm={filledForm}
-                    formErrorMessage={formErrorMessage}
                     setFormErrorMessage={setFormErrorMessage}
-                    formError={formError}
                     setFormError={setFormError}
+                    user={authUser}
                 />
             }
             {formSubmitted && transactionId === '' && <h1>Carregando...</h1>}
