@@ -27,7 +27,7 @@ const UsersList = () => {
 
   return (
     <div className='users_list_container'>
-      <h1>Users List</h1>
+      <h1>Usuários Cadastrados</h1>
       {error && 
         <p>{error}</p>
       }
