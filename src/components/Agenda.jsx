@@ -127,7 +127,7 @@ export default function Controle() {
                         <h3 className="hour"><span>{e.hour}</span><span>{e.professional}</span></h3>
                         <div className="more-info" onClick={(e) => { handleMoreInfo(e) }}> + </div>
                         <ul className="details-list">
-                            <li>Nome do cliente: {e.nome}</li>
+                            <li>Nome do cliente: {e.name}</li>
                             <li>Celular: <Link className="link" to={`https://api.whatsapp.com/send?phone=${e.cel.replace(/\(|\)|-| /g, '')}`}>
                                 {e.cel}
                             </Link>
