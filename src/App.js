@@ -14,6 +14,7 @@ import Footer from './components/Footer'
 import Login from './pages/Login/Login';
 import MyProfile from './pages/MyProfile/MyProfile';
 import Signup from './pages/Signup/Signup';
+import NotFound from './pages/NotFound/NotFound';
 
 // Hooks
 import { useAuthentication } from './hooks/useAuthentication';
@@ -54,6 +55,7 @@ function App() {
             <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile'/>} />
             <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/'/>} />
             <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile'/>} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
           </div>
           <Footer />
