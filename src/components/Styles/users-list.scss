@@ -7,7 +7,7 @@
     height: 100vh;
 }
 
-.appt-card {
+.user-card {
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -61,5 +61,15 @@
             width: 70%;
             margin-top: 10px;
         }
+    }
+}
+
+@media screen and (max-width: 840px){ 
+    .user-card {
+        width: 80%;
+    }
+
+    .hour {
+        width: 90%;
     }
 }

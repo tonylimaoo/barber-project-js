@@ -122,8 +122,8 @@ export default function Controle() {
                 dataFiltered && dataFiltered.length > 0 &&
                 dataFiltered.map((e, i) => (
                     <div key={e.id} className="appt-card">
-                        <h2>Agendamento ID:</h2>
-                        <h3 className="transaction-id">{e.tid}</h3>
+                        <h2>Agendamento:</h2>
+                        <h3 className="transaction-id">ID: {e.tid}</h3>
                         <h3 className="hour"><span>{e.hour}</span><span>{e.professional}</span></h3>
                         <div className="more-info" onClick={(e) => { handleMoreInfo(e) }}> + </div>
                         <ul className="details-list">

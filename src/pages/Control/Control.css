@@ -20,8 +20,16 @@
   list-style: none;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 .menu-control ul li {
   margin: 0 30px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 840px) {
+  .menu-control {
+    height: -moz-fit-content;
+    height: fit-content;
+  }
 }/*# sourceMappingURL=Control.css.map */

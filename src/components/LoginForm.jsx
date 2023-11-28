@@ -32,7 +32,7 @@ const LoginForm = ({ setEmail, setPassword, email, password, handleSubmit }) => 
                             required
                         />
                     </label>
-                    <button type='submit'>LOGIN</button>
+                    <button className='btn_login' type='submit'>LOGIN</button>
                 </form>
             </section>
         </>
