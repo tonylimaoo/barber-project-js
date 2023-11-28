@@ -34,12 +34,12 @@
 }
 
 .sectionId {
-  width: 80%;
+  width: 90%;
   background-color: white;
   font-size: 30px;
   border-radius: 0.3em;
   color: #4A0000;
-  margin: 40px;
+  margin: 20px 0;
 }
 
 @media screen and (max-width: 840px) {

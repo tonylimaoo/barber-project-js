@@ -60,10 +60,9 @@
 @media screen and (max-width: 840px) {
   .form-section {
     width: 100%;
-    max-width: 400px;
   }
   .form-section .login-form input {
-    width: 300px;
+    width: 250px;
   }
   .form-section .login-form .service {
     width: 75%;
@@ -72,6 +71,6 @@
     width: 130px;
   }
   .form-section .login-form button {
-    width: 80%;
+    width: 70%;
   }
 }/*# sourceMappingURL=login-form.css.map */

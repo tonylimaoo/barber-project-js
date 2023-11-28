@@ -13,7 +13,7 @@
       );
 }
 
-button {
+.btn_login {
     margin: 15px 0;
     height: 40px;
     position: relative;
@@ -32,7 +32,7 @@ button {
 }
 
 @media screen and (max-width: 840px){
-    button {
-        width: 300px;
+    .btn_login {
+        width: 50%;
     }
 }

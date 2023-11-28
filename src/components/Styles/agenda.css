@@ -13,7 +13,7 @@
   border: 1px solid black;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 60%;
   padding: 5px 10px;
   margin: 5px 5px;
   background-color: #4A0000;
@@ -83,7 +83,7 @@
 .hour {
   display: flex;
   border: 1px solid black;
-  width: 40%;
+  width: 70%;
   justify-content: space-between;
   margin-left: 15px;
   background-color: white;
@@ -101,6 +101,6 @@
     width: 80%;
   }
   .hour {
-    width: 60%;
+    width: 90%;
   }
 }/*# sourceMappingURL=agenda.css.map */
