@@ -165,10 +165,13 @@ export default function ScheduleForm({
 
         const target = e.target.value.replace(/\(|\)|-| /g, '');
 
+        if (target.match(/[a-zA-Z]/)){
+            return;
+        }
         if (target.length < 12) {
             setCel(e.target.value);
         } else {
-            return
+            return;
         }
 
         let celArray = target.split('');
