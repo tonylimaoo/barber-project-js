@@ -21,22 +21,26 @@ const SignupForm = ({
 
         const target = e.target.value.replace(/\(|\)|-| /g, '');
 
+        if (target.match(/[a-zA-Z]/)){
+            return;
+        };
+
         if (target.length < 12) {
             setCellphone(e.target.value);
         } else {
-            return
-        }
+            return;
+        };
 
         let celArray = target.split('');
 
         if (e.target.value.length === 11) {
-            celArray.splice(0, 0, '(')
-            celArray.splice(3, 0, ')')
-            celArray.splice(4, 0, ' ')
-            celArray.splice(10, 0, '-')
-            let cel = celArray.join('')
-            setCellphone(cel)
-        }
+            celArray.splice(0, 0, '(');
+            celArray.splice(3, 0, ')');
+            celArray.splice(4, 0, ' ');
+            celArray.splice(10, 0, '-');
+            let cel = celArray.join('');
+            setCellphone(cel);
+        };
     }
 
     return (
@@ -113,4 +117,4 @@ const SignupForm = ({
     )
 }
 
-export default SignupForm
+export default SignupForm;
