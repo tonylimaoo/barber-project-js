@@ -23,9 +23,8 @@ export const useFetchDocuments = (docCollection, uid = null) => {
             try {
 
                 let q;
-
-                // busca
-                // dashboard
+                
+                // busca por uid
                 if (uid) {
                     q = await query(
                         collectionRef,

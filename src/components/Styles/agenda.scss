@@ -22,6 +22,15 @@
     background-color: #4A0000;
     color: white;
     border-radius: 0.6em;
+
+    .link {
+        text-decoration: none;
+        color: rgb(146, 146, 146);;
+    }
+
+    .link:hover {
+        color: white;
+    }
     
     
     * {

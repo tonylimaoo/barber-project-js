@@ -26,7 +26,7 @@ function App() {
 
   const [user, setUser] = useState(undefined);
   const [showMenu, setShowMenu] = useState(false);
-  const {auth} = useAuthentication()
+  const { auth } = useAuthentication()
 
   const loadingUser = user === undefined;
 
@@ -44,19 +44,19 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContextProvider value={{user}}>
+      <AuthContextProvider value={{ user }}>
         <BrowserRouter>
           <Header showMenu={showMenu} setShowMenu={setShowMenu} />
           {/* Rotas do App */}
           <div className="container" onClick={() => setShowMenu(false)}>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/controle' element={<Control />} />
-            <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile'/>} />
-            <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/'/>} />
-            <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile'/>} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/controle' element={<Control />} />
+              <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile' />} />
+              <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/' />} />
+              <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile' />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
           </div>
           <Footer />
         </BrowserRouter>

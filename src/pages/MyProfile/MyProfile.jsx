@@ -69,8 +69,12 @@ const MyProfile = () => {
     setUserIdStorage();
   }, [user])
 
-  console.log(appointments)
 
+  if(user === undefined) {
+    return(
+      <p>Loading...</p>
+    )
+  }
 
 
   return (
