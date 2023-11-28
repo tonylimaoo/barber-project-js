@@ -5,6 +5,8 @@ import React, { useState } from 'react'
 import SignupForm from '../../components/SignUpForm'
 import { useAuthentication } from '../../hooks/useAuthentication';
 import { useNavigate } from "react-router-dom";
+import { useInsertDocument } from "../../hooks/useInsertDocument";
+// import { useAuthValue } from "../../context/AuthContext";
 
 const Signup = () => {
 
@@ -14,6 +16,7 @@ const Signup = () => {
     const [name, setName] = useState("");
     const [birthday, setBirthday] = useState("");
     const [cellphone, setCellphone] = useState("");
+    const { insertDocument, response } = useInsertDocument('users');
 
     const {createUser, error: authError, loading} = useAuthentication();
 
@@ -27,6 +30,8 @@ const Signup = () => {
             password: password
         }
 
+
+
         // if (password !== consfirmPassword) {
         //     setError("The password does not match!")
         //     return;
@@ -34,12 +39,24 @@ const Signup = () => {
 
         const res = await createUser(user);
 
-        console.log(user);
+        insertDocument({
+            name, 
+            email,
+            birthday,
+            cellphone,
+            admin: false,
+            id: res.uid
+        })
+
+        console.log(response)
 
         navigate('/profile');
 
-        console.log(res);
     }
+
+    // useEffect(() => {
+ 
+    // }, [authUser])
 
     return (
         <div className="signup">

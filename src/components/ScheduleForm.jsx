@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import './Styles/schedule-form.css'
 
+const thirtyOneDaysMonth = ['1', '3', '5', '7', '8', '10', '12'];
+const thirtyDaysMonth = ['2', '4', '6', '9', '11'];
+
 export default function ScheduleForm({
     name,
     cel,
@@ -49,9 +52,24 @@ export default function ScheduleForm({
     };
 
     const dayPlusSeven = () => {
+
         let day = `${Number(getDate.getDate()) + 7}`;
         let month = `${getDate.getMonth() + 1}`;
         let year = `${getDate.getFullYear()}`;
+
+        if (day >= 30 && thirtyDaysMonth.includes(month) ) {
+
+            const extraDays = day - 30;
+            day = `0${extraDays}`
+            month = `${Number(month) + 1}`
+
+        } else if (day >= 31 && thirtyOneDaysMonth.includes(month)) {
+
+            const extraDays = day - 31;
+            day = `0${extraDays}`
+            month = `${Number(month) + 1}`
+
+        }
 
         if (day.length === 1) {
             day = 0 + day;

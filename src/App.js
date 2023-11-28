@@ -24,6 +24,7 @@ import { AuthContextProvider } from './context/AuthContext';
 function App() {
 
   const [user, setUser] = useState(undefined);
+  const [showMenu, setShowMenu] = useState(false);
   const {auth} = useAuthentication()
 
   const loadingUser = user === undefined;
@@ -44,9 +45,9 @@ function App() {
     <div className="App">
       <AuthContextProvider value={{user}}>
         <BrowserRouter>
-          <Header />
+          <Header showMenu={showMenu} setShowMenu={setShowMenu} />
           {/* Rotas do App */}
-          {/* <div className="container"> */}
+          <div className="container" onClick={() => setShowMenu(false)}>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/controle' element={<Control />} />
@@ -54,8 +55,8 @@ function App() {
             <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/'/>} />
             <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile'/>} />
           </Routes>
+          </div>
           <Footer />
-          {/* </div> */}
         </BrowserRouter>
       </AuthContextProvider>
     </div>

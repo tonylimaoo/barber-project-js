@@ -1,29 +1,25 @@
-import { useContext, useState } from 'react'
+import { useEffect } from 'react'
 import './Styles/header.css'
 import { Link } from 'react-router-dom'
 import { useAuthentication } from '../hooks/useAuthentication';
 import { useAuthValue } from '../context/AuthContext';
 
-export default function Header() {
+export default function Header({showMenu, setShowMenu}) {
 
-
-    const [showMenu, setShowMenu] = useState(false);
     const { user } = useAuthValue();
-    const { auth, logout } = useAuthentication();
+    const { logout } = useAuthentication();
 
     const handleMenuOptionClick = () => {
         document.querySelector('.menu').classList.remove('active');
     }
 
-    const handleHamburgerClick = (ele) => {
-        setShowMenu(showMenu ? false : true)
-
+    useEffect(() => {
         if (showMenu) {
             document.querySelector('.menu').classList.add('active');
         } else {
             document.querySelector('.menu').classList.remove('active');
         }
-    }
+    },[showMenu])
 
     return (
         <>
@@ -32,7 +28,7 @@ export default function Header() {
                     <Link to='/' className="logo">
                         Salão Lima 
                     </Link>
-                    <div className="hamburger" onClick={(e) => handleHamburgerClick(e)}>Menu</div>
+                    <div className="hamburger" onClick={() => setShowMenu(showMenu ? false : true)}>Menu</div>
 
                     <nav className="menu">
                         <Link to='/' onClick={handleMenuOptionClick} className="link">Agendamento</Link>
