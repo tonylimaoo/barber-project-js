@@ -1,7 +1,8 @@
 import "./Styles/agenda.css"
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase/config'
+import { Link } from "react-router-dom";
 
 //jus a comment
 
@@ -74,7 +75,7 @@ export default function Controle() {
     };
 
     const todaysDate = formatDate();
-    
+
     const [date, setDate] = useState(todaysDate);
 
     useEffect(() => {
@@ -100,7 +101,7 @@ export default function Controle() {
 
     return (
         <div className="container-control">
-            { !loading &&
+            {!loading &&
                 <div className="day-filter">
                     <form className="setDay">
                         <label>
@@ -122,11 +123,15 @@ export default function Controle() {
                 dataFiltered.map((e, i) => (
                     <div key={e.id} className="appt-card">
                         <h2>Agendamento ID:</h2>
-                        <h3 className="transaction-id">{e.id}</h3>
+                        <h3 className="transaction-id">{e.tid}</h3>
                         <h3 className="hour"><span>{e.hour}</span><span>{e.professional}</span></h3>
                         <div className="more-info" onClick={(e) => { handleMoreInfo(e) }}> + </div>
                         <ul className="details-list">
                             <li>Nome do cliente: {e.nome}</li>
+                            <li>Celular: <Link className="link" to={`https://api.whatsapp.com/send?phone=${e.cel.replace(/\(|\)|-| /g, '')}`}>
+                                {e.cel}
+                            </Link>
+                            </li>
                             <li>Serviço: {e.service}</li>
                             <li>Data: {e.date}</li>
                             <li>Horário: {e.hour}</li>

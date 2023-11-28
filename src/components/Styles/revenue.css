@@ -1,1 +1,7 @@
-/*# sourceMappingURL=revenue.css.map */
+.revenue_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}/*# sourceMappingURL=revenue.css.map */

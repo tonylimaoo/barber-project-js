@@ -20,6 +20,13 @@
   color: white;
   border-radius: 0.6em;
 }
+.appt-card .link {
+  text-decoration: none;
+  color: rgb(146, 146, 146);
+}
+.appt-card .link:hover {
+  color: white;
+}
 .appt-card * {
   margin: 5px 5px;
   font-weight: lighter;
