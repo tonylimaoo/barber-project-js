@@ -38,7 +38,7 @@ export default function Header({showMenu, setShowMenu}) {
                         {user &&
                             <Link to='/profile' onClick={handleMenuOptionClick} className="link">Meu Perfil</Link>
                         }
-                        {!user && <Link to="/signup">Cadastro</Link>}
+                        {!user && <Link to="/signup" onClick={handleMenuOptionClick}>Cadastro</Link>}
                         {user ?
                             <Link onClick={() => {
                                 logout();
