@@ -2,19 +2,21 @@
 import './Home.css'
 
 // Components
-import ScheduleForm from '../components/ScheduleForm'
-import ConcludedForm from '../components/ConcludedForm'
+import ScheduleForm from '../../components/ScheduleForm'
+import ConcludedForm from '../../components/ConcludedForm'
 
 // React
 import { useState, useEffect } from 'react'
 
 // Functions
-import { useAuth } from '../hooks/useAuth'
-import { addDataFirestore } from '../firebase/post'
+// import { addDataFirestore } from '../../firebase/post'
 
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { db } from '../firebase/config'
-import AlertMessage from '../components/AlertMessage'
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../../firebase/config'
+import AlertMessage from '../../components/AlertMessage'
+import { useAuthValue } from '../../context/AuthContext'
+import { useInsertDocument } from '../../hooks/useInsertDocument'
+import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
 const uuid = require('uuid');
 
@@ -31,14 +33,18 @@ export default function App() {
     const [transactionId, setTransactionId] = useState("");
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [userId, setUserId] = useState("");
-    const [filledForm, setFilledForm] = useState("");
     const [appointmentHours, setAppointmentHours] = useState("");
     const [formError, setFormError] = useState(false);
     const [formErrorMessage, setFormErrorMessage] = useState("");
 
     // Custom Hooks
-    const { authUser } = useAuth();
+    const { user: authUser } = useAuthValue();
+
+    const { insertDocument } = useInsertDocument('transactions');
+    const { documents, loading: loadingUserData, error } = useFetchDocuments("users", authUser ? authUser.uid : null);
+
+
+    const userId = authUser ? authUser.uid : null;
 
     // Handel submit form function
     const handleSubmit = (e) => {
@@ -50,20 +56,18 @@ export default function App() {
             setLoading(true);
 
             const appointment = {
-                "nome": name,
-                "celular": cel,
-                "date": date,
-                "hour": hour,
-                "id": tid,
-                "professional": professional,
-                "service": service,
-                "uid": userId
+                name,
+                cel,
+                date,
+                hour,
+                tid,
+                professional,
+                service,
+                userId
             }
 
 
-
-            addDataFirestore(appointment, "transactions");
-
+            insertDocument(appointment)
             setFormSubmitted(true);
             setLoading(false);
             setTransactionId(tid);
@@ -76,31 +80,16 @@ export default function App() {
     }, [transactionId])
 
     useEffect(() => {
-        setUserId(localStorage.getItem("userId"))
-    }, [userId])
+        if (userId !== null && documents !== null) {
 
-    useEffect(() => {
-        if (userId !== '') {
-
-            const getFirestoreUserInfo = async () => {
-                const q = query(collection(db, "users"), where("id", "==", userId));
-
-                const querySnapshot = await getDocs(q);
-                querySnapshot.forEach((doc) => {
-                    setName(doc.data().name);
-                    setCel(doc.data().cellphone);
-                    setFilledForm("filled")
-                });
-            }
-
-            getFirestoreUserInfo();
-
-        } else {
-
-            setFilledForm("unfilled");
+            documents.forEach(e => {
+                console.log(e)
+                setName(e.name);
+                setCel(e.cellphone);
+            })
 
         }
-    }, [userId, filledForm, cel, name]);
+    }, [userId, documents]);
 
     useEffect(() => {
 
@@ -121,11 +110,7 @@ export default function App() {
                 .replace(/(['"])/g, '')
                 .split(',');
 
-            console.log(hoursFormatted);
-
             setAppointmentHours(hoursFormatted);
-
-
 
         }
         handleEnabledHours();
@@ -142,6 +127,8 @@ export default function App() {
             }
 
             {!formSubmitted &&
+                !loadingUserData && 
+                !error &&
                 <ScheduleForm
                     name={name}
                     cel={cel}
@@ -160,12 +147,13 @@ export default function App() {
                     setProfessional={setProfessional}
                     appointmentHours={appointmentHours}
                     hours={hours}
-                    filledForm={filledForm}
-                    formErrorMessage={formErrorMessage}
                     setFormErrorMessage={setFormErrorMessage}
-                    formError={formError}
                     setFormError={setFormError}
+                    user={authUser}
                 />
+            }
+            {error && 
+                <p>{error}</p>
             }
             {formSubmitted && transactionId === '' && <h1>Carregando...</h1>}
             {transactionId !== '' &&

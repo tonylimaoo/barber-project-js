@@ -1,46 +1,64 @@
 // React
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 // Firebase
-import { auth } from './firebase/config';
-import { signOut } from 'firebase/auth';
-import { useAuth } from './hooks/useAuth';
+import { onAuthStateChanged } from 'firebase/auth';
 
 // Routes
-import Control from './pages/Control';
-import Home from './pages/Home';
+import Control from './pages/Control/Control';
+import Home from './pages/Home/Home';
 import Header from './components/Header'
 import Footer from './components/Footer'
-import Login from './pages/Login';
-import MyProfile from './pages/MyProfile';
+import Login from './pages/Login/Login';
+import MyProfile from './pages/MyProfile/MyProfile';
+import Signup from './pages/Signup/Signup';
+
+// Hooks
+import { useAuthentication } from './hooks/useAuthentication';
+
+// Context
+import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
 
-  const { authUser } = useAuth();
+  const [user, setUser] = useState(undefined);
+  const [showMenu, setShowMenu] = useState(false);
+  const {auth} = useAuthentication()
 
-  const userSignOut = () => {
-    signOut(auth).then(() => {
-      console.log("signOut succesfully");
-    }).catch(error => console.log(error))
+  const loadingUser = user === undefined;
+
+  useEffect(() => {
+
+    onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    })
+
+  }, [auth])
+
+  if (loadingUser) {
+    return <p>Loading...</p>
   }
-
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header userSignOut={userSignOut} authUser={authUser} />
-        {/* Rotas do App */}
-        {/* <div className="container"> */}
+      <AuthContextProvider value={{user}}>
+        <BrowserRouter>
+          <Header showMenu={showMenu} setShowMenu={setShowMenu} />
+          {/* Rotas do App */}
+          <div className="container" onClick={() => setShowMenu(false)}>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/controle' element={<Control />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/my-profile' element={<MyProfile />} />
+            <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile'/>} />
+            <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/'/>} />
+            <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile'/>} />
           </Routes>
+          </div>
           <Footer />
-        {/* </div> */}
-      </BrowserRouter>
+        </BrowserRouter>
+      </AuthContextProvider>
     </div>
   );
 }

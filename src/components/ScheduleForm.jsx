@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import './Styles/schedule-form.css'
 
+const thirtyOneDaysMonth = ['1', '3', '5', '7', '8', '10', '12'];
+const thirtyDaysMonth = ['2', '4', '6', '9', '11'];
+
 export default function ScheduleForm({
     name,
     cel,
@@ -14,16 +17,13 @@ export default function ScheduleForm({
     setHour,
     handleSubmit,
     loading,
-    userId,
     setService,
     setProfessional,
     appointmentHours,
     hours,
-    filledForm,
-    formErrorMessage,
     setFormErrorMessage,
-    formError,
     setFormError,
+    user
 }) {
     const [exclusiveHours, setExclusiveHours] = useState([]);
 
@@ -52,9 +52,24 @@ export default function ScheduleForm({
     };
 
     const dayPlusSeven = () => {
+
         let day = `${Number(getDate.getDate()) + 7}`;
         let month = `${getDate.getMonth() + 1}`;
         let year = `${getDate.getFullYear()}`;
+
+        if (day >= 30 && thirtyDaysMonth.includes(month) ) {
+
+            const extraDays = day - 30;
+            day = `0${extraDays}`
+            month = `${Number(month) + 1}`
+
+        } else if (day >= 31 && thirtyOneDaysMonth.includes(month)) {
+
+            const extraDays = day - 31;
+            day = `0${extraDays}`
+            month = `${Number(month) + 1}`
+
+        }
 
         if (day.length === 1) {
             day = 0 + day;
@@ -148,6 +163,24 @@ export default function ScheduleForm({
 
     const handleCelChange = (e) => {
 
+        const target = e.target.value.replace(/\(|\)|-| /g, '');
+
+        if (target.length < 12) {
+            setCel(e.target.value);
+        } else {
+            return
+        }
+
+        let celArray = target.split('');
+
+        if (e.target.value.length === 11) {
+            celArray.splice(0, 0, '(')
+            celArray.splice(3, 0, ')')
+            celArray.splice(4, 0, ' ')
+            celArray.splice(10, 0, '-')
+            let cel = celArray.join('')
+            setCel(cel)
+        }
     }
 
     // JSON.stringify(array.map(e => e.horarios.join())).replace(/"|'|]|\[/g, '').split(',')
@@ -168,7 +201,7 @@ export default function ScheduleForm({
                 >
                     <label>
                         <span>Nome Completo</span>
-                        {filledForm === 'filled' ? (
+                        {user ? (
                             <input
                                 type="text"
                                 name='nome'
@@ -192,22 +225,24 @@ export default function ScheduleForm({
                     </label>
                     <label>
                         <span>Celular</span>
-                        {filledForm === 'filled' ? (
+                        {user ? (
                             <input
-                                type="number"
+                                type="text"
                                 name='celular'
                                 placeholder='(19) 99323-2332'
                                 onChange={(e) => setCel(e.target.value)}
+                                // onChange={(e) => handleCelChange(e)}
                                 value={cel}
                                 required
                                 disabled
                             />
                         ) : (
                             <input
-                                type="number"
+                                type="text"
                                 name='celular'
                                 placeholder='(19) 99323-2332'
-                                onChange={(e) => setCel(e.target.value)}
+                                // onChange={(e) => setCel(e.target.value)}
+                                onChange={(e) => handleCelChange(e)}
                                 value={cel}
                                 required
                             />

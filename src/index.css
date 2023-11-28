@@ -8,4 +8,20 @@ body {
   font-family: "Quicksand", sans-serif;
   padding: 0;
   margin: 0;
+}
+
+.error {
+  display: block;
+  border: 1px solid black;
+  width: 25%;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: rgb(223, 105, 105);
+  border-radius: 0.6em;
+}
+
+@media screen and (max-width: 940px) {
+  .error {
+    width: 50%;
+  }
 }/*# sourceMappingURL=index.css.map */

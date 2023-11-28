@@ -12,8 +12,33 @@ const SignupForm = ({
     name,
     birthday,
     cellphone,
-    handleSubmit
+    handleSubmit,
+    authError,
+    loading
 }) => {
+
+    const handleCelChange = (e) => {
+
+        const target = e.target.value.replace(/\(|\)|-| /g, '');
+
+        if (target.length < 12) {
+            setCellphone(e.target.value);
+        } else {
+            return
+        }
+
+        let celArray = target.split('');
+
+        if (e.target.value.length === 11) {
+            celArray.splice(0, 0, '(')
+            celArray.splice(3, 0, ')')
+            celArray.splice(4, 0, ' ')
+            celArray.splice(10, 0, '-')
+            let cel = celArray.join('')
+            setCellphone(cel)
+        }
+    }
+
     return (
         <>
             <section className='form-section'>
@@ -46,10 +71,10 @@ const SignupForm = ({
                     <label>
                         <span>Celular</span>
                         <input
-                            type="number"
+                            type="text"
                             name='celphone'
                             required
-                            onChange={(e) => setCellphone(e.target.value)}
+                            onChange={(e) => handleCelChange(e)}
                             value={cellphone}
                         />
                     </label>
@@ -75,9 +100,15 @@ const SignupForm = ({
                             required
                         />
                     </label>
-                    <button type='submit'>CADASTRE-SE</button>
+                    {loading ?
+                        <button type='submit'>AGUARDE</button> :
+                        <button type='submit'>CADASTRE-SE</button>
+                    }
                 </form>
             </section>
+            {authError &&
+                <p className="error">{authError}</p>
+            }
         </>
     )
 }
