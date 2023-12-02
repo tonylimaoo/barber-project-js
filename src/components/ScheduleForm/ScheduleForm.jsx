@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './Styles/schedule-form.css'
+import './schedule-form.css'
 
 const thirtyOneDaysMonth = ['1', '3', '5', '7', '8', '10', '12'];
 const thirtyDaysMonth = ['2', '4', '6', '9', '11'];

@@ -2,8 +2,8 @@
 import './Home.css'
 
 // Components
-import ScheduleForm from '../../components/ScheduleForm'
-import ConcludedForm from '../../components/ConcludedForm'
+import ScheduleForm from '../../components/ScheduleForm/ScheduleForm'
+import ConcludedForm from '../../components/ConcludedForm/ConcludedForm'
 
 // React
 import { useState, useEffect } from 'react'
@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react'
 
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../../firebase/config'
-import AlertMessage from '../../components/AlertMessage'
+import AlertMessage from '../../components/AlertMessage/AlertMessage'
 import { useAuthValue } from '../../context/AuthContext'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';

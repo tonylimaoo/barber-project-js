@@ -1,5 +1,4 @@
-import React from 'react'
-import "./Styles/revenue.css"
+import "./revenue.css"
 
 const Revenue = () => {
   return (

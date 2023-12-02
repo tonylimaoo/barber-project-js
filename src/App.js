@@ -9,8 +9,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 // Routes
 import Control from './pages/Control/Control';
 import Home from './pages/Home/Home';
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 import Login from './pages/Login/Login';
 import MyProfile from './pages/MyProfile/MyProfile';
 import Signup from './pages/Signup/Signup';

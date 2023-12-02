@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react'
-import "./Styles/users-list.css"
-import { useFetchDocuments } from '../hooks/useFetchDocuments'
+import "./users-list.css"
+import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 import { Link } from 'react-router-dom';
 
 const UsersList = () => {
 
   const { documents, loading, error } = useFetchDocuments("users");
-
-  useEffect(() => {
-    if (documents !== null) console.log(documents);
-  }, [documents]);
 
   const handleMoreInfo = (ele) => {
 
@@ -23,6 +18,12 @@ const UsersList = () => {
       ele.target.innerHTML = "-";
     }
 
+  }
+
+  if(documents !== null){
+    console.log(documents.map(e => {
+      return e.createdAt
+    }))
   }
 
   return (

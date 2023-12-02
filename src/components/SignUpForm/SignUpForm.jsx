@@ -1,5 +1,5 @@
 import React from 'react'
-import './Styles/signup-form.css'
+import './signup-form.css'
 
 const SignupForm = ({
     setEmail,

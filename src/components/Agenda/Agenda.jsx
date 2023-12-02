@@ -1,8 +1,11 @@
-import "./Styles/agenda.css"
+import "./agenda.css"
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from '../firebase/config'
+import { db } from '../../firebase/config'
 import { Link } from "react-router-dom";
+import { useFetchDocuments } from "../../hooks/useFetchDocuments";
+import { useFetchAppointments } from "../../hooks/useFetchAppointments";
+import { useTeste } from "../../hooks/useTeste";
 
 //jus a comment
 
@@ -11,7 +14,31 @@ export default function Controle() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [dataFiltered, setDataFiltered] = useState(false);
+
+    const formatDate = () => {
+        let day = `${getDate.getDate()}`
+        let month = `${getDate.getMonth() + 1}`
+        let year = `${getDate.getFullYear()}`
+
+        if (day.length === 1) {
+            day = 0 + day
+        }
+
+        if (month.length === 1) {
+            month = 0 + month
+        }
+
+        const fullDate = `${year}-${month}-${day}`
+
+        return fullDate
+    };
+
     const getDate = new Date();
+    const todaysDate = formatDate();
+    const [date, setDate] = useState(todaysDate);
+    const { documents, loading: loadingDate, error } = useFetchAppointments('transactions', date)
+    const {count} = useTeste('transactions', date);
+
 
     const compareHour = (a, b) => {
         return a.hour - b.hour;
@@ -55,29 +82,6 @@ export default function Controle() {
         getFirestoreAppointmentData();
     }, []);
 
-
-    const formatDate = () => {
-        let day = `${getDate.getDate()}`
-        let month = `${getDate.getMonth() + 1}`
-        let year = `${getDate.getFullYear()}`
-
-        if (day.length === 1) {
-            day = 0 + day
-        }
-
-        if (month.length === 1) {
-            month = 0 + month
-        }
-
-        const fullDate = `${year}-${month}-${day}`
-
-        return fullDate
-    };
-
-    const todaysDate = formatDate();
-
-    const [date, setDate] = useState(todaysDate);
-
     useEffect(() => {
         setDataFiltered(data.filter(ele => {
             return ele.date === date
@@ -97,6 +101,12 @@ export default function Controle() {
         }
 
     }
+
+    useEffect(() => {
+        console.log(documents)
+    }, [documents, date])
+
+    // console.log(documents)
 
 
     return (

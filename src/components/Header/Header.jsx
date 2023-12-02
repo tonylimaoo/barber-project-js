@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import './Styles/header.css'
+import './header.css'
 import { Link } from 'react-router-dom'
-import { useAuthentication } from '../hooks/useAuthentication';
-import { useAuthValue } from '../context/AuthContext';
+import { useAuthentication } from '../../hooks/useAuthentication';
+import { useAuthValue } from '../../context/AuthContext';
 
 export default function Header({showMenu, setShowMenu}) {
 

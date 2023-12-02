@@ -1,5 +1,5 @@
 // import { useScreenshot, createFileName } from 'use-react-screenshot'
-import './Styles/concluded-form.css'
+import './concluded-form.css'
 // import html2canvas from 'html2canvas';
 
 export default function Concluido({ transactionId, hour, date }) {
