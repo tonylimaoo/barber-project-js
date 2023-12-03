@@ -35,7 +35,7 @@ export default function Header({ showMenu, setShowMenu }) {
                     <nav className="menu">
                         <Link to='/' onClick={handleMenuOptionClick} className="link">Agendamento</Link>
                         {user && isAdmin &&
-                            <Link to='/controle' onClick={handleMenuOptionClick} className="link">Horários</Link>
+                            <Link to='/controle' onClick={handleMenuOptionClick} className="link">Admin</Link>
                         }
                         {user &&
                             <Link to='/profile' onClick={handleMenuOptionClick} className="link">Meu Perfil</Link>

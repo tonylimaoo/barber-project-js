@@ -23,7 +23,9 @@ export default function ScheduleForm({
     hours,
     setFormErrorMessage,
     setFormError,
-    user
+    user,
+    index,
+    setIndex
 }) {
     const [exclusiveHours, setExclusiveHours] = useState([]);
 
@@ -118,7 +120,8 @@ export default function ScheduleForm({
                 setHour(() => [
                     e.target.value,
                     hours[hoursIndex]
-                ])
+                ]);
+                setIndex(hoursIndex);
             }
 
         } else if (service === "Prótese + Corte") {
@@ -136,7 +139,8 @@ export default function ScheduleForm({
                     e.target.value,
                     hours[hoursIndex[0]],
                     hours[hoursIndex[1]]
-                ])
+                ]);
+                setIndex(hoursIndex[0]);
             }
 
         } else if (service === "Manutenção da Prótese") {
@@ -153,10 +157,14 @@ export default function ScheduleForm({
                     e.target.value,
                     hours[hoursIndex]
                 ]);
+                setIndex(hoursIndex[0]);
             };
 
         } else {
+            const hoursIndex = hours.indexOf(e.target.value) + 1;
+
             setHour(() => [e.target.value]);
+            setIndex(hoursIndex);
         }
 
     }

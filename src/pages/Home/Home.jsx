@@ -37,6 +37,7 @@ export default function App() {
     const [appointmentHours, setAppointmentHours] = useState("");
     const [formError, setFormError] = useState(false);
     const [formErrorMessage, setFormErrorMessage] = useState("");
+    const [hoursIndex, setHoursIndex] = useState();
 
     // Custom Hooks
     const { user: authUser } = useAuthValue();
@@ -46,7 +47,7 @@ export default function App() {
     const { documents, loading: loadingUserData, error } = useFetchDocuments("users", authUser ? authUser.uid : null);
 
 
-    const userId = authUser ? authUser.uid : null;
+    const uid = authUser ? authUser.uid : null;
 
     // Handle submit form function
     const handleSubmit = (e) => {
@@ -54,7 +55,7 @@ export default function App() {
         (async () => {
             e.preventDefault();
             const tid = uuid.v4()
-            const userId = authUser ? authUser.uid : null
+            const uid = authUser ? authUser.uid : null
             setLoading(true);
 
             const appointment = {
@@ -65,7 +66,8 @@ export default function App() {
                 tid,
                 professional,
                 service,
-                userId
+                uid,
+                hours_index: hoursIndex
             }
 
 
@@ -82,7 +84,7 @@ export default function App() {
     }, [transactionId])
 
     useEffect(() => {
-        if (userId !== null && documents !== null) {
+        if (uid !== null && documents !== null) {
 
             documents.forEach(e => {
                 setName(e.name);
@@ -90,7 +92,7 @@ export default function App() {
             })
 
         }
-    }, [userId, documents]);
+    }, [uid, documents]);
 
     useEffect(() => {
         console.log('admin')
@@ -148,7 +150,6 @@ export default function App() {
                     setHour={setHour}
                     handleSubmit={handleSubmit}
                     loading={loading}
-                    userId={userId}
                     setService={setService}
                     setProfessional={setProfessional}
                     appointmentHours={appointmentHours}
@@ -156,6 +157,8 @@ export default function App() {
                     setFormErrorMessage={setFormErrorMessage}
                     setFormError={setFormError}
                     user={authUser}
+                    index={hoursIndex}
+                    setIndex={setHoursIndex}
                 />
             }
             {error &&
