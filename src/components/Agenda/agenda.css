@@ -20,11 +20,11 @@
   color: white;
   border-radius: 0.6em;
 }
-.appt-card .link {
+.appt-card .wpp-link {
   text-decoration: none;
   color: rgb(146, 146, 146);
 }
-.appt-card .link:hover {
+.appt-card .wpp-link:hover {
   color: white;
 }
 .appt-card * {

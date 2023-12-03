@@ -2,7 +2,7 @@ import "./Signup.css"
 
 import React, { useState } from 'react'
 
-import SignupForm from '../../components/SignUpForm'
+import SignupForm from '../../components/SignUpForm/SignUpForm'
 import { useAuthentication } from '../../hooks/useAuthentication';
 import { useNavigate } from "react-router-dom";
 import { useInsertDocument } from "../../hooks/useInsertDocument";

@@ -2,8 +2,8 @@
 import './Home.css'
 
 // Components
-import ScheduleForm from '../../components/ScheduleForm'
-import ConcludedForm from '../../components/ConcludedForm'
+import ScheduleForm from '../../components/ScheduleForm/ScheduleForm'
+import ConcludedForm from '../../components/ConcludedForm/ConcludedForm'
 
 // React
 import { useState, useEffect } from 'react'
@@ -13,10 +13,11 @@ import { useState, useEffect } from 'react'
 
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../../firebase/config'
-import AlertMessage from '../../components/AlertMessage'
+import AlertMessage from '../../components/AlertMessage/AlertMessage'
 import { useAuthValue } from '../../context/AuthContext'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
+import { useAdminValue } from '../../context/AdminContext';
 
 const uuid = require('uuid');
 
@@ -36,23 +37,25 @@ export default function App() {
     const [appointmentHours, setAppointmentHours] = useState("");
     const [formError, setFormError] = useState(false);
     const [formErrorMessage, setFormErrorMessage] = useState("");
+    const [hoursIndex, setHoursIndex] = useState();
 
     // Custom Hooks
     const { user: authUser } = useAuthValue();
+    const { isAdmin } = useAdminValue();
 
     const { insertDocument } = useInsertDocument('transactions');
     const { documents, loading: loadingUserData, error } = useFetchDocuments("users", authUser ? authUser.uid : null);
 
 
-    const userId = authUser ? authUser.uid : null;
+    const uid = authUser ? authUser.uid : null;
 
-    // Handel submit form function
+    // Handle submit form function
     const handleSubmit = (e) => {
 
         (async () => {
             e.preventDefault();
             const tid = uuid.v4()
-            const userId = authUser ? authUser.uid : null
+            const uid = authUser ? authUser.uid : null
             setLoading(true);
 
             const appointment = {
@@ -63,7 +66,8 @@ export default function App() {
                 tid,
                 professional,
                 service,
-                userId
+                uid,
+                hours_index: hoursIndex
             }
 
 
@@ -80,16 +84,20 @@ export default function App() {
     }, [transactionId])
 
     useEffect(() => {
-        if (userId !== null && documents !== null) {
+        if (uid !== null && documents !== null) {
 
             documents.forEach(e => {
-                console.log(e)
                 setName(e.name);
                 setCel(e.cellphone);
             })
 
         }
-    }, [userId, documents]);
+    }, [uid, documents]);
+
+    useEffect(() => {
+        console.log('admin')
+        console.log(isAdmin)
+    }, [isAdmin])
 
     useEffect(() => {
 
@@ -127,7 +135,7 @@ export default function App() {
             }
 
             {!formSubmitted &&
-                !loadingUserData && 
+                !loadingUserData &&
                 !error &&
                 <ScheduleForm
                     name={name}
@@ -142,7 +150,6 @@ export default function App() {
                     setHour={setHour}
                     handleSubmit={handleSubmit}
                     loading={loading}
-                    userId={userId}
                     setService={setService}
                     setProfessional={setProfessional}
                     appointmentHours={appointmentHours}
@@ -150,9 +157,11 @@ export default function App() {
                     setFormErrorMessage={setFormErrorMessage}
                     setFormError={setFormError}
                     user={authUser}
+                    index={hoursIndex}
+                    setIndex={setHoursIndex}
                 />
             }
-            {error && 
+            {error &&
                 <p>{error}</p>
             }
             {formSubmitted && transactionId === '' && <h1>Carregando...</h1>}

@@ -1,13 +1,15 @@
 import { useEffect } from 'react'
-import './Styles/header.css'
+import './header.css'
 import { Link } from 'react-router-dom'
-import { useAuthentication } from '../hooks/useAuthentication';
-import { useAuthValue } from '../context/AuthContext';
+import { useAuthentication } from '../../hooks/useAuthentication';
+import { useAuthValue } from '../../context/AuthContext';
+import { useAdminValue } from '../../context/AdminContext';
 
-export default function Header({showMenu, setShowMenu}) {
+export default function Header({ showMenu, setShowMenu }) {
 
     const { user } = useAuthValue();
     const { logout } = useAuthentication();
+    const { isAdmin } = useAdminValue();
 
     const handleMenuOptionClick = () => {
         document.querySelector('.menu').classList.remove('active');
@@ -19,22 +21,22 @@ export default function Header({showMenu, setShowMenu}) {
         } else {
             document.querySelector('.menu').classList.remove('active');
         }
-    },[showMenu])
+    }, [showMenu])
 
     return (
         <>
             <header className="header">
                 <div className="navbar">
                     <Link to='/' className="logo">
-                        Salão Lima 
+                        Salão Lima
                     </Link>
                     <div className="hamburger" onClick={() => setShowMenu(showMenu ? false : true)}>Menu</div>
 
                     <nav className="menu">
                         <Link to='/' onClick={handleMenuOptionClick} className="link">Agendamento</Link>
-
-                        <Link to='/controle' onClick={handleMenuOptionClick} className="link">Horários</Link>
-
+                        {user && isAdmin &&
+                            <Link to='/controle' onClick={handleMenuOptionClick} className="link">Admin</Link>
+                        }
                         {user &&
                             <Link to='/profile' onClick={handleMenuOptionClick} className="link">Meu Perfil</Link>
                         }

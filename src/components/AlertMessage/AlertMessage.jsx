@@ -1,4 +1,4 @@
-import "./Styles/alert-message.css"
+import "./alert-message.css"
 
 export default function AlertMessage({ setFormError, formErrorMessage }) {
     return (

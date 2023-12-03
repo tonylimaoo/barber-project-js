@@ -1,8 +1,8 @@
 import "./Control.css"
 import { useState, useEffect } from "react";
-import Agenda from "../../components/Agenda"
-import UsersList from "../../components/UsersList"
-import Revenue from "../../components/Revenue"
+import Agenda from "../../components/Agenda/Agenda"
+import UsersList from "../../components/UsersList/UsersList"
+import Revenue from "../../components/Revenue/Revenue"
 
 //jus a comment
 

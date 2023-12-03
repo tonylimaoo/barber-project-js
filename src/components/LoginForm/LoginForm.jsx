@@ -1,5 +1,5 @@
 import React from 'react'
-import './Styles/login-form.css'
+import './login-form.css'
 
 const LoginForm = ({ setEmail, setPassword, email, password, handleSubmit }) => {
     return (
