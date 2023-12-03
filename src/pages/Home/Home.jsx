@@ -17,6 +17,7 @@ import AlertMessage from '../../components/AlertMessage/AlertMessage'
 import { useAuthValue } from '../../context/AuthContext'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
+import { useAdminValue } from '../../context/AdminContext';
 
 const uuid = require('uuid');
 
@@ -39,6 +40,7 @@ export default function App() {
 
     // Custom Hooks
     const { user: authUser } = useAuthValue();
+    const { isAdmin } = useAdminValue();
 
     const { insertDocument } = useInsertDocument('transactions');
     const { documents, loading: loadingUserData, error } = useFetchDocuments("users", authUser ? authUser.uid : null);
@@ -46,7 +48,7 @@ export default function App() {
 
     const userId = authUser ? authUser.uid : null;
 
-    // Handel submit form function
+    // Handle submit form function
     const handleSubmit = (e) => {
 
         (async () => {
@@ -83,13 +85,17 @@ export default function App() {
         if (userId !== null && documents !== null) {
 
             documents.forEach(e => {
-                console.log(e)
                 setName(e.name);
                 setCel(e.cellphone);
             })
 
         }
     }, [userId, documents]);
+
+    useEffect(() => {
+        console.log('admin')
+        console.log(isAdmin)
+    }, [isAdmin])
 
     useEffect(() => {
 
@@ -127,7 +133,7 @@ export default function App() {
             }
 
             {!formSubmitted &&
-                !loadingUserData && 
+                !loadingUserData &&
                 !error &&
                 <ScheduleForm
                     name={name}
@@ -152,7 +158,7 @@ export default function App() {
                     user={authUser}
                 />
             }
-            {error && 
+            {error &&
                 <p>{error}</p>
             }
             {formSubmitted && transactionId === '' && <h1>Carregando...</h1>}

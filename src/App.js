@@ -21,12 +21,15 @@ import { useAuthentication } from './hooks/useAuthentication';
 
 // Context
 import { AuthContextProvider } from './context/AuthContext';
+import { useAdmin } from './hooks/useAdmin';
+import { AdminContextProvider } from './context/AdminContext';
 
 function App() {
 
   const [user, setUser] = useState(undefined);
   const [showMenu, setShowMenu] = useState(false);
-  const { auth } = useAuthentication()
+  const { auth } = useAuthentication();
+  // const { isAdmin } = useAdmin(user);
 
   const loadingUser = user === undefined;
 
@@ -38,6 +41,10 @@ function App() {
 
   }, [auth])
 
+  // useEffect(() => {
+  //   console.log(isAdmin) 
+  // }, [isAdmin])
+
   if (loadingUser) {
     return <p>Loading...</p>
   }
@@ -45,21 +52,23 @@ function App() {
   return (
     <div className="App">
       <AuthContextProvider value={{ user }}>
-        <BrowserRouter>
-          <Header showMenu={showMenu} setShowMenu={setShowMenu} />
-          {/* Rotas do App */}
-          <div className="container" onClick={() => setShowMenu(false)}>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/controle' element={<Control />} />
-              <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile' />} />
-              <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/' />} />
-              <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile' />} />
-              <Route path='*' element={<NotFound />} />
-            </Routes>
-          </div>
-          <Footer />
-        </BrowserRouter>
+          <AdminContextProvider>
+            <BrowserRouter>
+              <Header showMenu={showMenu} setShowMenu={setShowMenu} />
+              {/* Rotas do App */}
+              <div className="container" onClick={() => setShowMenu(false)}>
+                <Routes>
+                  <Route path='/' element={<Home />} />
+                  <Route path='/controle' element={user ? <Control /> : <Navigate to='/' />} />
+                  <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile' />} />
+                  <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/' />} />
+                  <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile' />} />
+                  <Route path='*' element={<NotFound />} />
+                </Routes>
+              </div>
+              <Footer />
+            </BrowserRouter>
+          </AdminContextProvider>
       </AuthContextProvider>
     </div>
   );
