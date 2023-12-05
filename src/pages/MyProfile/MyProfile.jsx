@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import './MyProfile.css'
-import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
-import { db } from '../../firebase/config'
 import { useAuthValue } from '../../context/AuthContext';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
@@ -15,6 +13,11 @@ const MyProfile = () => {
   const [appointments, setAppointments] = useState([]);
   const { user } = useAuthValue();
   const { documents, loading, error } = useFetchDocuments('users', user.uid);
+  const {
+    documents: transactionsList,
+    loading: loadingList,
+    error: listError
+  } = useFetchDocuments('transactions', user.uid, true);
 
   useEffect(() => {
     if (documents !== null) {
@@ -29,53 +32,15 @@ const MyProfile = () => {
   }, [documents])
 
   useEffect(() => {
-    const userId = user ? user.uid : null;
-
-    const getFirestoreAppointmentData = async () => {
-
-      const data = [];
-      const q = query(collection(db, "transactions"), where("userId", "==", userId), orderBy('createdAt', 'desc'));
-
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        data.push(doc.data())
-      });
-
-      setAppointments(data);
-    }
-
-    getFirestoreAppointmentData();
-
-  }, [user])
-
-  useEffect(() => {
-
     const setUserIdStorage = () => {
-
       var uidlocalStorage = localStorage.getItem("userId");
 
-      if (uidlocalStorage === user.uid) {
-
-        return;
-
-      } else {
-
-        return localStorage.setItem("userId", user.uid);
-
-      }
-
+      if (uidlocalStorage === user.uid) return;
+      else return localStorage.setItem("userId", user.uid);
     }
 
     setUserIdStorage();
   }, [user])
-
-
-  if(user === undefined) {
-    return(
-      <p>Loading...</p>
-    )
-  }
-
 
   return (
     <div className="container-profile">
@@ -113,17 +78,20 @@ const MyProfile = () => {
           </>
         }
       </section>
-      {appointments.length > 0 &&
+      {transactionsList &&
         <section className="appointment-list">
           <h1>Últimos agendamentos</h1>
-          {appointments.slice(0, 3).map((app, i) => (
-            <div className='appointment-card' key={app.id}>
-              <h3>Agendamento {i + 1}: </h3>
+          {transactionsList.slice(0, 3).map((app, i) => (
+            <div key={app.id} className='appointment-card'>
+              <h3 key={app.id} >Agendamento {i + 1}: </h3>
               <h5>{app.id}</h5>
               <p>Data: {app.date.split('-')[2]}/{app.date.split('-')[1]}/{app.date.split('-')[0]}</p>
               <p>Horário: {app.hour[0]}</p>
               <p>Barbeiro: {app.professional}</p>
               <p>Serviço: {app.service}</p>
+              <div className='button-container'>
+                <button className='cancel-app-btn'>Cancelar agendamento</button>
+              </div>
             </div>
           ))}
         </section>
