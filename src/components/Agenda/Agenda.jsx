@@ -2,10 +2,13 @@ import "./agenda.css"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetchAppointments } from "../../hooks/useFetchAppointments";
-
+import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 //jus a comment
 
 export default function Controle() {
+
+    const { deleteData } = useDeleteDocument();
+    const dateNow = new Date();
 
     const formatDate = () => {
         let day = `${getDate.getDate()}`
@@ -44,6 +47,17 @@ export default function Controle() {
 
     }
 
+    const handleCancelAppointment = async (e, tid) => {
+
+        try {
+            deleteData('transactions', tid)
+            console.log('deletou')
+
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
     return (
         <div className="container-control">
 
@@ -64,24 +78,32 @@ export default function Controle() {
                 </div>
             ) : (
                 documents && documents.length > 0 &&
-                documents.map((e, i) => (
-                    <div className="appt-card" key={e.id}>
+                documents.map((d, i) => (
+                    <div className="appt-card" key={d.id}>
                         <h2>Agendamento:</h2>
-                        <h3 className="transaction-id">ID: {e.tid}</h3>
-                        <h3 className="hour"><span>{e.hour[0]}</span><span>{e.professional}</span></h3>
+                        <h3 className="transaction-id">ID: {d.tid}</h3>
+                        <h3 className="hour"><span>{d.hour[0]}</span><span>{d.service}</span><span>{d.professional}</span></h3>
                         <div className="more-info" onClick={(e) => { handleMoreInfo(e) }}> + </div>
                         <ul className="details-list">
-                            <li>Nome do cliente: {e.name}</li>
+                            <li>Nome do cliente: {d.name}</li>
                             <li>Celular:
-                                <Link className="wpp-link" to={`https://api.whatsapp.com/send?phone=${e.cel.replace(/\(|\)|-| /g, '')}`}>
-                                    {e.cel}
+                                <Link className="wpp-link" to={`https://api.whatsapp.com/send?phone=${d.cel.replace(/\(|\)|-| /g, '')}`}>
+                                    {d.cel}
                                 </Link>
                             </li>
-                            <li>Serviço: {e.service}</li>
-                            <li>Data: {e.date}</li>
-                            <li>Horário: {e.hour[0]}</li>
-                        </ul>
+                            <li>Serviço: {d.service}</li>
+                            <li>Data: {d.date}</li>
+                            <li>Horário: {d.hour[0]}</li>
 
+                            {dateNow <=
+                                Date.parse(`${d.date}T${d.hour[0]}:00`)
+                                &&
+                                <button
+                                    className="cancel-app"
+                                    onClick={(evt) => handleCancelAppointment(evt, d.tid)}
+                                >Cancelar agendamento</button>
+                            }
+                        </ul>
                     </div>
                 ))
             )}

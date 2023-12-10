@@ -22,7 +22,7 @@ const MyProfile = () => {
   const { deleteData } = useDeleteDocument();
 
   const dateNow = new Date().getTime();
-
+  
   const handleCancelAppointment = async (e, tid) => {
 
     try {
@@ -106,7 +106,7 @@ const MyProfile = () => {
               <p>Serviço: {app.service}</p>
               <div className='cancel-button-container'>
                 {dateNow <=
-                  Date.parse(`${app.date}T${app.hour[0]}:00`) - 900000
+                  Date.parse(`${app.date}T${app.hour[0]}:00`) - 18000000
                   &&
                   <button
                     className='cancel-app-btn'
