@@ -16,7 +16,7 @@ const Signup = () => {
     const [name, setName] = useState("");
     const [birthday, setBirthday] = useState("");
     const [cellphone, setCellphone] = useState("");
-    const { insertDocument, response } = useInsertDocument('users');
+    const { setDocument, response } = useInsertDocument('users');
 
     const {createUser, error: authError, loading} = useAuthentication();
 
@@ -39,14 +39,14 @@ const Signup = () => {
 
         const res = await createUser(user);
 
-        insertDocument({
+        setDocument({
             name, 
             email,
             birthday,
             cellphone,
             admin: false,
             id: res.uid
-        })
+        }, res.uid)
 
         console.log(response)
 

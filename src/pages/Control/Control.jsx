@@ -1,5 +1,5 @@
 import "./Control.css"
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Agenda from "../../components/Agenda/Agenda"
 import UsersList from "../../components/UsersList/UsersList"
 import Revenue from "../../components/Revenue/Revenue"

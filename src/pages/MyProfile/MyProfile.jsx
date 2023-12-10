@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import './MyProfile.css'
 import { useAuthValue } from '../../context/AuthContext';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
+import { useDeleteDocument } from '../../hooks/useDeleteDocument';
 
 const MyProfile = () => {
 
@@ -18,6 +19,20 @@ const MyProfile = () => {
     loading: loadingList,
     error: listError
   } = useFetchDocuments('transactions', user.uid, true);
+  const { deleteData } = useDeleteDocument();
+
+  const dateNow = new Date().getTime();
+
+  const handleCancelAppointment = async (e, tid) => {
+
+    try {
+      deleteData('transactions', tid)
+      console.log('deletou')
+
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 
   useEffect(() => {
     if (documents !== null) {
@@ -78,7 +93,7 @@ const MyProfile = () => {
           </>
         }
       </section>
-      {transactionsList &&
+      {transactionsList && transactionsList.length > 0 &&
         <section className="appointment-list">
           <h1>Últimos agendamentos</h1>
           {transactionsList.slice(0, 3).map((app, i) => (
@@ -89,8 +104,17 @@ const MyProfile = () => {
               <p>Horário: {app.hour[0]}</p>
               <p>Barbeiro: {app.professional}</p>
               <p>Serviço: {app.service}</p>
-              <div className='button-container'>
-                <button className='cancel-app-btn'>Cancelar agendamento</button>
+              <div className='cancel-button-container'>
+                {dateNow <=
+                  Date.parse(`${app.date}T${app.hour[0]}:00`) - 900000
+                  &&
+                  <button
+                    className='cancel-app-btn'
+                    onClick={(e) => handleCancelAppointment(e, app.id)}
+                  >
+                    Cancelar agendamento
+                  </button>
+                }
               </div>
             </div>
           ))}

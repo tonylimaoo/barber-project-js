@@ -23,6 +23,7 @@ import { useAuthentication } from './hooks/useAuthentication';
 import { AuthContextProvider } from './context/AuthContext';
 import { useAdmin } from './hooks/useAdmin';
 import { AdminContextProvider } from './context/AdminContext';
+import Teste from './pages/Teste/Teste';
 
 function App() {
 
@@ -63,6 +64,7 @@ function App() {
                   <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile' />} />
                   <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/' />} />
                   <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile' />} />
+                  <Route path='/teste' element={<Teste />} />
                   <Route path='*' element={<NotFound />} />
                 </Routes>
               </div>

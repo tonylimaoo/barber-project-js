@@ -44,7 +44,7 @@ export default function App() {
     const { user: authUser } = useAuthValue();
     const { isAdmin } = useAdminValue();
 
-    const { insertDocument } = useInsertDocument('transactions');
+    const { setDocument } = useInsertDocument('transactions');
     const {
         documents,
         loading: loadingUserData,
@@ -79,7 +79,7 @@ export default function App() {
                 hours_index: hoursIndex
             }
 
-            insertDocument(appointment)
+            setDocument(appointment, tid)
             setFormSubmitted(true);
             setLoading(false);
             setTransactionId(tid);

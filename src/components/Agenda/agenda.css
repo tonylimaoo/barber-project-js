@@ -20,11 +20,11 @@
   color: white;
   border-radius: 0.6em;
 }
-.appt-card .wpp-link {
+.appt-card .link {
   text-decoration: none;
   color: rgb(146, 146, 146);
 }
-.appt-card .wpp-link:hover {
+.appt-card .link:hover {
   color: white;
 }
 .appt-card * {
@@ -94,6 +94,13 @@
   display: block;
   top: 0;
   transition: 0.5s ease;
+}
+.details-list.active .wpp-link {
+  color: white;
+  text-decoration: none;
+}
+.details-list.active .wpp-link:hover {
+  color: #4d4c4c;
 }
 
 @media screen and (max-width: 840px) {
