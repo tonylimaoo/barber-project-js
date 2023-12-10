@@ -194,10 +194,6 @@ export default function ScheduleForm({
         }
     }
 
-    // JSON.stringify(array.map(e => e.horarios.join())).replace(/"|'|]|\[/g, '').split(',')
-    // Código para splitar e coletar mais de uma hora
-    // Ideia são os horarios serem coletados num array
-
     const todaysDate = formatDate();
     const todaysDatePlusSeven = dayPlusSeven();
 

@@ -22,7 +22,7 @@ const MyProfile = () => {
   const { deleteData } = useDeleteDocument();
 
   const dateNow = new Date().getTime();
-
+  
   const handleCancelAppointment = async (e, tid) => {
 
     try {
