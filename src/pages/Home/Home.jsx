@@ -18,6 +18,7 @@ import { useAuthValue } from '../../context/AuthContext'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 import { useAdminValue } from '../../context/AdminContext';
+import { useFetchEnabledHours } from '../../hooks/useFetchEnabledHours';
 
 const uuid = require('uuid');
 
@@ -43,9 +44,17 @@ export default function App() {
     const { user: authUser } = useAuthValue();
     const { isAdmin } = useAdminValue();
 
-    const { insertDocument } = useInsertDocument('transactions');
-    const { documents, loading: loadingUserData, error } = useFetchDocuments("users", authUser ? authUser.uid : null);
-
+    const { setDocument } = useInsertDocument('transactions');
+    const {
+        documents,
+        loading: loadingUserData,
+        error
+    } = useFetchDocuments("users", authUser ? authUser.uid : null);
+    const {
+        documents: enabledHours,
+        loading: loadingEnabledHours,
+        error: errorEnabledHours
+    } = useFetchEnabledHours("transactions", professional, date);
 
     const uid = authUser ? authUser.uid : null;
 
@@ -70,8 +79,7 @@ export default function App() {
                 hours_index: hoursIndex
             }
 
-
-            insertDocument(appointment)
+            setDocument(appointment, tid)
             setFormSubmitted(true);
             setLoading(false);
             setTransactionId(tid);
@@ -85,45 +93,34 @@ export default function App() {
 
     useEffect(() => {
         if (uid !== null && documents !== null) {
-
             documents.forEach(e => {
                 setName(e.name);
                 setCel(e.cellphone);
             })
-
         }
     }, [uid, documents]);
 
     useEffect(() => {
-        console.log('admin')
-        console.log(isAdmin)
-    }, [isAdmin])
-
-    useEffect(() => {
-
-        const handleEnabledHours = async () => {
-            let data = [];
-            const querySnapshot = await getDocs(collection(db, "transactions"));
-            querySnapshot.forEach((doc) => {
-                data.push(doc.data());
-            });
-
-            let apt = data
-                .filter(e => e.date === date)
-                .filter(e => e.professional === professional)
-                .map(e => e.hour)
-
-            let hoursFormatted = JSON.stringify(apt)
-                .replace(/\[|\]/g, '')
-                .replace(/(['"])/g, '')
-                .split(',');
-
-            setAppointmentHours(hoursFormatted);
-
+        if(date && professional && enabledHours){
+            const handleEnabledHours = async () => {
+                let data = enabledHours;
+    
+                let apt = data
+                    .filter(e => e.date === date)
+                    .filter(e => e.professional === professional)
+                    .map(e => e.hour)
+    
+                let hoursFormatted = JSON.stringify(apt)
+                    .replace(/\[|\]/g, '')
+                    .replace(/(['"])/g, '')
+                    .split(',');
+    
+                setAppointmentHours(hoursFormatted);
+    
+            }
+            handleEnabledHours();
         }
-        handleEnabledHours();
-
-    }, [date, professional]);
+    }, [date, professional, enabledHours]);
 
     return (
         <div className="container-home">
