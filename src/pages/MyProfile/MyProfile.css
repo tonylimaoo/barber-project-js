@@ -68,28 +68,24 @@
 }
 
 .cancel-app-btn {
-  height: 40px;
-  width: 40%;
-  max-width: 300px;
-  border-radius: 0.6em;
-  background-color: #1C1C1C;
-  border: 1px solid white;
-  color: white;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  margin-left: 0;
+  border: none;
+  color: #4A0000;
+  padding: 10px 10px;
   text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.cancel-app-btn:hover {
+  background-color: #d49a9a;
+  transition: 0.2s;
 }
 
 .cancel-button-container {
   display: flex;
-  margin: 5px 5px;
-  justify-content: center;
-}
-
-.cancel-app-btn:hover {
-  background-color: #7e2f2f;
-  transition: 0.2s ease;
+  justify-content: flex-start;
+  padding: 0 35px;
 }
 
 .appointment-card {
@@ -106,14 +102,16 @@
 }
 .appointment-card p {
   margin-left: 35px;
-  border-bottom: 1px solid #4d4c4c;
+  padding: 5px 0;
+  border-bottom: 1px solid #ffffff;
   width: 80%;
+  font-size: 18px;
 }
 .appointment-card h5 {
   margin-top: 3px;
   margin-left: 35px;
   font-weight: lighter;
-  font-size: 10px;
+  font-size: 15px;
 }
 .appointment-card h3 {
   margin-left: 10px;
