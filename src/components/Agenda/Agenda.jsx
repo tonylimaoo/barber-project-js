@@ -68,7 +68,7 @@ export default function Controle() {
                     <div className="appt-card" key={e.id}>
                         <h2>Agendamento:</h2>
                         <h3 className="transaction-id">ID: {e.tid}</h3>
-                        <h3 className="hour"><span>{e.hour[0]}</span><span>{e.professional}</span></h3>
+                        <h3 className="hour"><span>{e.hour[0]}</span><span>{e.service}</span><span>{e.professional}</span></h3>
                         <div className="more-info" onClick={(e) => { handleMoreInfo(e) }}> + </div>
                         <ul className="details-list">
                             <li>Nome do cliente: {e.name}</li>
@@ -81,7 +81,6 @@ export default function Controle() {
                             <li>Data: {e.date}</li>
                             <li>Horário: {e.hour[0]}</li>
                         </ul>
-
                     </div>
                 ))
             )}
