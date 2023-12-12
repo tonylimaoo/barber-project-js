@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { useAuthentication } from '../../hooks/useAuthentication';
 import { useAuthValue } from '../../context/AuthContext';
 import { useAdminValue } from '../../context/AdminContext';
-import logo from '../../assets/salao_lima_letreiro_white.png'
-import menuImg from '../../assets/1024px-Hamburger_icon_white.svg.png'
+import logo from '../../assets/salao_lima_letreiro_white.jpg'
+import menuImg from '../../assets/1024px-Hamburger_icon_white.svg.jpg'
 
 export default function Header({ showMenu, setShowMenu }) {
 
