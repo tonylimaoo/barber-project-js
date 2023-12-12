@@ -25,7 +25,6 @@ import { useAdmin } from './hooks/useAdmin';
 import { AdminContextProvider } from './context/AdminContext';
 
 // Assets
-import logo from './assets/salão_lima_logo-removebg.png'
 
 function App() {
 
@@ -68,7 +67,6 @@ function App() {
                 <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile' />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
-              {/* <img src={logo} className='logo-bg'/> */}
             </div>
             <Footer />
           </BrowserRouter>
