@@ -6,11 +6,10 @@
   width: 100%;
   padding: 20px 0;
   min-height: 100vh;
-  background: linear-gradient(to bottom, rgb(184, 184, 184) 0, rgba(0, 0, 0, 0.672) 74%);
+  background: linear-gradient(to bottom, rgb(184, 184, 184) 0, rgb(0, 0, 0));
 }
 
 .appt-card {
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   width: 60%;
@@ -18,7 +17,8 @@
   margin: 5px 5px;
   background-color: #4A0000;
   color: white;
-  border-radius: 0.6em;
+  border-radius: 0.2em;
+  box-shadow: 0px 0px 5px 1px black;
 }
 .appt-card .link {
   text-decoration: none;
@@ -70,8 +70,9 @@
   margin-top: 20px;
   height: 40px;
   padding-left: 10px;
-  border-radius: 0.6em;
-  border: 1px solid black;
+  border-radius: 0.2em;
+  border: none;
+  box-shadow: 0px 0px 5px 0px;
   font-size: 25px;
 }
 
@@ -82,12 +83,12 @@
 
 .hour {
   display: flex;
-  border: 1px solid black;
   width: 70%;
   justify-content: space-between;
   margin-left: 15px;
   background-color: white;
   color: #4A0000;
+  border-radius: 0.2em;
 }
 
 .details-list.active {
@@ -111,6 +112,7 @@
   margin-top: 15px;
   margin-bottom: 1px;
   font-weight: 600;
+  border-radius: 0.2em;
 }
 .details-list.active .cancel-app:hover {
   background-color: #d49a9a;

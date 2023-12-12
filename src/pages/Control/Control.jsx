@@ -10,8 +10,6 @@ export default function Controle() {
 
     const [menu, setMenu] = useState("agenda");
 
-    console.log(menu);
-
     return (
 
         <div className="container">
@@ -19,7 +17,7 @@ export default function Controle() {
                 <ul>
                     <li onClick={() => setMenu("agenda")} >Agenda</li>
                     <li onClick={() => setMenu("users")} >Usuarios</li>
-                    <li onClick={() => setMenu("revenue")} >Dados de Receita</li>
+                    <li onClick={() => setMenu("revenue")} >Meu negócio</li>
                 </ul>
             </div>
             {menu === "agenda" &&

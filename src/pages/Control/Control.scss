@@ -8,7 +8,7 @@
     min-height: 60vh;
     background: linear-gradient(to bottom,
             rgb(184, 184, 184) 0,
-            rgba(0, 0, 0, 0.672) 74%);
+            rgb(0, 0, 0))1%;
 }
 
 .menu-control {
@@ -20,7 +20,7 @@
     height: 50px;
     background-color: rgb(65, 0, 0);
     color: white;
-    
+
 
 
 
@@ -39,7 +39,7 @@
     }
 }
 
-@media screen and (max-width: 840px){ 
+@media screen and (max-width: 840px) {
     .menu-control {
         height: fit-content;
     }

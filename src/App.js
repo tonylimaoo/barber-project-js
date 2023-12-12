@@ -23,7 +23,9 @@ import { useAuthentication } from './hooks/useAuthentication';
 import { AuthContextProvider } from './context/AuthContext';
 import { useAdmin } from './hooks/useAdmin';
 import { AdminContextProvider } from './context/AdminContext';
-import Teste from './pages/Teste/Teste';
+
+// Assets
+import logo from './assets/salão_lima_logo-removebg.png'
 
 function App() {
 
@@ -53,24 +55,24 @@ function App() {
   return (
     <div className="App">
       <AuthContextProvider value={{ user }}>
-          <AdminContextProvider>
-            <BrowserRouter>
-              <Header showMenu={showMenu} setShowMenu={setShowMenu} />
-              {/* Rotas do App */}
-              <div className="container" onClick={() => setShowMenu(false)}>
-                <Routes>
-                  <Route path='/' element={<Home />} />
-                  <Route path='/controle' element={user ? <Control /> : <Navigate to='/' />} />
-                  <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile' />} />
-                  <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/' />} />
-                  <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile' />} />
-                  <Route path='/teste' element={<Teste />} />
-                  <Route path='*' element={<NotFound />} />
-                </Routes>
-              </div>
-              <Footer />
-            </BrowserRouter>
-          </AdminContextProvider>
+        <AdminContextProvider>
+          <BrowserRouter>
+            <Header showMenu={showMenu} setShowMenu={setShowMenu} />
+            {/* Rotas do App */}
+            <div className="container" onClick={() => setShowMenu(false)}>
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/controle' element={user ? <Control /> : <Navigate to='/' />} />
+                <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile' />} />
+                <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/' />} />
+                <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile' />} />
+                <Route path='*' element={<NotFound />} />
+              </Routes>
+              {/* <img src={logo} className='logo-bg'/> */}
+            </div>
+            <Footer />
+          </BrowserRouter>
+        </AdminContextProvider>
       </AuthContextProvider>
     </div>
   );
