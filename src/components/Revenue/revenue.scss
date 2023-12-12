@@ -1,7 +1,91 @@
 .revenue_container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 100vh;
+    flex-direction: column;
+}
+
+.sched-dayoff {
+    display: flex;
+    flex-direction: column;
+    // border: 1px solid;
+    width: 90%;
+    padding: 20px 20px;
+    background-color: #4A0000;
+    color: white;
+    border-radius: 0.2em;
+    box-shadow: 0 0 10px 1px black;
+    text-shadow: 0 0 10px black;
+
+    h3 {
+        margin: 0;
+        margin-bottom: 5px
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    input {
+        width: 150px;
+        height: 40px;
+        text-align: center;
+        border: none;
+        background-color: #353535;
+        color: white;
+        border-radius: 0.2em;
+        box-shadow: 0px 0px 10px .001em black;
+        margin-top: 5px;
+        // margin-left: 20px;
+    }
+
+    label {
+        margin-left: 30px;
+    }
+
+    .inp-sub {
+        background-color: white;
+        color: #4A0000;
+        width: 100px;
+        margin-left: 30px;
+        cursor: pointer;
+        align-self: end;
+        margin-top: 30px;
+
+        &:hover {
+            background-color: #d49a9a;
+            transition: .2s;
+        }
+    }
+
+    select {
+        // width: 100%;
+        width: 150px;
+        height: 40px;
+        text-align: center;
+        border: none;
+        background-color: #353535;
+        color: white;
+        border-radius: 0.2em;
+        box-shadow: 0px 0px 10px .001em black;
+        margin-top: 5px;
+    }
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 840px) {
+    .sched-dayoff {
+        width: 80%;
+    }
+
+    // .input-container {
+    //     flex-direction: column;
+    // }
 }

@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import './schedule-form.css'
-
-const thirtyOneDaysMonth = ['1', '3', '5', '7', '8', '10', '12'];
-const thirtyDaysMonth = ['2', '4', '6', '9', '11'];
+import { useDays } from '../../hooks/useDays';
 
 export default function ScheduleForm({
     name,
@@ -33,58 +31,7 @@ export default function ScheduleForm({
         setExclusiveHours(hours.filter(ele => !appointmentHours.includes(ele)));
     }, [appointmentHours, hours])
 
-    const getDate = new Date();
-
-    const formatDate = () => {
-        let day = `${getDate.getDate()}`
-        let month = `${getDate.getMonth() + 1}`
-        let year = `${getDate.getFullYear()}`
-
-        if (day.length === 1) {
-            day = 0 + day
-        }
-
-        if (month.length === 1) {
-            month = 0 + month
-        }
-
-        const fullDate = `${year}-${month}-${day}`
-
-        return fullDate
-    };
-
-    const dayPlusSeven = () => {
-
-        let day = `${Number(getDate.getDate()) + 7}`;
-        let month = `${getDate.getMonth() + 1}`;
-        let year = `${getDate.getFullYear()}`;
-
-        if (day >= 30 && thirtyDaysMonth.includes(month) ) {
-
-            const extraDays = day - 30;
-            day = `0${extraDays}`
-            month = `${Number(month) + 1}`
-
-        } else if (day >= 31 && thirtyOneDaysMonth.includes(month)) {
-
-            const extraDays = day - 31;
-            day = `0${extraDays}`
-            month = `${Number(month) + 1}`
-
-        }
-
-        if (day.length === 1) {
-            day = 0 + day;
-        };
-
-        if (month.length === 1) {
-            month = 0 + month;
-        };
-
-        const fullDate = `${year}-${month}-${day}`;
-
-        return fullDate;
-    }
+    const {formatDate, dayPlusSeven} = useDays();
 
     const handleDateChange = (e) => {
         const realDate = e.target.value;
@@ -194,12 +141,12 @@ export default function ScheduleForm({
         }
     }
 
-    const todaysDate = formatDate();
-    const todaysDatePlusSeven = dayPlusSeven();
+    const todaysDate = formatDate(0);
+    const todaysDatePlusSeven = dayPlusSeven(7);
 
     return (
         <>
-            <section className="form-section">
+            <section className="schedule-form-section">
 
                 <h1 className="form-title">Marque seu horário</h1>
 
