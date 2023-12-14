@@ -23,7 +23,11 @@ export default function ScheduleForm({
     setFormError,
     user,
     index,
-    setIndex
+    setIndex,
+    dayOffs,
+    noDayOffBarber,
+    setNoDayOffBarber,
+    barbers
 }) {
     const [exclusiveHours, setExclusiveHours] = useState([]);
 
@@ -31,7 +35,7 @@ export default function ScheduleForm({
         setExclusiveHours(hours.filter(ele => !appointmentHours.includes(ele)));
     }, [appointmentHours, hours])
 
-    const {formatDate, dayPlusSeven} = useDays();
+    const { formatDate, dayPlusSeven } = useDays();
 
     const handleDateChange = (e) => {
         const realDate = e.target.value;
@@ -49,6 +53,17 @@ export default function ScheduleForm({
             setFormErrorMessage("Não atendemos aos domingos. Escolha outra data.")
         } else {
             setDate(realDate);
+        }
+
+        const dayOffBarberObj = dayOffs.filter(e => e.date === realDate)[0] || undefined
+
+        if (dayOffBarberObj) {
+            const barber = dayOffBarberObj.professional
+
+            setNoDayOffBarber(barbers.filter((e) => !barber.includes(e)))
+
+            setFormError(true);
+            setFormErrorMessage(`O Barbeiro ${barber} estará de folga no dia ${new Date(realDate + 'T00:00:00').toLocaleDateString()}`)
         }
 
     }
@@ -120,7 +135,7 @@ export default function ScheduleForm({
 
         const target = e.target.value.replace(/\(|\)|-| /g, '');
 
-        if (target.match(/[a-zA-Z]/)){
+        if (target.match(/[a-zA-Z]/)) {
             return;
         }
         if (target.length < 12) {
@@ -251,8 +266,11 @@ export default function ScheduleForm({
                                     required
                                 >
                                     <option value="" defaultChecked>Selecione</option>
-                                    <option value="Carlos">Carlos</option>
-                                    <option value="Donizete">Donizete</option>
+                                    {noDayOffBarber.map((e, i) => (
+                                        <option key={i} value={e}>{e}</option>
+                                    ))}
+                                    
+                                    {/* <option value="Donizete">Donizete</option> */}
                                 </select>
                             )}
 

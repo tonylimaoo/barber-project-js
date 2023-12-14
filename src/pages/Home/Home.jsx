@@ -10,9 +10,6 @@ import { useState, useEffect } from 'react'
 
 // Functions
 // import { addDataFirestore } from '../../firebase/post'
-
-import { collection, getDocs } from "firebase/firestore";
-import { db } from '../../firebase/config'
 import AlertMessage from '../../components/AlertMessage/AlertMessage'
 import { useAuthValue } from '../../context/AuthContext'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
@@ -23,6 +20,7 @@ import { useFetchEnabledHours } from '../../hooks/useFetchEnabledHours';
 const uuid = require('uuid');
 
 const hours = ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20", "12:10", "13:00", "13:50", "14:40", "15:30", "16:20", "17:10", "18:00", "18:50", "19:40", "20:30"]
+const barbers = ["Carlos", "Donizete"]
 
 export default function App() {
     // States
@@ -39,10 +37,10 @@ export default function App() {
     const [formError, setFormError] = useState(false);
     const [formErrorMessage, setFormErrorMessage] = useState("");
     const [hoursIndex, setHoursIndex] = useState();
+    const [noDayOffBarber, setNoDayOffBarber] = useState([]);
 
     // Custom Hooks
     const { user: authUser } = useAuthValue();
-    const { isAdmin } = useAdminValue();
 
     const { setDocument } = useInsertDocument('transactions');
     const {
@@ -51,10 +49,11 @@ export default function App() {
         error
     } = useFetchDocuments("users", authUser ? authUser.uid : null);
     const {
-        documents: enabledHours,
-        loading: loadingEnabledHours,
-        error: errorEnabledHours
+        documents: enabledHours
     } = useFetchEnabledHours("transactions", professional, date);
+    const {
+        documents: dayOffs,
+    } = useFetchDocuments("day-off");
 
     const uid = authUser ? authUser.uid : null;
 
@@ -156,6 +155,10 @@ export default function App() {
                     user={authUser}
                     index={hoursIndex}
                     setIndex={setHoursIndex}
+                    dayOffs={dayOffs}
+                    noDayOffBarber={noDayOffBarber}
+                    setNoDayOffBarber={setNoDayOffBarber}
+                    barbers={barbers}
                 />
             }
             {error &&

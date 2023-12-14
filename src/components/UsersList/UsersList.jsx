@@ -20,12 +20,6 @@ const UsersList = () => {
 
   }
 
-  if(documents !== null){
-    console.log(documents.map(e => {
-      return e.createdAt
-    }))
-  }
-
   return (
     <div className='users_list_container'>
       <h1>Usuários Cadastrados</h1>

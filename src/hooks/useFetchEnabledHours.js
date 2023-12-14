@@ -34,9 +34,6 @@ export const useFetchEnabledHours = (
                     orderBy('createdAt', 'desc')
                 );
 
-                console.log(`Sim, disparou saporra -----------------------------------------`)
-                console.log(`Professional: ${professional}; Date: ${date}`)
-
                 await onSnapshot(q, (querySnapshot) => {
                     setDocuments(
                         querySnapshot.docs.map((doc) => ({

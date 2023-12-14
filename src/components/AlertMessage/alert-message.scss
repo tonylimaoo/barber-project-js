@@ -1,7 +1,7 @@
 .form-error {
     position: absolute;
     display: flex;
-    border: 3px solid black;
+    // border: 3px solid black;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -10,8 +10,9 @@
     background-color: #4A0000;
     color: white;
     max-width: 300px;
-    box-shadow: 3px 3px 3px black;
-    border-radius: 0.6em;
+    box-shadow: 0px 0px 10px 1px black;
+    border-radius: 0.2em;
+    text-shadow: none;
   
     .error-message {
       margin: 15px;
@@ -20,11 +21,19 @@
     .close-error {
       display: flex;
       position: absolute;
-      top: 0;
+      top: 15px;
       right: 15px;
-      max-width: 40px;
+      width: 40px;
+      height: 40px;
       align-items: center;
       justify-content: center;
+      border: none;
+      background-color: rgb(68, 68, 68);
+      border-radius: 0.2em;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.613);
     }
   
     .white-block {
@@ -38,7 +47,8 @@
       max-width: 80%;
       max-height: 80%;
       color: #4A0000;
-      border-radius: 0.6em;
+      border-radius: 0.2em;
       font-size: larger;
+      border: none;
     }
   }
