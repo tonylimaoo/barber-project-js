@@ -37,7 +37,7 @@ export default function App() {
     const [formError, setFormError] = useState(false);
     const [formErrorMessage, setFormErrorMessage] = useState("");
     const [hoursIndex, setHoursIndex] = useState();
-    const [noDayOffBarber, setNoDayOffBarber] = useState([]);
+    const [noDayOffBarber, setNoDayOffBarber] = useState();
 
     // Custom Hooks
     const { user: authUser } = useAuthValue();

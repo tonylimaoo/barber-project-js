@@ -55,15 +55,19 @@ export default function ScheduleForm({
             setDate(realDate);
         }
 
-        const dayOffBarberObj = dayOffs.filter(e => e.date === realDate)[0] || undefined
+        const dayOffBarberObj = dayOffs.filter(e => e.date === realDate) || undefined
 
-        if (dayOffBarberObj) {
-            const barber = dayOffBarberObj.professional
+        if (dayOffBarberObj.length > 0) {
+            const barber = dayOffBarberObj[0].professional
+            
+            const working = barbers.filter((e) => !barber.includes(e))
 
-            setNoDayOffBarber(barbers.filter((e) => !barber.includes(e)))
+            setNoDayOffBarber(working)
 
             setFormError(true);
             setFormErrorMessage(`O Barbeiro ${barber} estará de folga no dia ${new Date(realDate + 'T00:00:00').toLocaleDateString()}`)
+        } else {
+            setNoDayOffBarber(barbers)
         }
 
     }
