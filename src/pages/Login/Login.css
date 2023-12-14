@@ -8,22 +8,6 @@
   background: linear-gradient(to bottom, rgb(184, 184, 184) 0, rgb(0, 0, 0));
 }
 
-.btn_login {
-  margin: 15px 0;
-  height: 40px;
-  position: relative;
-  width: 400px;
-  border-radius: 0.6em;
-  background-color: #1C1C1C;
-  border: 1px solid white;
-  color: white;
-  margin-bottom: 30px;
-}
-.btn_login:hover {
-  background-color: #7e2f2f;
-  transition: 0.2s ease;
-}
-
 @media screen and (max-width: 840px) {
   .btn_login {
     width: 50%;

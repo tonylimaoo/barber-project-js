@@ -37,7 +37,7 @@ const MyProfile = () => {
   useEffect(() => {
     if (documents !== null) {
       documents.forEach(e => {
-        setBirthday(e.birthday);
+        setBirthday(new Date(e.birthday + 'T00:00:00').toLocaleDateString());
         setName(e.name);
         setEmail(e.email);
         setCellphone(e.cellphone);
@@ -98,9 +98,9 @@ const MyProfile = () => {
           <h1>Últimos agendamentos</h1>
           {transactionsList.slice(0, 3).map((app, i) => (
             <div key={app.id} className='appointment-card'>
-              <h3 key={app.id} >Agendamento {i + 1}: </h3>
+              <h3>Agendamento {i + 1}: </h3>
               <h5>{app.id}</h5>
-              <p>Data: {app.date.split('-')[2]}/{app.date.split('-')[1]}/{app.date.split('-')[0]}</p>
+              <p>Data: {new Date(app.date + 'T00:00:00').toLocaleDateString()}</p>
               <p>Horário: {app.hour[0]}</p>
               <p>Barbeiro: {app.professional}</p>
               <p>Serviço: {app.service}</p>

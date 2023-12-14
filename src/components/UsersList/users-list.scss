@@ -1,6 +1,6 @@
 .users_list_container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -8,16 +8,6 @@
 }
 
 .user-card {
-    // border: 1px solid black;
-    // display: flex;
-    // flex-direction: column;
-    // width: 50%;
-    // padding: 5px 10px;
-    // margin: 5px 5px;
-    // background-color: #4A0000;
-    // color: white;
-    // border-radius: 0.6em;
-
     display: flex;
     flex-direction: column;
     width: 60%;

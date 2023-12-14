@@ -4,7 +4,7 @@ import './login-form.css'
 const LoginForm = ({ setEmail, setPassword, email, password, handleSubmit }) => {
     return (
         <>
-            <section className='form-section'>
+            <section className='login-form-section'>
                 <h1 className='form-title'>Login</h1>
                 <form
                     onSubmit={handleSubmit}
