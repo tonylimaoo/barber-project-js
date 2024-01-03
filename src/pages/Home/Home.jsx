@@ -14,7 +14,6 @@ import AlertMessage from '../../components/AlertMessage/AlertMessage'
 import { useAuthValue } from '../../context/AuthContext'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
-import { useAdminValue } from '../../context/AdminContext';
 import { useFetchEnabledHours } from '../../hooks/useFetchEnabledHours';
 
 const uuid = require('uuid');
