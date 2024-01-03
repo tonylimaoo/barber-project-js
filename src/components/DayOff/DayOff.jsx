@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from './DayOff.module.scss'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDays } from "../../hooks/useDays";
-import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useInsertDocument } from '../../hooks/useInsertDocument';
 import AlertMessage from "../AlertMessage/AlertMessage";
@@ -11,24 +10,20 @@ const DayOff = () => {
     const [professional, setProfessional] = useState("");
     const [date, setDate] = useState("");
     const [enabled, setEnabled] = useState(false);
-    const [alreadySchedule, setAlreadySchedule] = useState("");
     const [formError, setFormError] = useState("");
-    const [formErrorMessage, setFormErrorMessage] = useState("");
+    const [formErrorMessage] = useState("");
     const { dayPlusSeven } = useDays();
-    const { documents } = useFetchDocuments('day-off');
-    const { updateData } = useUpdateDocument();
+    const { documents } = useFetchDocuments('day-off', null, false, true);
     const { setDocument } = useInsertDocument('day-off');
-    const todaysDate = new Date();
-    const weekDay = todaysDate.getDay();
 
-    const handleProfessionalChange = async (e) => {        
-            setEnabled(true);
-            setProfessional(e.target.value);
+    const handleProfessionalChange = (e) => {
+        setEnabled(true);
+        setProfessional(e.target.value);
     }
 
     const handleSetDayoff = (e) => {
         e.preventDefault();
-        
+
         const dayOffObject = {
             date: date,
             professional: professional,
@@ -59,7 +54,7 @@ const DayOff = () => {
                                 <p>Barbeiro:</p>
                                 <select
                                     required
-                                    value={professional || ''}
+                                    value={professional}
                                     onChange={(e) => handleProfessionalChange(e)}
                                 >
                                     <option value="">Selecione</option>

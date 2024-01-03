@@ -21,7 +21,6 @@ import { useAuthentication } from './hooks/useAuthentication';
 
 // Context
 import { AuthContextProvider } from './context/AuthContext';
-import { useAdmin } from './hooks/useAdmin';
 import { AdminContextProvider } from './context/AdminContext';
 
 // Assets
