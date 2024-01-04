@@ -29,8 +29,8 @@ const UsersList = () => {
       {!loading && documents &&
         (
           documents.map((user) => (
-            <div className="user-card">
-              <h2 key={user.tid}>Usuário:</h2>
+            <div className="user-card" key={user.id} >
+              <h2>Usuário:</h2>
               <h3 className="transaction-id">ID: {user.id}</h3>
               <h3 className="hour"><span>{user.name}</span><Link to={`https://api.whatsapp.com/send?phone=${user.cellphone.replace(/\(|\)|-| /g,'')}`}>{user.cellphone}</Link></h3>
               <div className="more-info" onClick={(e) => { handleMoreInfo(e) }}> + </div>

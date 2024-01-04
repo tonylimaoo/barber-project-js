@@ -9,7 +9,7 @@ export const useAdmin = (user) => {
 
     // cleanup
     //deal with memory leak
-    const [cancelled, setCancelled] = useState(false);
+    const [cancelled] = useState(false);
     const [isAdmin, setIsAdmin] = useState(null);
 
 

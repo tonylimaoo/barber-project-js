@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import LoginForm from '../../components/LoginForm/LoginForm'
 import './Login.css'
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
-  const { login, error: authError, loading } = useAuthentication();
+  const { login, error: authError } = useAuthentication();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

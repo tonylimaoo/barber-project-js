@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { useAuthentication } from '../../hooks/useAuthentication';
 import { useAuthValue } from '../../context/AuthContext';
 import { useAdminValue } from '../../context/AdminContext';
-import logo from '../../assets/salao_lima_letreiro_white.png'
 import menuImg from '../../assets/1024px-Hamburger_icon_white.svg.png'
 
 export default function Header({ showMenu, setShowMenu }) {
@@ -30,7 +29,9 @@ export default function Header({ showMenu, setShowMenu }) {
             <header className="header">
                 <div className="navbar">
                     <Link to='/' className="logo">
-                        <img src={logo} className='header-logo' alt="logo" />
+                        <h1>SALÃO</h1>
+                        <h1>LIMA</h1>
+                        {/* <img src={logo} className='header-logo' alt="logo" /> */}
                     </Link>
                     <div className="hamburger" onClick={() => setShowMenu(showMenu ? false : true)}>
                         {/* Menu */}

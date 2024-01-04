@@ -11,13 +11,10 @@ const MyProfile = () => {
   const [birthday, setBirthday] = useState("");
   const [email, setEmail] = useState("");
   const [cellphone, setCellphone] = useState("")
-  const [appointments, setAppointments] = useState([]);
   const { user } = useAuthValue();
   const { documents, loading, error } = useFetchDocuments('users', user.uid);
   const {
-    documents: transactionsList,
-    loading: loadingList,
-    error: listError
+    documents: transactionsList
   } = useFetchDocuments('transactions', user.uid, true);
   const { deleteData } = useDeleteDocument();
 
@@ -96,7 +93,7 @@ const MyProfile = () => {
       {transactionsList && transactionsList.length > 0 &&
         <section className="appointment-list">
           <h1>Últimos agendamentos</h1>
-          {transactionsList.slice(0, 3).map((app, i) => (
+          {transactionsList.map((app, i) => (
             <div key={app.id} className='appointment-card'>
               <h3>Agendamento {i + 1}: </h3>
               <h5>{app.id}</h5>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config";
-import { collection, query, orderBy, onSnapshot, where, QuerySnapshot, limit } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, where, limit } from "firebase/firestore";
 
-export const useFetchDocuments = (docCollection, uid = null, transaction = false) => {
+export const useFetchDocuments = (docCollection, uid = null, transaction = false, limitOn = false) => {
 
     const [documents, setDocuments] = useState(null);
     const [error, setError] = useState(null);
@@ -35,9 +35,14 @@ export const useFetchDocuments = (docCollection, uid = null, transaction = false
                         collectionRef,
                         where("uid", "==", uid),
                         orderBy('createdAt', 'desc'),
-                        limit(3)
+                        limit(5)
                     );
-
+                } else if (docCollection === 'day-off' && limitOn) {
+                    q = await query(
+                        collectionRef,
+                        orderBy('createdAt', 'desc'),
+                        limit(10)
+                    );
                 } else {
                     q = await query(collectionRef, orderBy("createdAt", "desc"))
                 }
@@ -61,7 +66,7 @@ export const useFetchDocuments = (docCollection, uid = null, transaction = false
 
         loadData();
 
-    }, [docCollection, uid, cancelled, transaction])
+    }, [docCollection, uid, cancelled, transaction, limitOn])
 
     useEffect(() => {
         setCancelled(true);

@@ -1,46 +1,6 @@
-// import { useScreenshot, createFileName } from 'use-react-screenshot'
 import './concluded-form.css'
-// import html2canvas from 'html2canvas';
 
 export default function Concluido({ transactionId, hour, date }) {
-
-    // Component that shows the Schedule Confirmation
-    // const [image, takeScreenshot] = useScreenshot({
-    //     type: 'image/jpeg',
-    //     quality: 1.0
-    // });
-
-    // const takeScreenshot = (elementId, fileName, fileType) => {
-    //     console.log("entrou")
-
-    //     const element = document.getElementById(elementId);
-    //     console.log(element)
-    //     if (!element) {
-    //         return;
-    //     }
-
-    //     html2canvas(element).then((canvas) => {
-    //         let image = canvas.toDataUrl(fileType);
-    //         console.log("the image is ", image);
-    //         const a = document.createElement("a");
-    //         a.href = image;
-    //         a.download = fileName;
-    //         a.click();
-    //     }).catch(err => {
-    //         console.error("We cannot take this screenshot at the moment: ", err)
-    //     });
-    // }
-
-    // const download = (image, {name = 'img', extension = 'jpg'} = {}) => {
-    //     const a = document.createElement('a');
-    //     a.href = image;
-    //     a.download = 
-    //     a.click();
-    // }
-
-    // const downloadScreenshot = () => {
-    //     takeScreenshot(ref.current).then(download)
-    // }
 
     date = date.split('-')
 

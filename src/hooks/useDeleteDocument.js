@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { db } from "../firebase/config";
-import { doc, deleteDoc, where } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 
 
 export const useDeleteDocument = () => {
