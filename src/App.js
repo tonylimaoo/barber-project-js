@@ -22,6 +22,7 @@ import { useAuthentication } from './hooks/useAuthentication';
 // Context
 import { AuthContextProvider } from './context/AuthContext';
 import { AdminContextProvider } from './context/AdminContext';
+import CancelApp from './pages/CancelAppointment/CancelApp';
 
 // Assets
 
@@ -64,6 +65,7 @@ function App() {
                 <Route path='/login' element={!user ? <Login /> : <Navigate to='/profile' />} />
                 <Route path='/profile' element={user ? <MyProfile /> : <Navigate to='/' />} />
                 <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/profile' />} />
+                <Route path='/cancel-appointment/:id' element={<CancelApp />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </div>
