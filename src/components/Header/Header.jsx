@@ -29,8 +29,8 @@ export default function Header({ showMenu, setShowMenu }) {
             <header className="header">
                 <div className="navbar">
                     <Link to='/' className="logo">
-                        <h1>SALÃO</h1>
-                        <h1>LIMA</h1>
+                        <h1>SALÃO LIMA</h1>
+                        {/* <h1></h1> */}
                         {/* <img src={logo} className='header-logo' alt="logo" /> */}
                     </Link>
                     <div className="hamburger" onClick={() => setShowMenu(showMenu ? false : true)}>
