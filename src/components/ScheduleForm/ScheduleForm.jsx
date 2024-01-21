@@ -32,8 +32,33 @@ export default function ScheduleForm({
     const [exclusiveHours, setExclusiveHours] = useState([]);
 
     useEffect(() => {
-        setExclusiveHours(hours.filter(ele => !appointmentHours.includes(ele)));
-    }, [appointmentHours, hours])
+
+        let hoursFiltered = hours.filter(ele => !appointmentHours.includes(ele))
+
+        const dateParsed = new Date(date + 'T00:00:00').toLocaleDateString();
+
+        const dateNow = new Date();
+
+        if (dateNow.toLocaleDateString() === dateParsed) { 
+
+            const hourNow = dateNow.toLocaleTimeString().split(':')
+            hourNow.pop();
+            const hourNowRefact = hourNow.join().replace(',', '');
+
+            hoursFiltered = hoursFiltered.filter(ele => {
+                const elemReplaced = parseInt(ele.replace(':',''));
+                let received;
+                if (elemReplaced > hourNowRefact) {
+                    received = ele;
+                }
+                return received;
+            })
+            setExclusiveHours(hoursFiltered)
+        } else {
+            setExclusiveHours(hoursFiltered);
+        }
+
+    }, [appointmentHours, hours, date])
 
     const { formatDate, dayPlusSeven } = useDays();
 
@@ -59,7 +84,7 @@ export default function ScheduleForm({
 
         if (dayOffBarberObj.length > 0) {
             const barber = dayOffBarberObj[0].professional
-            
+
             const working = barbers.filter((e) => !barber.includes(e))
 
             setNoDayOffBarber(working)
@@ -273,7 +298,7 @@ export default function ScheduleForm({
                                     {noDayOffBarber.map((e, i) => (
                                         <option key={i} value={e}>{e}</option>
                                     ))}
-                                    
+
                                     {/* <option value="Donizete">Donizete</option> */}
                                 </select>
                             )}

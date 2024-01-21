@@ -68,11 +68,8 @@ export const useFetchAppointments = (docCollection, date = false, tid = false) =
 
                 setLoading(false);
 
-
             }
         }
-
-
         loadData();
 
     }, [date, docCollection, cancelled, tid])

@@ -107,7 +107,7 @@ export default function App() {
                     .filter(e => e.date === date)
                     .filter(e => e.professional === professional)
                     .map(e => e.hour)
-    
+
                 let hoursFormatted = JSON.stringify(apt)
                     .replace(/\[|\]/g, '')
                     .replace(/(['"])/g, '')
