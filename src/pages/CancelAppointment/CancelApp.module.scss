@@ -2,8 +2,18 @@
   display: flex;
   height: 90vh;
   width: 100%;
-  justify-content: center;
+  // justify-content: center;
+  align-items: center;
   padding-top: 200px;
+  flex-direction: column;
+}
+
+.notice {
+  background-color: black;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 0.2em;
+  margin-top: 20px;
 }
 
 .appt-card {
