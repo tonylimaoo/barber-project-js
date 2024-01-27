@@ -117,9 +117,9 @@ export default function App() {
 
                     
                     if (new Date(date + "T00:00:00").getDay() === 6) {
-                        hoursFormatted.push("12:50", "18:40")
+                        hoursFormatted.push("18:40")
                     } else {
-                        hoursFormatted.push("12:20", "20:00")
+                        hoursFormatted.push("20:00")
                     }
                     
                     console.log("hoursFormatted")
