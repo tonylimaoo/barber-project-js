@@ -6,4 +6,12 @@
   align-items: center;
   background: linear-gradient(to bottom, rgb(184, 184, 184) 0, rgb(0, 0, 0));
   flex-direction: column;
+}
+
+@media screen and (max-width: 840px) {
+  .signup {
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 20px 0;
+  }
 }/*# sourceMappingURL=Signup.css.map */

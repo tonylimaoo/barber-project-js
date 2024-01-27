@@ -18,7 +18,7 @@ const Signup = () => {
     const [cellphone, setCellphone] = useState("");
     const { setDocument, response } = useInsertDocument('users');
 
-    const {createUser, error: authError, loading} = useAuthentication();
+    const { createUser, error: authError, loading } = useAuthentication();
 
     const handleSubmit = async (e) => {
 
@@ -30,8 +30,6 @@ const Signup = () => {
             password: password
         }
 
-
-
         // if (password !== consfirmPassword) {
         //     setError("The password does not match!")
         //     return;
@@ -40,7 +38,7 @@ const Signup = () => {
         const res = await createUser(user);
 
         setDocument({
-            name, 
+            name,
             email,
             birthday,
             cellphone,
@@ -55,7 +53,7 @@ const Signup = () => {
     }
 
     // useEffect(() => {
- 
+
     // }, [authUser])
 
     return (
