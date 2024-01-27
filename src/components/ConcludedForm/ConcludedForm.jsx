@@ -1,9 +1,11 @@
+import { useAuthValue } from '../../context/AuthContext'
 import './concluded-form.css'
 import { Link } from 'react-router-dom'
 
 export default function Concluido({ transactionId, hour, date }) {
 
     date = date.split('-')
+    const { user } = useAuthValue();
 
 
     return (
@@ -23,7 +25,20 @@ export default function Concluido({ transactionId, hour, date }) {
                     </div>
                 </section>
 
+
             </div>
+                {!user &&
+                    <div className="notice">
+                        <h3>Salve o link para cancelar o agendamento.</h3>
+                        <p>Você pode cancelar em até 5 horas antes do horário marcado,</p>
+                        <p>Caso precise depois deste tempo, entre em contato pelo WhatsApp!</p>
+                    </div>}
+                {user &&
+                    <div className="notice">
+                        <h3>Salve o link para cancelar o agendamento ou cancele em seu perfil.</h3>
+                        <p>Você pode cancelar em até 5 horas antes do horário marcado,</p>
+                        <p>Caso precise depois deste tempo, entre em contato pelo WhatsApp!</p>
+                    </div>}
         </>
     )
 }

@@ -4,6 +4,7 @@
   align-items: center;
   padding: 0;
   margin: 0;
+  margin-top: 50px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -55,6 +56,16 @@
 .sched-dayoff label {
   margin-left: 30px;
 }
+.sched-dayoff button {
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  border: none;
+  background-color: #353535;
+  color: white;
+  border-radius: 0.2em;
+  box-shadow: 0px 0px 5px 0.001em black;
+}
 .sched-dayoff .inp-sub {
   background-color: #4A0000;
   color: white;
@@ -62,7 +73,6 @@
   margin-left: 30px;
   cursor: pointer;
   align-self: end;
-  margin-top: 30px;
 }
 .sched-dayoff .inp-sub:hover {
   background-color: #d49a9a;
@@ -99,4 +109,4 @@
   .sched-dayoff {
     width: 80%;
   }
-}/*# sourceMappingURL=DayOff.module.css.map */
+}/*# sourceMappingURL=Lunch.module.css.map */

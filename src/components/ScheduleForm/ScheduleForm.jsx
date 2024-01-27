@@ -33,29 +33,31 @@ export default function ScheduleForm({
 
     useEffect(() => {
 
-        let hoursFiltered = hours.filter(ele => !appointmentHours.includes(ele))
+        if (hours) {
+            let hoursFiltered = hours.filter(ele => !appointmentHours.includes(ele))
 
-        const dateParsed = new Date(date + 'T00:00:00').toLocaleDateString();
+            const dateParsed = new Date(date + 'T00:00:00').toLocaleDateString();
 
-        const dateNow = new Date();
+            const dateNow = new Date();
 
-        if (dateNow.toLocaleDateString() === dateParsed) { 
+            if (dateNow.toLocaleDateString() === dateParsed) {
 
-            const hourNow = dateNow.toLocaleTimeString().split(':')
-            hourNow.pop();
-            const hourNowRefact = hourNow.join().replace(',', '');
+                const hourNow = dateNow.toLocaleTimeString().split(':')
+                hourNow.pop();
+                const hourNowRefact = hourNow.join().replace(',', '');
 
-            hoursFiltered = hoursFiltered.filter(ele => {
-                const elemReplaced = parseInt(ele.replace(':',''));
-                let received;
-                if (elemReplaced > hourNowRefact) {
-                    received = ele;
-                }
-                return received;
-            })
-            setExclusiveHours(hoursFiltered)
-        } else {
-            setExclusiveHours(hoursFiltered);
+                hoursFiltered = hoursFiltered.filter(ele => {
+                    const elemReplaced = parseInt(ele.replace(':', ''));
+                    let received;
+                    if (elemReplaced > hourNowRefact) {
+                        received = ele;
+                    }
+                    return received;
+                })
+                setExclusiveHours(hoursFiltered)
+            } else {
+                setExclusiveHours(hoursFiltered);
+            }
         }
 
     }, [appointmentHours, hours, date])
@@ -94,6 +96,10 @@ export default function ScheduleForm({
         } else {
             setNoDayOffBarber(barbers)
         }
+
+        setService('')
+        setProfessional('')
+        setHour('')
 
     }
 
@@ -184,6 +190,17 @@ export default function ScheduleForm({
             setCel(cel)
         }
     }
+    
+    const handleProfessionalChange = (e) => {
+        setHour('')
+        setProfessional(e.target.value)
+    }
+
+    const handelServiceChange = (e) => {
+        setProfessional('');
+        setHour('');
+        setService(e.target.value);
+    }
 
     const todaysDate = formatDate(0);
     const todaysDatePlusSeven = dayPlusSeven(7);
@@ -268,7 +285,7 @@ export default function ScheduleForm({
                                 </select>
                             ) : (
                                 <select
-                                    onChange={(e) => setService(e.target.value)}
+                                    onChange={(e) => handelServiceChange(e)}
                                     value={service}
                                     required
                                 >
@@ -290,7 +307,7 @@ export default function ScheduleForm({
                                 </select>
                             ) : (
                                 <select
-                                    onChange={(e) => setProfessional(e.target.value)}
+                                    onChange={(e) => handleProfessionalChange(e)}
                                     value={professional}
                                     required
                                 >

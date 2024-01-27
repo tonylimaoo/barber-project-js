@@ -14,3 +14,10 @@
         rgb(0, 0, 0)
       );
 }
+
+@media screen and (max-width: 840px ) {
+  .container-home {
+    height: fit-content;
+    padding: 20px 0;
+  }
+}
