@@ -59,13 +59,13 @@ const CancelApp = () => {
             </div>
             {!user &&
               <div className={styles.notice}>
-                <h3>Salve este link para o cancelar o agendamento.</h3>
+                <h3>Salve este link para cancelar o agendamento.</h3>
                 <p>Você pode cancelar em até 5 horas antes do horário marcado,</p>
                 <p>caso precise depois deste tempo, entre em contato pelo WhatsApp!</p>
               </div>}
             {user &&
               <div className={styles.notice}>
-                <h3>Salve este link para o cancelar o agendamento ou cancele em seu perfil.</h3>
+                <h3>Salve este link para cancelar o agendamento ou cancele em seu perfil.</h3>
                 <p>Você pode cancelar em até 5 horas antes do horário marcado,</p>
                 <p>caso precise depois deste tempo, entre em contato pelo WhatsApp!</p>
               </div>}

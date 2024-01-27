@@ -6,9 +6,10 @@ import { useFetchEnabledHours } from '../../hooks/useFetchEnabledHours'
 import { useExclusiveHours } from '../../hooks/useExclusiveHours'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 import { useDeleteDocument } from '../../hooks/useDeleteDocument'
+import { useHours } from '../../hooks/useHours'
 // import { useDays } from '../../hooks/useDays'
 
-const hours = ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20", "12:10", "13:00", "13:50", "14:40", "15:30", "16:20", "17:10", "18:00", "18:50", "19:40", "20:30"]
+// const hours = ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20", "12:10", "13:00", "13:50", "14:40", "15:30", "16:20", "17:10", "18:00", "18:50", "19:40", "20:30"]
 const uuid = require('uuid');
 
 const Lunch = () => {
@@ -24,6 +25,7 @@ const Lunch = () => {
   const { documents } = useFetchDocuments('transactions', null, false, true);
   const { setDocument } = useInsertDocument('transactions');
   const { documents: enabledHours } = useFetchEnabledHours("transactions", professional, date);
+  const { hours } = useHours(date);
   const { exclusiveHours } = useExclusiveHours(appointmentHours, hours, date);
   const { deleteData } = useDeleteDocument();
   const dateNow = new Date();
@@ -42,6 +44,12 @@ const Lunch = () => {
           .replace(/\[|\]/g, '')
           .replace(/(['"])/g, '')
           .split(',');
+
+        if (new Date(date + "T00:00:00").getDay() === 6) {
+          hoursFormatted.push("12:50", "18:40")
+        } else {
+          hoursFormatted.push("12:20", "20:00")
+        }
 
         setAppointmentHours(hoursFormatted);
 

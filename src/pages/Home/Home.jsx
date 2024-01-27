@@ -15,10 +15,11 @@ import { useAuthValue } from '../../context/AuthContext'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 import { useFetchEnabledHours } from '../../hooks/useFetchEnabledHours';
+import { useHours } from '../../hooks/useHours'
 
 const uuid = require('uuid');
 
-const hours = ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20", "12:10", "13:00", "13:50", "14:40", "15:30", "16:20", "17:10", "18:00", "18:50", "19:40", "20:30"]
+// const hours = ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20", "12:10", "13:00", "13:50", "14:40", "15:30", "16:20", "17:10", "18:00", "18:50", "19:40", "20:30"]
 const barbers = ["Carlos", "Donizete"]
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
     const [formErrorMessage, setFormErrorMessage] = useState("");
     const [hoursIndex, setHoursIndex] = useState();
     const [noDayOffBarber, setNoDayOffBarber] = useState();
+    const { hours } = useHours(date);
 
     // Custom Hooks
     const { user: authUser } = useAuthValue();
@@ -99,10 +101,10 @@ export default function App() {
     }, [uid, documents]);
 
     useEffect(() => {
-        if(date && professional && enabledHours){
+        if (date && professional && enabledHours) {
             const handleEnabledHours = async () => {
                 let data = enabledHours;
-    
+
                 let apt = data
                     .filter(e => e.date === date)
                     .filter(e => e.professional === professional)
@@ -112,9 +114,20 @@ export default function App() {
                     .replace(/\[|\]/g, '')
                     .replace(/(['"])/g, '')
                     .split(',');
-    
+
+                    
+                    if (new Date(date + "T00:00:00").getDay() === 6) {
+                        hoursFormatted.push("12:50", "18:40")
+                    } else {
+                        hoursFormatted.push("12:20", "20:00")
+                    }
+                    
+                    console.log("hoursFormatted")
+                    console.log(hoursFormatted)
+
                 setAppointmentHours(hoursFormatted);
-    
+
+
             }
             handleEnabledHours();
         }
