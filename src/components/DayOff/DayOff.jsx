@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDays } from "../../hooks/useDays";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useInsertDocument } from '../../hooks/useInsertDocument';
+import { useDeleteDocument } from '../../hooks/useDeleteDocument';
 import AlertMessage from "../AlertMessage/AlertMessage";
 
 const DayOff = () => {
@@ -15,6 +16,8 @@ const DayOff = () => {
     const { dayPlusSeven } = useDays();
     const { documents } = useFetchDocuments('day-off', null, false, true);
     const { setDocument } = useInsertDocument('day-off');
+    const {deleteData} = useDeleteDocument();
+    const dateNow = new Date();
 
     const handleProfessionalChange = (e) => {
         setEnabled(true);
@@ -36,6 +39,18 @@ const DayOff = () => {
         setProfessional('')
         setDate('')
     }
+
+    const handleCancelAppointment = async (e, tid) => {
+
+        try {
+          deleteData('day-off', tid)
+          console.log('deletou')
+    
+        } catch (error) {
+          console.log(error.message)
+        }
+      }
+
     return (
         <div className={styles.dayoff_container}>
             {formError &&
@@ -92,7 +107,8 @@ const DayOff = () => {
                 <h3>Últimas Folgas Agendadas</h3>
                 <div className={`${styles["white-bg"]} ${styles["set-margin"]}`}>
                     {documents && documents.map((d) => (
-                        <h3 key={d.id}>{d.professional} <span className="font-normal">- {new Date(`${d.date}T00:00:00`).toLocaleDateString()}</span></h3>
+                        new Date(d.date) >= dateNow &&
+                        <h3 key={d.id}>{d.professional} <span className="font-normal">- {new Date(`${d.date}T00:00:00`).toLocaleDateString()}</span><button className={styles.inp_sub_cancel} onClick={(evt) => handleCancelAppointment(evt, d.date)}>Cancelar</button></h3>
                     ))}
                 </div>
             </div>

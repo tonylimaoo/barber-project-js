@@ -19,7 +19,6 @@ export const useFetchEnabledHours = (
 
             const collectionRef = await collection(db, docCollection);
 
-
             if (professional === '' || date === '') {
                 return
             }

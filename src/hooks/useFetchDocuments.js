@@ -37,7 +37,7 @@ export const useFetchDocuments = (docCollection, uid = null, transaction = false
                         orderBy('createdAt', 'desc'),
                         limit(5)
                     );
-                } else if (docCollection === 'day-off' && limitOn) {
+                } else if ((docCollection === 'day-off' || docCollection === 'transactions') && limitOn) {
                     q = await query(
                         collectionRef,
                         orderBy('createdAt', 'desc'),
