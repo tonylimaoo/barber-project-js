@@ -293,8 +293,8 @@ export default function ScheduleForm({
                                     <option value="Cabelo">Cabelo</option>
                                     <option value="Barba">Barba</option>
                                     <option value="Cabelo e Barba">Cabelo e Barba</option>
-                                    <option value="Prótese + Corte">Prótese + Corte</option>
-                                    <option value="Manutenção da Prótese">Manutenção da Prótese</option>
+                                    {/* <option value="Prótese + Corte">Prótese + Corte</option>
+                                    <option value="Manutenção da Prótese">Manutenção da Prótese</option> */}
                                 </select>
                             )}
 
