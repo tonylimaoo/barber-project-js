@@ -1,5 +1,5 @@
 import "./agenda.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useFetchAppointments } from "../../hooks/useFetchAppointments";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
@@ -32,6 +32,12 @@ export default function Controle() {
     const todaysDate = formatDate();
     const [date, setDate] = useState(todaysDate);
     const { documents, loading, error } = useFetchAppointments('transactions', date)
+    const [professional, setProfessional] = useState("");
+    const [docFiltered, setDocFiltered] = useState(documents);
+
+    useEffect(() => {
+        setDocFiltered(documents)
+    }, [documents])
 
     const handleMoreInfo = (ele) => {
 
@@ -58,6 +64,15 @@ export default function Controle() {
         }
     }
 
+    const handleProfessionalFilter = (e) => {
+        if (e.target.value === '') {
+            setDocFiltered(documents)
+        } else {
+            setDocFiltered(documents.filter(doc => doc.professional === e.target.value))
+        }
+        setProfessional(e.target.value);
+    }
+
     return (
         <div className="container-control">
 
@@ -69,6 +84,16 @@ export default function Controle() {
                             setDate(e.target.value);
                         }} />
                     </label>
+                    <label>
+                        Filtre o profissional
+                        <select type="professional" value={professional} onChange={(e) => {
+                            handleProfessionalFilter(e);
+                        }}>
+                            <option value="">Selecione</option>
+                            <option value="Carlos">Carlos</option>
+                            <option value="Donizete">Donizete</option>
+                        </select>
+                    </label>
                 </form>
             </div>
 
@@ -77,8 +102,8 @@ export default function Controle() {
                     <h1>Carregando Dados...</h1>
                 </div>
             ) : (
-                documents && documents.length > 0 &&
-                documents.map((d, i) => (
+                docFiltered && docFiltered.length > 0 &&
+                docFiltered.map((d, i) => (
                     <div className="appt-card" key={d.id}>
                         <h2>Agendamento:</h2>
                         <h3 className="transaction-id">ID: {d.tid}</h3>
