@@ -120,14 +120,14 @@ export default function Controle() {
                             <li>Data: {d.date}</li>
                             <li>Horário: {d.hour[0]}</li>
 
-                            {dateNow <=
+                            {/* {dateNow <=
                                 Date.parse(`${d.date}T${d.hour[0]}:00`)
-                                &&
+                                && */}
                                 <button
                                     className="cancel-app"
                                     onClick={(evt) => handleCancelAppointment(evt, d.tid)}
                                 >Cancelar agendamento</button>
-                            }
+                            {/* } */}
                         </ul>
                     </div>
                 ))
