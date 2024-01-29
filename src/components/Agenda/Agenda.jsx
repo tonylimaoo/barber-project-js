@@ -84,7 +84,7 @@ export default function Controle() {
                             setDate(e.target.value);
                         }} />
                     </label>
-                    <label>
+                    <label className='select_professional_filter'>
                         Filtre o profissional
                         <select type="professional" value={professional} onChange={(e) => {
                             handleProfessionalFilter(e);

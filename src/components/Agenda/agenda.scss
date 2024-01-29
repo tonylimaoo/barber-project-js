@@ -74,7 +74,7 @@
 .day-filter {
     margin: 50px 0px;
     // border: 1px solid;
-    width: 1000px;
+    width: 100vw;
 
     form {
         display: flex;
@@ -159,5 +159,15 @@
 
     .hour {
         width: 90%;
+    }
+
+    .day-filter {
+        form {
+            flex-direction: column;
+        }
+
+        .select_professional_filter {
+            margin-top: 30px;
+        }
     }
 }
