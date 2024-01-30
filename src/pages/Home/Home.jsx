@@ -16,6 +16,7 @@ import { useInsertDocument } from '../../hooks/useInsertDocument'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 import { useFetchEnabledHours } from '../../hooks/useFetchEnabledHours';
 import { useHours } from '../../hooks/useHours'
+import { useAdminValue } from '../../context/AdminContext'
 
 const uuid = require('uuid');
 
@@ -38,6 +39,7 @@ export default function App() {
     const [formErrorMessage, setFormErrorMessage] = useState("");
     const [hoursIndex, setHoursIndex] = useState();
     const [noDayOffBarber, setNoDayOffBarber] = useState();
+    const { isAdmin } = useAdminValue();
     const { hours } = useHours(date);
 
     // Custom Hooks
@@ -92,11 +94,13 @@ export default function App() {
     }, [transactionId])
 
     useEffect(() => {
-        if (uid !== null && documents !== null) {
-            documents.forEach(e => {
-                setName(e.name);
-                setCel(e.cellphone);
-            })
+        if (!isAdmin) {
+            if (uid !== null && documents !== null) {
+                documents.forEach(e => {
+                    setName(e.name);
+                    setCel(e.cellphone);
+                })
+            }
         }
     }, [uid, documents]);
 
@@ -115,15 +119,15 @@ export default function App() {
                     .replace(/(['"])/g, '')
                     .split(',');
 
-                    
-                    if (new Date(date + "T00:00:00").getDay() === 6) {
-                        hoursFormatted.push("18:40")
-                    } else {
-                        hoursFormatted.push("20:00")
-                    }
-                    
-                    console.log("hoursFormatted")
-                    console.log(hoursFormatted)
+
+                if (new Date(date + "T00:00:00").getDay() === 6) {
+                    hoursFormatted.push("18:40")
+                } else {
+                    hoursFormatted.push("20:00")
+                }
+
+                console.log("hoursFormatted")
+                console.log(hoursFormatted)
 
                 setAppointmentHours(hoursFormatted);
 

@@ -73,6 +73,11 @@ export default function Controle() {
         setProfessional(e.target.value);
     }
 
+    const handleDateFilter = (e) => {
+        setProfessional("");
+        setDate(e.target.value);
+    }
+
     return (
         <div className="container-control">
 
@@ -80,9 +85,7 @@ export default function Controle() {
                 <form className="setDay">
                     <label>
                         Filtre o dia
-                        <input type="date" value={date} onChange={(e) => {
-                            setDate(e.target.value);
-                        }} />
+                        <input type="date" value={date} onChange={(e) => handleDateFilter(e)} />
                     </label>
                     <label className='select_professional_filter'>
                         Filtre o profissional
