@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './schedule-form.css'
 import { useDays } from '../../hooks/useDays';
+import { useAdminValue } from '../../context/AdminContext';
+import { subtractHours, subtractMinutes } from '../../utilities/hoursFunctions';
 
 export default function ScheduleForm({
     name,
@@ -29,6 +31,8 @@ export default function ScheduleForm({
     setNoDayOffBarber,
     barbers
 }) {
+
+    const { isAdmin } = useAdminValue();
     const [exclusiveHours, setExclusiveHours] = useState([]);
 
     useEffect(() => {
@@ -190,7 +194,7 @@ export default function ScheduleForm({
             setCel(cel)
         }
     }
-    
+
     const handleProfessionalChange = (e) => {
         setHour('')
         setProfessional(e.target.value)
@@ -216,52 +220,75 @@ export default function ScheduleForm({
                 >
                     <label>
                         <span>Nome Completo</span>
-                        {user ? (
-                            <input
-                                type="text"
-                                name='nome'
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder='Digite seu nome completo'
-                                value={name}
-                                required
-                                disabled
-                            />
-                        ) : (
-                            <input
-                                type="text"
-                                name='nome'
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder='Digite seu nome completo'
-                                value={name}
-                                required
-                            />
-                        )}
+                        {
+                            isAdmin ? (
+                                <input
+                                    type="text"
+                                    name='nome'
+                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder='Digite seu nome completo'
+                                    value={name}
+                                    required
+                                />
+                            ) : (
+                                user ? (
+                                    <input
+                                        type="text"
+                                        name='nome'
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder='Digite seu nome completo'
+                                        value={name}
+                                        required
+                                        disabled
+                                    />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        name='nome'
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder='Digite seu nome completo'
+                                        value={name}
+                                        required
+                                    />
+                                ))}
 
                     </label>
                     <label>
                         <span>Celular</span>
-                        {user ? (
-                            <input
-                                type="text"
-                                name='celular'
-                                placeholder='(19) 99323-2332'
-                                onChange={(e) => setCel(e.target.value)}
-                                // onChange={(e) => handleCelChange(e)}
-                                value={cel}
-                                required
-                                disabled
-                            />
-                        ) : (
-                            <input
-                                type="text"
-                                name='celular'
-                                placeholder='(19) 99323-2332'
-                                // onChange={(e) => setCel(e.target.value)}
-                                onChange={(e) => handleCelChange(e)}
-                                value={cel}
-                                required
-                            />
-                        )}
+                        {
+                            isAdmin ? (
+                                <input
+                                    type="text"
+                                    name='celular'
+                                    placeholder='(19) 99323-2332'
+                                    // onChange={(e) => setCel(e.target.value)}
+                                    onChange={(e) => handleCelChange(e)}
+                                    value={cel}
+                                    required
+                                />
+                            ) : (
+                                user ? (
+                                    <input
+                                        type="text"
+                                        name='celular'
+                                        placeholder='(19) 99323-2332'
+                                        onChange={(e) => setCel(e.target.value)}
+                                        // onChange={(e) => handleCelChange(e)}
+                                        value={cel}
+                                        required
+                                        disabled
+                                    />
+                                ) : (
+                                    <input
+                                        type="text"
+                                        name='celular'
+                                        placeholder='(19) 99323-2332'
+                                        // onChange={(e) => setCel(e.target.value)}
+                                        onChange={(e) => handleCelChange(e)}
+                                        value={cel}
+                                        required
+                                    />
+                                ))}
                     </label>
                     <label>
                         <span>Data</span>
