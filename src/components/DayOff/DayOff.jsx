@@ -15,7 +15,7 @@ const DayOff = () => {
     const [formError, setFormError] = useState("");
     const [formErrorMessage] = useState("");
     const { dayPlusSeven } = useDays();
-    const { documents } = useFetchDayOff(dayOffDate);
+    const { documents } = useFetchDayOff('day-off',dayOffDate);
     const { setDocument } = useInsertDocument('day-off');
     const { deleteData } = useDeleteDocument();
     const dateNow = new Date();
@@ -112,8 +112,13 @@ const DayOff = () => {
                 </div>
                 <h3>Últimas Folgas Agendadas</h3>
                 <div className={`${styles["white-bg"]} ${styles["set-margin"]}`}>
-                    <form action="">
-                        <input type="date" value={dayOffDate} onChange={(e) => setDayOffDate(e.target.value)}/>
+                    <form>
+                        <input
+                            className={styles.day_off_date_input}
+                            type="date"
+                            value={dayOffDate}
+                            onChange={(e) => setDayOffDate(e.target.value)}
+                        />
                     </form>
                     {documents && documents.map((d) => (
                         new Date(d.date) >= dateNow &&
