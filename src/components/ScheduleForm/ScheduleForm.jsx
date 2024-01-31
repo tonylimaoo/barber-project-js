@@ -50,10 +50,11 @@ export default function ScheduleForm({
 
                 hoursFiltered = hoursFiltered.filter((ele) => {
                     const dateNowJson = new Date().toJSON().split("T")[0]
-                    const dateHourMounted = new Date(`${dateNowJson}T${ele}:00.358825-03:00`).getTime();
-                    let received;
-                    if (hourNow <= dateHourMounted - (600000 +(600000 * 6 * 24))) {
+                    const dateHourMounted = new Date(`${dateNowJson}T${ele}:00`).getTime(); //.358Z
+                    if (hourNow <= dateHourMounted - (600000)) { //+(600000 * 6 * 24)
                         return ele
+                    } else {
+                        console.log('nao é')
                     }
                 })
                 setExclusiveHours(hoursFiltered);
