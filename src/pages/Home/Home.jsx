@@ -126,11 +126,7 @@ export default function App() {
                     hoursFormatted.push("20:00")
                 }
 
-                console.log("hoursFormatted")
-                console.log(hoursFormatted)
-
                 setAppointmentHours(hoursFormatted);
-
 
             }
             handleEnabledHours();
