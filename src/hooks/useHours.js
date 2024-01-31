@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 
 export const useHours = (date) => {
 
-  console.log(date)
   const selectedDate = new Date(date + "T00:00:00");
   const [hours, setHours] = useState('');
-  // console.log("day")
-  // console.log(day)
   useEffect(() => {
     if (date !== '') {
       if (selectedDate.getDay() === 6) {

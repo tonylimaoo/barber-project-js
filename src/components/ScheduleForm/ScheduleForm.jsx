@@ -46,19 +46,17 @@ export default function ScheduleForm({
 
             if (dateNow.toLocaleDateString() === dateParsed) {
 
-                const hourNow = dateNow.toLocaleTimeString().split(':')
-                hourNow.pop();
-                const hourNowRefact = hourNow.join().replace(',', '');
+                const hourNow = new Date().getTime()
 
-                hoursFiltered = hoursFiltered.filter(ele => {
-                    const elemReplaced = parseInt(ele.replace(':', ''));
+                hoursFiltered = hoursFiltered.filter((ele) => {
+                    const dateNowJson = new Date().toJSON().split("T")[0]
+                    const dateHourMounted = new Date(`${dateNowJson}T${ele}:00.358825-03:00`).getTime();
                     let received;
-                    if (elemReplaced > hourNowRefact) {
-                        received = ele;
+                    if (hourNow <= dateHourMounted - (600000 +(600000 * 6 * 24))) {
+                        return ele
                     }
-                    return received;
                 })
-                setExclusiveHours(hoursFiltered)
+                setExclusiveHours(hoursFiltered);
             } else {
                 setExclusiveHours(hoursFiltered);
             }
