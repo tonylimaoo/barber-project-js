@@ -1,0 +1,141 @@
+.container-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 50px 0;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, rgb(184, 184, 184) 0, rgb(0, 0, 0));
+}
+
+.my-profile-section {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  align-items: center;
+  margin-bottom: 50px;
+  background-color: #4A0000;
+  color: white;
+  border-radius: 0.2em;
+  box-shadow: 0px 0px 5px 1px black;
+}
+
+.form-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.6em;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.form-info label {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px 15px;
+  font-size: 20px;
+  font-weight: lighter;
+  width: 90%;
+}
+.form-info input {
+  margin-top: 10px;
+  height: 30px;
+  text-align: center;
+  border: none;
+  color: #ffffff;
+  padding: 10px 10px;
+  background-color: #555555;
+  box-shadow: 0px 0px 5px 1px rgb(39, 39, 39);
+  font-size: 16px;
+  border-radius: 0.2em;
+}
+
+.appointment-list {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  border-radius: 0.2em;
+}
+.appointment-list ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.cancel-app-btn {
+  border: none;
+  color: #4A0000;
+  padding: 10px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  border-radius: 0.2em;
+}
+.cancel-app-btn:hover {
+  background-color: #d49a9a;
+  transition: 0.2s;
+}
+
+.cancel-button-container {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 35px;
+}
+
+.appointment-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  margin-bottom: 30px;
+  width: 80%;
+  margin: 30px 30px;
+  background-color: #4A0000;
+  padding-bottom: 20px;
+  border-radius: 0.2em;
+  box-shadow: 1px 1px 5px 0px rgba(255, 255, 255, 0.535);
+}
+.appointment-card p {
+  margin-left: 35px;
+  padding: 5px 0;
+  border-bottom: 1px solid #ffffff;
+  width: 80%;
+  font-size: 18px;
+}
+.appointment-card h5 {
+  margin-top: 3px;
+  margin-left: 35px;
+  font-weight: lighter;
+  font-size: 15px;
+}
+.appointment-card h3 {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 840px) {
+  .my-profile-section {
+    max-width: 95%;
+  }
+  .appointment-list {
+    max-width: 95%;
+  }
+  .appointment-list ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .appointment-card {
+    width: 90%;
+  }
+  .appointment-card p {
+    width: 80%;
+  }
+}/*# sourceMappingURL=MyProfile.css.map */

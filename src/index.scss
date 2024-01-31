@@ -1,0 +1,42 @@
+html, body{
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  // text-shadow: 0 0 5px rgba(47, 47, 47, 0.745);
+}
+
+body {
+  font-family: 'Mina', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.error {
+  display: block;
+  border: 1px solid black;
+  width: 25%;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: rgb(223, 105, 105);
+  border-radius: .6em;
+}
+
+@media screen and (max-width: 940px){
+  .error {
+    width: 50%;
+  }
+}
+
+input,
+select {
+  font-family: 'Mina', sans-serif;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+button {
+  font-family: 'Mina', sans-serif;
+}

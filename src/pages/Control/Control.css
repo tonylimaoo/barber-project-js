@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  min-height: 60vh;
+  background: linear-gradient(to bottom, rgb(184, 184, 184) 0, rgb(0, 0, 0)) 1%;
+}
+
+.menu-control {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background-color: rgb(65, 0, 0);
+  color: white;
+}
+.menu-control ul {
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.menu-control ul li {
+  margin: 0 30px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 840px) {
+  .menu-control {
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+}/*# sourceMappingURL=Control.css.map */

@@ -1,0 +1,64 @@
+.users_list_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  padding: 5px 10px;
+  margin: 5px 5px;
+  background-color: #4A0000;
+  color: white;
+  border-radius: 0.2em;
+  box-shadow: 0px 0px 10px 1px black;
+}
+.user-card a {
+  text-decoration: none;
+  color: #4A0000;
+}
+.user-card a:hover {
+  color: #950202;
+}
+.user-card * {
+  margin: 5px 5px;
+  font-weight: lighter;
+}
+.user-card .more-info {
+  display: flex;
+  border: 1px solid white;
+  justify-content: center;
+  border-radius: 0.2em;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.user-card .more-info:hover {
+  background-color: rgba(255, 255, 255, 0.31);
+  transition: 0.5s;
+}
+.user-card ul {
+  display: none;
+  list-style: none;
+  padding: 5px 15px;
+  border-radius: 0.6em;
+  width: 100%;
+}
+.user-card ul li {
+  border-bottom: 1px solid #4d4c4c;
+  width: 70%;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 840px) {
+  .user-card {
+    width: 80%;
+  }
+  .hour {
+    width: 90%;
+  }
+}/*# sourceMappingURL=users-list.css.map */

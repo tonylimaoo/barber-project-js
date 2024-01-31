@@ -1,0 +1,16 @@
+.revenue_container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 840px) {
+  .revenue_container {
+    align-items: center;
+  }
+}/*# sourceMappingURL=Revenue.module.css.map */

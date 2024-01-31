@@ -1,0 +1,15 @@
+.container-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom, rgb(184, 184, 184) 0, rgb(0, 0, 0));
+}
+
+@media screen and (max-width: 840px) {
+  .btn_login {
+    width: 50%;
+  }
+}/*# sourceMappingURL=Login.css.map */

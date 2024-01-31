@@ -1,13 +1,40 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  padding: 0;
-  height: 100%;
+html, body {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "Mina", sans-serif;
+  padding: 0;
+  margin: 0;
 }
+
+.error {
+  display: block;
+  border: 1px solid black;
+  width: 25%;
+  text-align: center;
+  padding: 10px 10px;
+  background-color: rgb(223, 105, 105);
+  border-radius: 0.6em;
+}
+
+@media screen and (max-width: 940px) {
+  .error {
+    width: 50%;
+  }
+}
+input,
+select {
+  font-family: "Mina", sans-serif;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+button {
+  font-family: "Mina", sans-serif;
+}/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,116 @@
+.login-form-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-weight: 100;
+    background-color: #4A0000;
+    color: white;
+    border-radius: 0.2em;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.612);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        width: 100%;
+
+        span {
+            text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.442);
+        }
+
+
+        input {
+            margin-top: 10px;
+            width: 75%;
+            min-width: 100px;
+            height: 30px;
+            text-align: center;
+            border: none;
+            color: #ffffff;
+            padding: 10px 10px;
+            background-color: #353535;
+            box-shadow: 0px 0px 5px 1px rgb(39, 39, 39);
+            font-size: 16px;
+            border-radius: 0.2em;
+
+            &:disabled {
+                background-color: #555555;
+            }
+        }
+
+        select {
+            width: 180px;
+            margin-top: 10px;
+            height: 50px;
+            text-align: center;
+            border: none;
+            color: #ffffff;
+            padding: 10px 10px;
+            background-color: #353535;
+            box-shadow: 0px 0px 5px 1px rgb(39, 39, 39);
+            border-radius: 0.2em;
+        }
+    }
+    button {
+        border: none;
+        color: #4A0000;
+        padding: 10px 10px;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        font-weight: 600;
+        width: 80%;
+        border-radius: 0.2em;
+        box-shadow: 0px 0px 10px 1px rgb(39, 39, 39);
+        background-color: white;
+
+        &:hover {
+            background-color: #d49a9a;
+            transition: .2s;
+        }
+    }
+
+}
+
+@media screen and (max-width: 840px) {
+    .form-section {
+        width: 100%;
+        // max-width: 400px;
+
+        .login-form {
+            input {
+                width: 250px;
+            }
+
+            .service {
+                width: 75%;
+
+
+                select {
+                    width: 130px;
+                }
+            }
+
+            button {
+                width: 70%;
+            }
+        }
+    }
+
+}

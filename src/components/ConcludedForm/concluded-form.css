@@ -1,0 +1,112 @@
+.concluded-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: -moz-fit-content;
+  height: fit-content;
+  align-items: center;
+  background-color: #4A0000;
+  border-radius: 0.2em;
+  color: white;
+  justify-content: center;
+  box-shadow: 0px 0px 10px 0.01em rgb(16, 16, 16);
+}
+.concluded-container p, .concluded-container h3 {
+  padding-bottom: 20px;
+  padding-left: 15px;
+  text-align: left;
+  font-weight: lighter;
+}
+.concluded-container p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin-left: 10px;
+}
+.concluded-container p span {
+  border-bottom: 1px solid;
+}
+.concluded-container h3 {
+  align-items: center;
+  border: solid white;
+  padding: 10px 10px;
+  background-color: white;
+  color: #4A0000;
+  border-radius: 0.1em;
+  width: 95%;
+}
+.concluded-container .show-id {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0px;
+}
+.concluded-container .show-id .black {
+  margin-top: 10px;
+  border-bottom: 1px solid;
+}
+
+.notice {
+  background-color: black;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 0.2em;
+  margin-top: 20px;
+}
+
+.info_sect {
+  background-color: white;
+  color: #4A0000;
+  padding-top: 1px;
+  padding-bottom: 0px;
+  border-radius: 0.1em;
+  width: 90%;
+  margin-bottom: 30px;
+}
+
+.sectionId {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  font-size: 30px;
+  border-radius: 0.2em;
+  margin: 20px 0;
+}
+.sectionId .div_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px;
+  background-color: white;
+  border-radius: 0.1em;
+  box-shadow: 0px 0px 10px 0.01em rgb(16, 16, 16);
+}
+.sectionId .div_link a {
+  text-decoration: none;
+  color: #4A0000;
+  text-shadow: 1px 1px 2px #4A0000;
+  font-size: 25px;
+}
+.sectionId .div_link a:hover {
+  color: rgb(129, 129, 129);
+  text-shadow: 1px 1px 2px rgb(129, 129, 129);
+  transition: 0.2s;
+}
+
+@media screen and (max-width: 840px) {
+  .concluded-container {
+    width: 90%;
+  }
+  .sectionId {
+    font-size: 20px;
+    width: 90%;
+  }
+  .sectionId p {
+    flex-direction: column;
+  }
+  .sectionId p * {
+    padding-top: 10px;
+  }
+}/*# sourceMappingURL=concluded-form.css.map */
