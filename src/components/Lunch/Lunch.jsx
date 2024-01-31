@@ -181,7 +181,8 @@ const Lunch = () => {
             />
           </form>
           {documents && documents.map((d) => (
-            d.lunch && new Date(`${d.date}T00:00:00`) >= dateNow &&
+            d.lunch &&
+            //new Date(`${d.date}T00:00:00`) >= dateNow &&
             <h3 key={d.id}>{d.professional} <span className="font-normal">- {new Date(`${d.date}T00:00:00`).toLocaleDateString()} - {d.hour} <button className={styles.inp_sub_cancel} onClick={(evt) => handleCancelAppointment(evt, d.tid)}>Cancelar</button></span></h3>
           ))}
         </div>

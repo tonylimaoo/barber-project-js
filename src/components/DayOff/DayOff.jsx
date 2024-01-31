@@ -121,9 +121,8 @@ const DayOff = () => {
                         />
                     </form>
                     {documents && documents.map((d) => (
-                        new Date(d.date) >= dateNow &&
                         <h3 key={d.id}>{d.professional}
-                            <span className="font-normal">- {new Date(`${d.date}T00:00:00`).toLocaleDateString()}</span>
+                            <span className="font-normal"> - {new Date(`${d.date}T00:00:00`).toLocaleDateString()}</span>
                             <button className={styles.inp_sub_cancel} onClick={(evt) => handleCancelAppointment(evt, d.date)}>
                                 Cancelar</button>
                         </h3>
