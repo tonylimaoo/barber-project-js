@@ -7,6 +7,7 @@ import { useExclusiveHours } from '../../hooks/useExclusiveHours'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 import { useDeleteDocument } from '../../hooks/useDeleteDocument'
 import { useHours } from '../../hooks/useHours'
+import { useFetchDayOff } from '../../hooks/useFetchDayOff'
 // import { useDays } from '../../hooks/useDays'
 
 // const hours = ["07:10", "08:00", "08:50", "09:40", "10:30", "11:20", "12:10", "13:00", "13:50", "14:40", "15:30", "16:20", "17:10", "18:00", "18:50", "19:40", "20:30"]
@@ -14,6 +15,7 @@ const uuid = require('uuid');
 
 const Lunch = () => {
 
+  const [lunchDate, setLunchDate] = useState(new Date().toJSON().split('T')[0]);
   const [professional, setProfessional] = useState("");
   const [date, setDate] = useState("");
   const [enabled, setEnabled] = useState(false);
@@ -22,7 +24,7 @@ const Lunch = () => {
   const [formErrorMessage] = useState("");
   const [appointmentHours, setAppointmentHours] = useState("");
   // const { dayPlusSeven } = useDays();
-  const { documents } = useFetchDocuments('transactions', null, false, true);
+  const { documents } = useFetchDayOff('transactions', lunchDate)
   const { setDocument } = useInsertDocument('transactions');
   const { documents: enabledHours } = useFetchEnabledHours("transactions", professional, date);
   const { hours } = useHours(date);
@@ -170,8 +172,17 @@ const Lunch = () => {
         </div>
         <h3>Últimas horários agendados</h3>
         <div className={`${styles["white-bg"]} ${styles["set-margin"]}`}>
+          <form>
+            <input
+              className={styles.day_off_date_input}
+              type="date"
+              value={lunchDate}
+              onChange={(e) => setLunchDate(e.target.value)}
+            />
+          </form>
           {documents && documents.map((d) => (
-            d.lunch && new Date(`${d.date}T00:00:00`) >= dateNow &&
+            d.lunch &&
+            //new Date(`${d.date}T00:00:00`) >= dateNow &&
             <h3 key={d.id}>{d.professional} <span className="font-normal">- {new Date(`${d.date}T00:00:00`).toLocaleDateString()} - {d.hour} <button className={styles.inp_sub_cancel} onClick={(evt) => handleCancelAppointment(evt, d.tid)}>Cancelar</button></span></h3>
           ))}
         </div>
