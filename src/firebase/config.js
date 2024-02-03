@@ -12,6 +12,15 @@ const firebaseConfig = {
   appId: "1:122062340578:web:31fc3c1453fef4b79c79bb"
 };
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBgcFpNB1CbnAfXrbQlO0vaRzthkQD0JD4",
+//   authDomain: "develop-barber-project.firebaseapp.com",
+//   projectId: "develop-barber-project",
+//   storageBucket: "develop-barber-project.appspot.com",
+//   messagingSenderId: "663186131470",
+//   appId: "1:663186131470:web:a7872e348295b4a1c54a5f"
+// };
+
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
