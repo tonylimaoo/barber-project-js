@@ -50,19 +50,38 @@ export default function ScheduleForm({
 
                 hoursFiltered = hoursFiltered.filter((ele) => {
                     const dateNowJson = new Date().toJSON().split("T")[0]
-                    const dateHourMounted = new Date(`${dateNowJson}T${ele}:00.358825-03:00`).getTime();
-                    let received;
-                    if (hourNow <= dateHourMounted - (600000 +(600000 * 6 * 24))) {
+                    const dateHourMounted = new Date(`${dateNowJson}T${ele}:00`).getTime(); //.358Z
+                    if (hourNow <= dateHourMounted - (600000)) { //+(600000 * 6 * 24)
                         return ele
+                    } else {
+                        console.log('nao é')
                     }
                 })
-                setExclusiveHours(hoursFiltered);
+
+                // if (exclusiveHours.length === 0) {
+                //     setFormError(true);
+                //     setFormErrorMessage("Não temos horários nesse dia com o barbeiro selecionado. Escolha outra data ou outro barbeiro.");
+                //     setProfessional('');
+                //     return;
+                // }
+                // else{
+                    setExclusiveHours(hoursFiltered);
+                // }
             } else {
                 setExclusiveHours(hoursFiltered);
             }
         }
 
-    }, [appointmentHours, hours, date])
+    }, [appointmentHours, hours, date, professional])
+
+    useEffect(() => {
+        if (exclusiveHours.length === 0 && professional !== '') {
+                setFormError(true);
+                setFormErrorMessage("Não temos horários nesse dia com o barbeiro selecionado. Escolha outra data ou outro barbeiro.");
+                setProfessional('');
+                return;
+            }
+    }, [exclusiveHours, professional])
 
     const { formatDate, dayPlusSeven } = useDays();
 
@@ -194,8 +213,16 @@ export default function ScheduleForm({
     }
 
     const handleProfessionalChange = (e) => {
-        setHour('')
-        setProfessional(e.target.value)
+        console.log(exclusiveHours.length)
+        if (exclusiveHours.length === 0) {
+            setFormError(true);
+            setFormErrorMessage("Não temos horários nesse dia com o barbeiro selecionado. Escolha outra data ou outro barbeiro.");
+            setProfessional('');
+            return;
+        } else {
+            setHour('')
+            setProfessional(e.target.value)
+        }
     }
 
     const handelServiceChange = (e) => {

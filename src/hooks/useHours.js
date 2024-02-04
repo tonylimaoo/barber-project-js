@@ -22,7 +22,7 @@ export const useHours = (date) => {
           "16:10",
           "17:00",
           "17:50",
-          "18:40"
+          "18:40",
         ])
       } else {
         setHours([
