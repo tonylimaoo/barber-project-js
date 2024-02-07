@@ -50,8 +50,16 @@ export default function ScheduleForm({
                 hoursFiltered = hoursFiltered.filter((ele) => {
                     console.log('entrou aqui')
                     let received;
-                    const dateNowJson = new Date().toJSON().split("T")[0]
-                    const dateHourMounted = new Date(`${dateNowJson}T${ele}:00`).getTime() - (600000 * 6 * 24); //.358Z
+
+                    const date = new Date()
+
+                    const dateOffset = date.getTimezoneOffset();
+                    let dateTimestamp = date.getTime()
+
+                    dateTimestamp = dateTimestamp - dateOffset * 60 * 1000
+
+                    const dateNowJson = new Date(dateTimestamp).toJSON().split("T")[0]
+                    const dateHourMounted = new Date(`${dateNowJson}T${ele}:00`).getTime() //- (600000 * 6 * 24); //.358Z
 
                     if (hourNow <= dateHourMounted - (600000)) { //+(600000 * 6 * 24)
                         received = ele
@@ -210,22 +218,20 @@ export default function ScheduleForm({
 
     const handleProfessionalChange = (e) => {
         console.log('appointmentHours')
-        console.log(appointmentHours)
+        console.log(exclusiveHours.length)
+
+        // if(exclusiveHours.length === 0) {
+        //     setProfessional('')
+        //     setHour('')
+        //     setFormError(true)
+        //     setFormErrorMessage("Não há mais horários disponíveis com este Babeiro nesse dia.")
+        // } else {
 
             setHour('')
             setProfessional(e.target.value)
-    }
+        // }
 
-    useEffect(() => {
-        console.log('professional')
-        console.log(professional)
-        if(exclusiveHours.length === 0 && professional !== '') {
-            setHour('')
-            setFormError(true)
-            setFormErrorMessage("Não há mais horários disponíveis com este Babeiro nesse dia.")
-            setProfessional('')
-        }
-    })
+    }
 
     const handelServiceChange = (e) => {
         setProfessional('');
