@@ -6,6 +6,7 @@ export const useHours = (date) => {
   const [hours, setHours] = useState('');
   useEffect(() => {
     if (date !== '') {
+      console.log('foi aquii no bagulho')
       if (selectedDate.getDay() === 6) {
         setHours([
           "7:00",
@@ -22,7 +23,7 @@ export const useHours = (date) => {
           "16:10",
           "17:00",
           "17:50",
-          "18:40"
+          "18:40",
         ])
       } else {
         setHours([
@@ -40,12 +41,18 @@ export const useHours = (date) => {
           "17:30",
           "18:20",
           "19:10",
-          "20:00"
+          "20:00",
+          "23:18"
         ])
       }
     }
 
   }, [date])
+
+  useEffect(() => {
+    console.log('hours')
+    console.log(hours)
+  }, [hours])
 
   return { hours }
 }

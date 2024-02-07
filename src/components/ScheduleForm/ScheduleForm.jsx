@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import './schedule-form.css'
 import { useDays } from '../../hooks/useDays';
 import { useAdminValue } from '../../context/AdminContext';
-import { subtractHours, subtractMinutes } from '../../utilities/hoursFunctions';
 
 export default function ScheduleForm({
     name,
@@ -46,18 +45,31 @@ export default function ScheduleForm({
 
             if (dateNow.toLocaleDateString() === dateParsed) {
 
-                const hourNow = dateNow.toLocaleTimeString().split(':')
-                hourNow.pop();
-                const hourNowRefact = hourNow.join().replace(',', '');
+                const hourNow = new Date().getTime()
 
-                hoursFiltered = hoursFiltered.filter(ele => {
-                    const elemReplaced = parseInt(ele.replace(':', ''));
+                hoursFiltered = hoursFiltered.filter((ele) => {
+                    console.log('entrou aqui')
                     let received;
-                    if (elemReplaced > hourNowRefact) {
-                        received = ele;
+                    const dateNowJson = new Date().toJSON().split("T")[0]
+                    const dateHourMounted = new Date(`${dateNowJson}T${ele}:00`).getTime() - (600000 * 6 * 24); //.358Z
+
+                    if (hourNow <= dateHourMounted - (600000)) { //+(600000 * 6 * 24)
+                        received = ele
+                    } else {
+                        console.log('nao é')
                     }
+                    console.log(received)
                     return received;
                 })
+                                
+                // hoursFiltered = hoursFiltered.filter(ele => {
+                //     const elemReplaced = parseInt(ele.replace(':', ''));
+                //     let received;
+                //     if (elemReplaced > hourNowRefact) {
+                //         received = ele;
+                //     }
+                //     return received;
+                // })
                 setExclusiveHours(hoursFiltered)
             } else {
                 setExclusiveHours(hoursFiltered);
