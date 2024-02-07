@@ -77,7 +77,7 @@ export default function ScheduleForm({
             }
         }
 
-    }, [appointmentHours, hours, date])
+    }, [appointmentHours, hours, date, professional, service])
 
     const { formatDate, dayPlusSeven } = useDays();
 
@@ -109,7 +109,7 @@ export default function ScheduleForm({
             setNoDayOffBarber(working)
 
             setFormError(true);
-            setFormErrorMessage(`O Barbeiro ${barber} estará de folga no dia ${new Date(realDate + 'T00:00:00').toLocaleDateString()}`)
+            setFormErrorMessage(`O Barbeiro ${barber} estará de folga no dia ${new Date(realDate + 'T00:00:00').toLocaleDateString()}. Agende outro dia ou selecione outro barbeiro.`)
         } else {
             setNoDayOffBarber(barbers)
         }
@@ -209,9 +209,23 @@ export default function ScheduleForm({
     }
 
     const handleProfessionalChange = (e) => {
-        setHour('')
-        setProfessional(e.target.value)
+        console.log('appointmentHours')
+        console.log(appointmentHours)
+
+            setHour('')
+            setProfessional(e.target.value)
     }
+
+    useEffect(() => {
+        console.log('professional')
+        console.log(professional)
+        if(exclusiveHours.length === 0 && professional !== '') {
+            setHour('')
+            setFormError(true)
+            setFormErrorMessage("Não há mais horários disponíveis com este Babeiro nesse dia.")
+            setProfessional('')
+        }
+    })
 
     const handelServiceChange = (e) => {
         setProfessional('');
