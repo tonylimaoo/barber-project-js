@@ -48,10 +48,5 @@ export const useHours = (date) => {
 
   }, [date])
 
-  useEffect(() => {
-    console.log('hours')
-    console.log(hours)
-  }, [hours])
-
   return { hours }
 }
