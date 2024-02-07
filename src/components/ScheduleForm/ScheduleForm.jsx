@@ -70,6 +70,7 @@ export default function ScheduleForm({
                 //     }
                 //     return received;
                 // })
+                
                 setExclusiveHours(hoursFiltered)
             } else {
                 setExclusiveHours(hoursFiltered);
