@@ -87,8 +87,6 @@ const Lunch = () => {
 
     try {
       deleteData('transactions', tid)
-      console.log('deletou')
-
     } catch (error) {
       console.log(error.message)
     }
