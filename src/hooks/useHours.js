@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 export const useHours = (date) => {
 
   const selectedDate = new Date(date + "T00:00:00");
+  const dayGet = selectedDate.getDay();
   const [hours, setHours] = useState('');
   useEffect(() => {
     if (date !== '') {
-      if (selectedDate.getDay() === 6) {
+      if (dayGet === 6) {
         setHours([
           "7:00",
           "7:50",
@@ -45,7 +46,7 @@ export const useHours = (date) => {
       }
     }
 
-  }, [date])
+  }, [date, dayGet])
 
   return { hours }
 }

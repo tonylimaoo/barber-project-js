@@ -4,7 +4,6 @@ import styles from './Lunch.module.scss'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 import { useFetchEnabledHours } from '../../hooks/useFetchEnabledHours'
 import { useExclusiveHours } from '../../hooks/useExclusiveHours'
-import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 import { useDeleteDocument } from '../../hooks/useDeleteDocument'
 import { useHours } from '../../hooks/useHours'
 import { useFetchDayOff } from '../../hooks/useFetchDayOff'
@@ -23,14 +22,12 @@ const Lunch = () => {
   const [formError, setFormError] = useState("");
   const [formErrorMessage] = useState("");
   const [appointmentHours, setAppointmentHours] = useState("");
-  // const { dayPlusSeven } = useDays();
   const { documents } = useFetchDayOff('transactions', lunchDate)
   const { setDocument } = useInsertDocument('transactions');
   const { documents: enabledHours } = useFetchEnabledHours("transactions", professional, date);
   const { hours } = useHours(date);
   const { exclusiveHours } = useExclusiveHours(appointmentHours, hours, date);
   const { deleteData } = useDeleteDocument();
-  const dateNow = new Date();
 
   useEffect(() => {
     if (date && professional && enabledHours) {
@@ -48,9 +45,9 @@ const Lunch = () => {
           .split(',');
 
         if (new Date(date + "T00:00:00").getDay() === 6) {
-          hoursFormatted.push("12:50", "18:40")
+          hoursFormatted.push("18:40")
         } else {
-          hoursFormatted.push("12:20", "20:00")
+          hoursFormatted.push("20:00")
         }
 
         setAppointmentHours(hoursFormatted);
@@ -74,7 +71,7 @@ const Lunch = () => {
       date: date,
       professional: professional,
       professional_id: professional === 'Carlos' ? 1 : 2,
-      hour: hour,
+      hour: [hour],
       updatedAt: new Date(),
       tid,
       lunch: true
@@ -90,8 +87,6 @@ const Lunch = () => {
 
     try {
       deleteData('transactions', tid)
-      console.log('deletou')
-
     } catch (error) {
       console.log(error.message)
     }
