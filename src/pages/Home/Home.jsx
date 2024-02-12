@@ -39,6 +39,7 @@ export default function App() {
     const [formErrorMessage, setFormErrorMessage] = useState("");
     const [hoursIndex, setHoursIndex] = useState();
     const [noDayOffBarber, setNoDayOffBarber] = useState();
+    const [exclusiveHours, setExclusiveHours] = useState();
     const { isAdmin } = useAdminValue();
     const { hours } = useHours(date);
 
@@ -102,7 +103,7 @@ export default function App() {
                 })
             }
         }
-    }, [uid, documents]);
+    }, [uid, documents, isAdmin]);
 
     useEffect(() => {
         if (date && professional && enabledHours) {
@@ -132,6 +133,37 @@ export default function App() {
             handleEnabledHours();
         }
     }, [date, professional, enabledHours]);
+
+    useEffect(() => {
+
+        if (hours) {
+            let hoursFiltered = hours.filter(ele => !appointmentHours.includes(ele))
+
+            const dateParsed = new Date(date + 'T00:00:00').toLocaleDateString();
+
+            const dateNow = new Date();
+
+            if (dateNow.toLocaleDateString() === dateParsed) {
+
+                const hourNow = dateNow.toLocaleTimeString().split(':')
+                hourNow.pop();
+                const hourNowRefact = hourNow.join().replace(',', '');
+
+                hoursFiltered = hoursFiltered.filter(ele => {
+                    const elemReplaced = parseInt(ele.replace(':', ''));
+                    let received;
+                    if (elemReplaced > hourNowRefact) {
+                        received = ele;
+                    }
+                    return received;
+                })
+                setExclusiveHours(hoursFiltered)
+            } else {
+                setExclusiveHours(hoursFiltered);
+            }
+        }
+
+    }, [appointmentHours, hours, date])
 
     return (
         <div className="container-home">
@@ -171,6 +203,7 @@ export default function App() {
                     noDayOffBarber={noDayOffBarber}
                     setNoDayOffBarber={setNoDayOffBarber}
                     barbers={barbers}
+                    exclusiveHours={exclusiveHours}
                 />
             }
             {error &&
