@@ -53,7 +53,8 @@ export default function App() {
         error
     } = useFetchDocuments("users", authUser ? authUser.uid : null);
     const {
-        documents: enabledHours
+        documents: enabledHours,
+        error: errorEnabledHours
     } = useFetchEnabledHours("transactions", professional, date);
     const {
         documents: dayOffs,
@@ -106,29 +107,46 @@ export default function App() {
     }, [uid, documents, isAdmin]);
 
     useEffect(() => {
+        if(error) {
+            setFormError(true)
+            setFormErrorMessage("Sem Internet! Atualize a página.")
+        }
+    }, [error])
+
+    useEffect(() => {
         if (date && professional && enabledHours) {
+
+
             const handleEnabledHours = async () => {
-                let data = enabledHours;
+                    if (!navigator.onLine){
+                        setFormError(true)
+                        setFormErrorMessage("Sem Internet! Atualize a página.")
+                        setAppointmentHours([])
+                    } else {
+                        let data = enabledHours;
 
-                let apt = data
-                    .filter(e => e.date === date)
-                    .filter(e => e.professional === professional)
-                    .map(e => e.hour)
-
-                let hoursFormatted = JSON.stringify(apt)
-                    .replace(/\[|\]/g, '')
-                    .replace(/(['"])/g, '')
-                    .split(',');
-
-
-                if (new Date(date + "T00:00:00").getDay() === 6) {
-                    hoursFormatted.push("18:40")
-                } else {
-                    hoursFormatted.push("20:00")
-                }
-
-                setAppointmentHours(hoursFormatted);
-
+                        let apt = data
+                            .filter(e => e.date === date)
+                            .filter(e => e.professional === professional)
+                            .map(e => e.hour)
+    
+                        let hoursFormatted = JSON.stringify(apt)
+                            .replace(/\[|\]/g, '')
+                            .replace(/(['"])/g, '')
+                            .split(',');
+    
+    
+                        if (new Date(date + "T00:00:00").getDay() === 6) {
+                            hoursFormatted.push("18:40")
+                        } else {
+                            hoursFormatted.push("20:00")
+                        }
+    
+                        console.log("hoursFormatted")
+                        console.log(hoursFormatted)
+    
+                        setAppointmentHours(hoursFormatted);
+                    }
             }
             handleEnabledHours();
         }
@@ -158,6 +176,8 @@ export default function App() {
                     return received;
                 })
                 setExclusiveHours(hoursFiltered)
+            } else if(!navigator.onLine) {
+                setExclusiveHours([]);
             } else {
                 setExclusiveHours(hoursFiltered);
             }

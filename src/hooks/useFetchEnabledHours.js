@@ -24,6 +24,8 @@ export const useFetchEnabledHours = (
             }
 
             try {
+                console.log("entrou aqui")
+
                 let q;
 
                 q = await query(
@@ -44,8 +46,7 @@ export const useFetchEnabledHours = (
                 setLoading(false);
 
             } catch (e) {
-                console.log(error);
-                setError(error);
+                setError(e);
                 setLoading(false);
             }
 
