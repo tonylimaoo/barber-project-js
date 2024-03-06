@@ -122,6 +122,7 @@ export default function App() {
                         setFormError(true)
                         setFormErrorMessage("Sem Internet! Atualize a página.")
                         setAppointmentHours([])
+                        setExclusiveHours([])
                     } else {
                         let data = enabledHours;
 
@@ -163,30 +164,34 @@ export default function App() {
 
             if (dateNow.toLocaleDateString() === dateParsed) {
 
-                const hourNow = new Date().getTime()
-
-                hoursFiltered = hoursFiltered.filter((ele) => {
-                    console.log('entrou aqui')
-                    let received;
-
-                    const date = new Date()
-
-                    const dateOffset = date.getTimezoneOffset();
-                    let dateTimestamp = date.getTime()
-
-                    dateTimestamp = dateTimestamp - dateOffset * 60 * 1000
-
-                    const dateNowJson = new Date(dateTimestamp).toJSON().split("T")[0]
-                    const dateHourMounted = new Date(`${dateNowJson}T${ele}:00`).getTime() //- (600000 * 6 * 24); //.358Z
-
-                    if (hourNow <= dateHourMounted - (600000)) { //+(600000 * 6 * 24)
-                        received = ele
-                    } else {
-                        console.log('nao é')
-                    }
-                    console.log(received)
-                    return received;
-                })
+                if(!navigator.onLine) {
+                    hoursFiltered = [];
+                } else {
+                    const hourNow = new Date().getTime()
+    
+                    hoursFiltered = hoursFiltered.filter((ele) => {
+                        console.log('entrou aqui')
+                        let received;
+    
+                        const date = new Date()
+    
+                        const dateOffset = date.getTimezoneOffset();
+                        let dateTimestamp = date.getTime()
+    
+                        dateTimestamp = dateTimestamp - dateOffset * 60 * 1000
+    
+                        const dateNowJson = new Date(dateTimestamp).toJSON().split("T")[0]
+                        const dateHourMounted = new Date(`${dateNowJson}T${ele}:00`).getTime() //- (600000 * 6 * 24); //.358Z
+    
+                        if (hourNow <= dateHourMounted - (600000)) { //+(600000 * 6 * 24)
+                            received = ele
+                        } else {
+                            console.log('nao é')
+                        }
+                        console.log(received)
+                        return received;
+                    })
+                }
                                 
                 // hoursFiltered = hoursFiltered.filter(ele => {
                 //     const elemReplaced = parseInt(ele.replace(':', ''));
