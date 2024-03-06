@@ -54,7 +54,7 @@ export default function App() {
     } = useFetchDocuments("users", authUser ? authUser.uid : null);
     const {
         documents: enabledHours,
-        error: errorEnabledHours
+        // error: errorEnabledHours
     } = useFetchEnabledHours("transactions", professional, date);
     const {
         documents: dayOffs,
